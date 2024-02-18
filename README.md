@@ -1,36 +1,47 @@
-# Welcome to Remix + Vite!
+<a href="https://khofly.com">
+<p align="center">
+    <img height="80" src="./assets/logo.png"/>
+</p>
+</a>
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+<br />
+<p align="center">
+    <strong>Khofly - A modern SearXNG front-end</strong>
+</p>
+<br />
 
-## Development
+<p align="center">
+    <img align="center" alt="Remix" src="https://img.shields.io/badge/remix-%23000.svg?style=for-the-badge&logo=remix&logoColor=white"/>
+    <img align="center" alt="SearXNG" src="https://img.shields.io/badge/SearXNG-1?style=for-the-badge&logo=searxng&logoColor=white&color=blue" />
+</p>
 
-Run the Vite dev server:
+<br />
 
-```shellscript
-npm run dev
-```
+<h3 align="center">
+    <a href="https://github.com/khofly/search/blob/master/CONTRIBUTING.md">Contribute</a>
+    <span> · </span>
+    <a href="https://discord.gg/mQ68HppVbt">Community</a>
+    <span> · </span>
+    <a href="https://khofly.com/wiki">Documentation</a>
+</h3>
 
-## Deployment
+## Branches
 
-First, build your app for production:
+- staging -> pr this branch for everything
+- master -> don't touch, this is what's running in prod
 
-```sh
-npm run build
-```
+If you're working on a **new feature**, create a feature branch - [ feature/\* ] ( ex. feature/auth )
 
-Then run the app in production mode:
+If you're working on an **issue**, create an issue branch - [ fix/issue-\* ] ( ex. fix/issue-1234 )
 
-```sh
-npm start
-```
+## Contributing
 
-Now you'll need to pick a host to deploy it to.
+See [CONTRIBUTING.md](https://github.com/khofly/search/blob/master/CONTRIBUTING.md) for all details.
 
-### DIY
+Also check out the [Project Board]() for all available and future tasks
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+I recommend creating an issue or message me on discord [ cufta22#8160 ] to let me know what you are working on first that way we don't overwrite each other.
 
-Make sure to deploy the output of `npm run build`
+## Code of Conduct
 
-- `build/server`
-- `build/client`
+Please read [CODE_OF_CONDUCT.md](https://github.com/khofly/search/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct.

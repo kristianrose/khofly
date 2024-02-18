@@ -1,0 +1,226 @@
+{
+  "_common": {
+    "app_name": "Khofly"
+  },
+
+  "header": {
+    "sign_in": "Sign in",
+
+    "avatar": {
+      "label_1": "Resources",
+      "settings": "Settings",
+
+      "label_2": "Actions",
+
+      "switch_acc": "Switch accounts",
+      "sign_out": "Sign out"
+    }
+  },
+  "pages": {
+    "index": {
+      "search_placeholder": "Search for anything..."
+    },
+
+    "search": {
+      "search_placeholder": "Search for anything..."
+    },
+
+    "changelog": {
+      "title": "Changelog"
+    },
+
+    "settings": {
+      "interface": {
+        "title": "User interface",
+
+        "selectLang": "Language select",
+        "selectLangOptions": {
+          "en": "English",
+          "fr": "French",
+          "de": "German"
+        },
+
+        "selectTheme": "Theme select",
+        "selectThemeOptions": {
+          "mantine_old": "Mantine Old",
+          "mantine_new": "Mantine New",
+          "material": "Material",
+          "catppuccin": "Catppuccin",
+          "rosepine": "Rosé Pine",
+          "custom": "Custom"
+        },
+
+        "selectPrimaryColor": "Primary color",
+        "selectPrimaryColorOptions": {
+          "blue": "Blue",
+          "red": "Red",
+          "green": "Green",
+          "yellow": "Yellow",
+          "pink": "Pink",
+          "teal": "Teal"
+        },
+
+        "selectFont": "Font select",
+        "selectFontOptions": {
+          "inter": "Inter",
+          "roboto": "Roboto",
+          "montserrat": "Montserrat",
+          "sourceCodePro": "Source Code Pro"
+        },
+
+        "selectColor": "Color scheme",
+        "selectColorOptions": {
+          "light": "Light",
+          "dark": "Dark"
+        }
+      },
+
+      "general": {
+        "title": "General settings",
+
+        "toggle_favicon": "Display website favicon",
+
+        "toggle_autocomplete": "Enable search autocomplete",
+        "autocomplete_engine_google": "Google",
+        "autocomplete_engine_DDG": "DuckDuckGo",
+        "autocomplete_engine_brave": "Brave",
+        "autocomplete_engine_qwant": "Qwant",
+
+        "toggle_open_in_new_tab": "Open links in new tab",
+
+        "toggle_ia": "Enable Instant Answers",
+
+        "set_as_default": "Set Khofly as default search engine",
+        "set_as_default_btn": "Set default",
+
+        "learn_more": "Learn more"
+      },
+
+      "categories": {
+        "title": "Search categories"
+      },
+
+      "theme": {
+        "title": "Customize theme",
+        "description": "Apply current theme changes",
+        "button": "Apply"
+      },
+
+      "engines": {
+        "titleWithout": "other stuff",
+
+        "title1": "Web engines",
+        "title2": "wiki stuff",
+        "title3": "web",
+
+        "engineGoogle": "Google",
+        "engineDDG": "DuckDuckGo",
+        "engineQwant": "Qwant",
+        "engineBing": "Bing",
+        "engineBrave": "Brave",
+        "engineYahoo": "Yahoo!",
+
+        "engineWikipedia": "Wikipedia",
+        "engineWikidata": "Wikidata",
+
+        "titleImg": "Image engines",
+        "titleImg1": "web",
+
+        "engineGoogleImg": "Google images",
+        "engineDDGImg": "DuckDuckGo images",
+        "engineQwantImg": "Qwant images",
+        "engineBingImg": "Bing images",
+        "engineBraveImg": "Brave images",
+
+        "titleVid": "Video engines",
+        "titleVid1": "web",
+
+        "engineGoogleVid": "Google videos",
+        "engineDDGVid": "DuckDuckGo videos",
+        "engineQwantVid": "Qwant videos",
+        "engineBingVid": "Bing videos",
+        "engineBraveVid": "Brave videos",
+
+        "titleNews": "News engines",
+        "titleNews2": "wiki stuff",
+        "titleNews3": "web news",
+
+        "engineGoogleNews": "Google news",
+        "engineDDGNews": "DuckDuckGo news",
+        "engineBingNews": "Bing news",
+        "engineBraveNews": "Brave news",
+        "engineQwantNews": "Qwant news",
+        "engineYahooNews": "Yahoo! news",
+        "enginePresearchNews": "Presearch news",
+
+        "engineWikinews": "Wikinews",
+
+        "titleMusic": "Music engines",
+        "titleMusic2": "lyrics",
+        "titleMusic3": "radio search",
+
+        "engineGeniusMusic": "Genius",
+        "engineRBMusic": "Radio Browser",
+        "engineBandcampMusic": "Bandcamp",
+        "engineMixcloudMusic": "Mixcloud",
+        "enginePipedMusic": "Piped.Music",
+        "engineSCMusic": "Soundcloud",
+        "engineYTMusic": "YouTube",
+
+        "titleIT": "IT engines",
+        "titleIT2": "q&a",
+        "titleIT3": "repos",
+        "titleIT4": "software wikis",
+        "titleIT5": "packages",
+
+        "engineDockerHubIT": "Docker hub",
+        "engineNPMIT": "NPM",
+        "enginePypiIT": "PyPI",
+        "engineAUIT": "Ask Ubuntu",
+        "engineSOIT": "StackOverflow",
+        "engineSUIT": "Superuser",
+        "engineCodebergIT": "Codeberg",
+        "engineGHIT": "GitHub",
+        "engineGLIT": "GitLab",
+        "engineArchIT": "Arch Wiki",
+        "engineGentooIT": "Gentoo",
+        "engineMDNIT": "MDN",
+
+        "titleScience": "Science engines",
+        "titleScience2": "publications",
+        "titleScience3": "wiki stuff",
+
+        "engineArxivScience": "arXiv",
+        "engineCrossrefScience": "Crossref",
+        "engineGoogleScholarScience": "Google Scholar",
+        "engineIASScience": "Internet Archive Scholar",
+        "enginePubMedScience": "PubMed",
+        "engineSemanticScholarScience": "Semantic Scholar",
+        "engineWikispeciesScience": "Wikispecies",
+        "engineOADatasetsScience": "OpenAIRE datasets",
+        "engineOAPublicationsScience": "OpenAIRE publications",
+        "enginePDBeScience": "PDBe",
+
+        "titleFiles": "Files engines",
+        "titleFiles2": "apps",
+
+        "engineAPKMirrorFiles": "APKMirror",
+        "engineFdriodFiles": "F-Droid",
+        "engine1337xFiles": "1337x",
+        "engineAnnasFiles": "Anna's Archive",
+        "engineBt4gFiles": "bt4g",
+        "engineNyaaFiles": "Nyaa",
+        "enginePiratebayFiles": "The Pirate Bay",
+
+        "titleSocial": "Social Media engines",
+
+        "engineLemmyCommentsSM": "Lemmy Comments",
+        "engineLemmyCommunitiesSM": "Lemmy Communities",
+        "engineLemmyPostsSM": "Lemmy Posts",
+        "engineLemmyUsersSM": "Lemmy Users",
+        "engineMastodonHashtagsSM": "Mastodon Hashtags",
+        "engineMastodonUsersSM": "Mastodon Users"
+      }
+    }
+  }
+}
