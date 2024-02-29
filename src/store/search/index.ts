@@ -119,7 +119,7 @@ interface SearchState {
 export const useSearchStore = create<SearchState>()(
   persist(
     (set) => ({
-      enginesGeneral: ["duckduckgo", "brave", "wikipedia"],
+      enginesGeneral: ["duckduckgo", "wikipedia"],
       setEnginesGeneral: (next) => set({ enginesGeneral: next }),
 
       enginesImages: ["duckduckgo", "bing", "qwant"],

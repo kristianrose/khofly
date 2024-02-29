@@ -1,4 +1,4 @@
-import PageWiki from "@module/Wiki";
+import PageWiki from "@module/Docs";
 
 const Wiki = () => {
   return <PageWiki />;

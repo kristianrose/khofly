@@ -20,7 +20,7 @@ const SectionOpera = () => {
 
       <WikiText>
         3. Once the installation is finished follow the steps from{" "}
-        <RemixLink to={"/wiki/set-default?browser=Firefox"}>
+        <RemixLink to={"/docs/set-default?browser=Firefox"}>
           <Text component="span" c="blue">
             this page
           </Text>

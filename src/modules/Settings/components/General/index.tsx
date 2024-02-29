@@ -104,7 +104,7 @@ const SettingsGeneral = () => {
             {t("pages.settings.general.set_as_default")}
           </Text>
 
-          <RemixLink to="/wiki/set-default">
+          <RemixLink to="/docs/set-default">
             <Button variant="outline">
               {t("pages.settings.general.set_as_default_btn")}
             </Button>

@@ -7,14 +7,18 @@ const CaramelldansenAudio = () => {
 
   const q = searchParams.get("q");
 
+  const isActive = q?.includes("caramelldansen");
+
   useEffect(() => {
-    if (q?.includes("caramelldansen")) {
+    if (isActive) {
       audioRef.current?.load();
       audioRef.current?.play();
     } else {
       audioRef.current?.pause();
     }
   }, [q]);
+
+  if (!isActive) return null;
 
   return (
     <audio

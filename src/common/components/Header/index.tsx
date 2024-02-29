@@ -22,9 +22,19 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
   const isChangelog = pathname.startsWith("/changelog");
   const isSettings = pathname.startsWith("/settings");
-  const isRewards = pathname.startsWith("/rewards");
+  const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
-  const isWiki = pathname.startsWith("/wiki");
+  const isDocs = pathname.startsWith("/docs");
+
+  const pageTitle = isChangelog
+    ? "Changelog"
+    : isSettings
+    ? "Settings"
+    : isPrivacy
+    ? "Privacy"
+    : isDocs
+    ? "Docs"
+    : "";
 
   return (
     <Group
@@ -40,29 +50,19 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {/* Header: /search?q= */}
       {isSearch && <SearchSection />}
 
-      {/* Header: /wiki, /settings, /rewards, /changelog */}
-      {(isWiki || isSettings || isChangelog || isRewards) && (
+      {/* Header: /docs, /settings, /rewards, /changelog */}
+      {(isDocs || isSettings || isChangelog || isPrivacy) && (
         <HeaderLogo
-          hasBurger={isWiki}
+          hasBurger={isDocs}
           openNavbar={openNavbar}
           toggleNavbar={toggleNavbar}
         />
       )}
 
       {/* Page titles */}
-      {isWiki && (
+      {(isDocs || isSettings || isChangelog || isDocs || isPrivacy) && (
         <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
-          / Wiki
-        </Text>
-      )}
-      {isSettings && (
-        <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
-          / Settings
-        </Text>
-      )}
-      {isChangelog && (
-        <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
-          / Changelog
+          / {pageTitle}
         </Text>
       )}
 

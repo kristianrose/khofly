@@ -22,7 +22,7 @@
     <span> · </span>
     <a href="https://discord.gg/mQ68HppVbt">Community</a>
     <span> · </span>
-    <a href="https://khofly.com/wiki">Documentation</a>
+    <a href="https://khofly.com/docs">Documentation</a>
 </h3>
 
 ## Branches

@@ -1,7 +1,5 @@
 import { DotNestedKeys } from "@ts/global.types";
 
-import Cookie from "js-cookie";
-import { useContext } from "react";
 import { useI18nContent } from "@store/language";
 import { ITranslations } from "@store/global";
 

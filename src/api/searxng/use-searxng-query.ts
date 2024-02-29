@@ -1,5 +1,4 @@
 import useFetch from "../use-fetch";
-import { useSearXNGStore } from "@store/searxng";
 import { useSearchStore } from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
@@ -11,6 +10,7 @@ import {
   useGeneralStore,
 } from "@store/general";
 import { useSearchParams } from "@remix-run/react";
+import { useInstanceStore } from "@store/instance";
 
 const getKey = (
   pageIndex: number,
@@ -46,8 +46,8 @@ const getKey = (
 const useSearXNGSWR = <IResults>() => {
   const { fetchData } = useFetch();
 
-  const { domain: searxngDomain } = useSearXNGStore((state) => ({
-    domain: state.domain,
+  const { domain: searxngDomain } = useInstanceStore((state) => ({
+    domain: state.searXNGDomain,
   }));
 
   const {

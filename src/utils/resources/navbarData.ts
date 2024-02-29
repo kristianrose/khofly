@@ -1,36 +1,20 @@
 import { LinksGroupProps } from "@components/Navbar/Wiki/components/LinksGroup";
-import {
-  IconBrandSupabase,
-  IconEPassport,
-  IconFile,
-  IconFileText,
-  IconLock,
-  IconPasswordUser,
-  IconSearch,
-  IconUser,
-  IconVideo,
-} from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 
 export const NAVBAR_DATA: LinksGroupProps[] = [
-  // {
-  //   label: "Supabase",
-  //   icon: IconBrandSupabase,
-  //   links: [{ label: "Overview", link: "/wiki/docs/overview", isWip: true }],
-  // },
-
   {
-    label: "Search",
+    label: "Resources",
     icon: IconSearch,
     links: [
-      { label: "Overview", link: "/wiki/overview", isWip: true },
-      { label: "SearXNG", link: "/wiki/searxng", isWip: false },
+      { label: "Overview", link: "/docs/overview", isWip: true },
+      { label: "SearXNG", link: "/docs/searxng", isWip: false },
       {
         label: "Instant Answer",
-        link: "/wiki/instant-answers",
+        link: "/docs/instant-answers",
         isWip: false,
       },
-      { label: "Set Default", link: "/wiki/set-default", isWip: false },
-      { label: "Self-Hosted", link: "/wiki/self-host", isWip: true },
+      { label: "Set Default", link: "/docs/set-default", isWip: false },
+      { label: "Self-Hosted", link: "/docs/self-host", isWip: true },
     ],
   },
 ];

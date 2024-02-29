@@ -1,17 +1,26 @@
-import { Button, Flex, Group, Paper, Text, TextInput } from "@mantine/core";
+import {
+  Anchor,
+  Button,
+  Flex,
+  Group,
+  Paper,
+  Stack,
+  Text,
+  TextInput,
+} from "@mantine/core";
+import { IconWorld } from "@tabler/icons-react";
 
 import classes from "../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useForm } from "@mantine/form";
 import useToast from "@hooks/use-toast";
-import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
-import { IconSearch } from "@tabler/icons-react";
+import RemixLink from "@components/RemixLink";
 
-const SettingsSearXNG = () => {
+const SettingsNominatim = () => {
   const { domain, setDomain } = useInstanceStore((state) => ({
-    domain: state.searXNGDomain,
-    setDomain: state.setSearXNGDomain,
+    domain: state.nominatimDomain,
+    setDomain: state.setNominatimDomain,
   }));
 
   const form = useForm({
@@ -32,25 +41,35 @@ const SettingsSearXNG = () => {
   };
 
   return (
-    <Paper radius="md" withBorder>
+    <Paper radius="md" mt={40} withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Flex align="center" p="lg" mb={16}>
-          <IconSearch style={getIconStyle(32)} />
+          <IconWorld style={getIconStyle(32)} />
 
           <Text fz={26} fw={600} ml="sm">
-            SearXNG Domain
+            Nominatim Domain
           </Text>
         </Flex>
 
         {/* Settings content */}
-        <Group px="lg" mb="xl">
+        <Stack px="lg" mb="xl">
+          <Text size="sm">
+            <Text component="span" c="blue.4">
+              <Anchor href="https://nominatim.org/" target="_blank">
+                Nominatim
+              </Anchor>
+            </Text>{" "}
+            uses OpenStreetMap data to find locations on Earth by name and
+            address (geocoding).
+          </Text>
+
           <TextInput
             placeholder="domain.com"
             size="md"
             className={classes.settings_input}
             {...form.getInputProps("domain")}
           />
-        </Group>
+        </Stack>
 
         <Flex
           align="center"
@@ -63,7 +82,9 @@ const SettingsSearXNG = () => {
             Change this to your own url for better privacy & less load for
             default instance.{" "}
             <Text component="span" c="blue">
-              <RemixLink to={"/docs/searxng"}>Read more</RemixLink>
+              <Anchor href="https://nominatim.org/" target="_blank">
+                Read more
+              </Anchor>
             </Text>
           </Text>
 
@@ -74,4 +95,4 @@ const SettingsSearXNG = () => {
   );
 };
 
-export default SettingsSearXNG;
+export default SettingsNominatim;

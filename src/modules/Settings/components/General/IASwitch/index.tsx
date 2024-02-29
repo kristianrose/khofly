@@ -17,7 +17,7 @@ const IASwitch = () => {
   return (
     <Flex align="center" gap="sm">
       <Text component="span" c="blue.4">
-        <RemixLink to="/wiki/instant-answers" target="_blank">
+        <RemixLink to="/docs/instant-answers" target="_blank">
           {t("pages.settings.general.learn_more")}
         </RemixLink>
       </Text>

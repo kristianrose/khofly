@@ -1,5 +1,5 @@
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
-import WikiWIP from "@module/Wiki/components/wip";
+import WikiWIP from "@module/Docs/components/wip";
 import { ISearXNGResultsNews } from "@ts/searxng.types";
 import React, { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";

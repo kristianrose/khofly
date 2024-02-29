@@ -17,6 +17,7 @@ import SettingsInterface from "./components/Interface";
 import EnginesTabs from "./components/EnginesTabs";
 import SettingsCategories from "./components/Categories";
 import { useGlobalStore } from "@store/global";
+import SettingsNominatim from "./components/Nominatim";
 
 const PageSettings = () => {
   const { appTheme } = useGlobalStore((state) => ({
@@ -26,7 +27,7 @@ const PageSettings = () => {
   return (
     <Container className={classes.settings_page} size="lg" py={80}>
       <Tabs variant="default" defaultValue="interface" keepMounted={false}>
-        <Tabs.List mb="lg" className={classes.tabs_scroll}>
+        <Tabs.List mb="xl" className={classes.tabs_scroll}>
           <Tabs.Tab
             value="interface"
             leftSection={<IconBrush style={getIconStyle(20)} />}
@@ -43,7 +44,7 @@ const PageSettings = () => {
             value="instance"
             leftSection={<IconLink style={getIconStyle(20)} />}
           >
-            Instance
+            Instances
           </Tabs.Tab>
           <Tabs.Tab
             value="engines"
@@ -70,6 +71,7 @@ const PageSettings = () => {
         <Tabs.Panel value="instance">
           <>
             <SettingsSearXNG />
+            <SettingsNominatim />
           </>
         </Tabs.Panel>
 

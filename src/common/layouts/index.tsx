@@ -37,11 +37,11 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
-  const isWiki = pathname.startsWith("/wiki");
+  const isDocs = pathname.startsWith("/docs");
 
   const isIndex = pathname === "/";
 
-  const isFooterOffset = isSearch || isWiki;
+  const isFooterOffset = isSearch || isDocs;
 
   const isSearchMaps = isSearch && tab === "maps";
 
@@ -80,9 +80,9 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
         }}
         footer={{ height: 60, offset: isFooterOffset ? false : true }}
         navbar={
-          isWiki
+          isDocs
             ? {
-                width: { xs: isWiki ? 200 : 0, sm: isWiki ? 300 : 0 },
+                width: { xs: isDocs ? 200 : 0, sm: isDocs ? 300 : 0 },
                 breakpoint: "sm",
                 collapsed: { mobile: !openNavbar, desktop: false },
               }
@@ -106,7 +106,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
         <AppShell.Main>{children}</AppShell.Main>
 
-        {isWiki && (
+        {isDocs && (
           <AppShell.Navbar p="md">
             <WikiNavbar />
           </AppShell.Navbar>

@@ -1,4 +1,4 @@
-import { Text, Container, Group } from "@mantine/core";
+import { Text, Container, Group, Anchor } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 
@@ -9,20 +9,31 @@ const Footer = () => {
   return (
     <Container size="xl" py="sm" className={classes.after_footer}>
       <Text c="dimmed" size="sm">
-        Version {packageJson.version} beta, powered by SearXNG
+        Version {packageJson.version} beta, powered by{" "}
+        <Anchor href="https://docs.searxng.org/" target="_blank">
+          SearXNG
+        </Anchor>
       </Text>
 
       <Group gap="sm" justify="flex-end">
-        <RemixLink to="/wiki">
-          <Text>Wiki</Text>
+        <RemixLink to="/about">
+          <Text size="sm">About</Text>
+        </RemixLink>
+
+        <RemixLink to="/docs">
+          <Text size="sm">Docs</Text>
+        </RemixLink>
+
+        <RemixLink to="/privacy">
+          <Text size="sm">Privacy</Text>
         </RemixLink>
 
         <RemixLink to="/changelog">
-          <Text>Changelog</Text>
+          <Text size="sm">Changelog</Text>
         </RemixLink>
 
         <RemixLink to="/settings">
-          <Text>Settings</Text>
+          <Text size="sm">Settings</Text>
         </RemixLink>
       </Group>
     </Container>

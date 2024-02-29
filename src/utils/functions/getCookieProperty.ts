@@ -11,10 +11,10 @@ export const getCookieProperty = <T>(
 
   for (const cookiePair of cookiePairs) {
     const [key, value] = cookiePair.trim().split("=");
-    if (key.toLowerCase() === prop) {
-      return value.toLowerCase() as T; // Consistent lowercase for language code
+    if (key === prop) {
+      return value as T;
     }
   }
 
-  return defaultValue; // Language not found in cookie
+  return defaultValue; // Value not found in cookie
 };

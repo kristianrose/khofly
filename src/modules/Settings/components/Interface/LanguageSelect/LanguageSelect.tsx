@@ -1,20 +1,15 @@
-import {
-  BoxComponentProps,
-  Combobox,
-  InputBase,
-  useCombobox,
-} from "@mantine/core";
+import { Combobox, InputBase, useCombobox } from "@mantine/core";
 
 import { USFlag, FlagProps, DEFlag } from "mantine-flagpack";
 
-import { ITranslations, useGlobalStore,  } from "@store/global";
+import { ITranslations, useGlobalStore } from "@store/global";
 
 import classes from "./styles.module.scss";
 import { DotNestedKeys, ILanguage } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
-import Cookie from "js-cookie";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { setCookie } from "@utils/functions/setCookie";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;
@@ -47,12 +42,14 @@ const LanguageSelect = () => {
   });
 
   const handleChange = (next: ILanguage) => {
-    Cookie.set("language", next, {
+    setCookie("language", next, {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
+      path: "/",
+      domain: "khofly.com",
+      secure: process.env.HOST?.includes("https") ? true : false,
+      sameSite: "Strict",
     });
-    Cookie.set("wasd", "bismillah", {
-      expires: 60 * 60 * 24 * 90, // ~ 90 days
-    });
+
     changeLanguage(next);
     combobox.closeDropdown();
   };
