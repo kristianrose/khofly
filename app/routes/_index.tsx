@@ -1,5 +1,7 @@
 import PageIndex from "src/modules/Index";
 
-export default function Index() {
+const Index = () => {
   return <PageIndex />;
-}
+};
+
+export default Index;

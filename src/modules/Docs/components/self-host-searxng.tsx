@@ -1,6 +1,5 @@
-import { CodeHighlight, CodeHighlightTabs } from "@mantine/code-highlight";
+import { CodeHighlightTabs } from "@mantine/code-highlight";
 import {
-  Anchor,
   Blockquote,
   Code,
   Container,
@@ -11,7 +10,7 @@ import {
 } from "@mantine/core";
 import { IconFile } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React, { useState } from "react";
+import { useState } from "react";
 import WikiLink from "./common/WikiLink";
 
 const CODE_SYS_UPDATE_DEBIAN = `
@@ -160,7 +159,7 @@ sudo systemctl reload nginx
 sudo service uwsgi restart searxng
 `;
 
-const WikiSearchSearxng = () => {
+const WikiSelfHostSearxng = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -554,4 +553,4 @@ const WikiSearchSearxng = () => {
   );
 };
 
-export default WikiSearchSearxng;
+export default WikiSelfHostSearxng;

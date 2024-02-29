@@ -8,6 +8,7 @@ import HeaderLogo from "./components/HeaderLogo";
 import HeaderSettings from "./components/HeaderSettings";
 import { useLocation } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import HeaderCode from "./components/HeaderCode";
 
 interface Props {
   openNavbar: boolean;
@@ -24,6 +25,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const isSettings = pathname.startsWith("/settings");
   const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
+  const isAbout = pathname.startsWith("/about");
   const isDocs = pathname.startsWith("/docs");
 
   const pageTitle = isChangelog
@@ -32,6 +34,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     ? "Settings"
     : isPrivacy
     ? "Privacy"
+    : isAbout
+    ? "About"
     : isDocs
     ? "Docs"
     : "";
@@ -50,25 +54,25 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {/* Header: /search?q= */}
       {isSearch && <SearchSection />}
 
-      {/* Header: /docs, /settings, /rewards, /changelog */}
-      {(isDocs || isSettings || isChangelog || isPrivacy) && (
-        <HeaderLogo
-          hasBurger={isDocs}
-          openNavbar={openNavbar}
-          toggleNavbar={toggleNavbar}
-        />
-      )}
-
-      {/* Page titles */}
-      {(isDocs || isSettings || isChangelog || isDocs || isPrivacy) && (
-        <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
-          / {pageTitle}
-        </Text>
+      {/* Header with title */}
+      {(isDocs || isSettings || isChangelog || isPrivacy || isAbout) && (
+        <>
+          <HeaderLogo
+            hasBurger={isDocs}
+            openNavbar={openNavbar}
+            toggleNavbar={toggleNavbar}
+          />
+          <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
+            / {pageTitle}
+          </Text>
+        </>
       )}
 
       <div className={classes.divider}></div>
 
       {isSearch && <HeaderSettings />}
+
+      {(isAbout || isDocs) && <HeaderCode />}
     </Group>
   );
 };

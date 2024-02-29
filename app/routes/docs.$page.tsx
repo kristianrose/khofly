@@ -1,7 +1,7 @@
-import PageWiki from "@module/Docs";
+import PageDocs from "@module/Docs";
 
-const Wiki = () => {
-  return <PageWiki />;
+const Docs = () => {
+  return <PageDocs />;
 };
 
-export default Wiki;
+export default Docs;

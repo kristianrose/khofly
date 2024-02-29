@@ -1,9 +1,8 @@
 import { Center, Flex, Title } from "@mantine/core";
-import { IconBackhoe, IconBulldozer, IconCrane } from "@tabler/icons-react";
+import { IconBulldozer, IconCrane } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React from "react";
 
-const WikiWIP = () => {
+const DocsWIP = () => {
   return (
     <Center pt={100} p="xl">
       <Flex direction="column">
@@ -21,4 +20,4 @@ const WikiWIP = () => {
   );
 };
 
-export default WikiWIP;
+export default DocsWIP;

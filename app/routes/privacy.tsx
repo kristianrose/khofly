@@ -1,6 +1,7 @@
 import PagePrivacy from "src/modules/Privacy";
 
-
-export default function Privacy() {
+const Privacy = () => {
   return <PagePrivacy />;
-}
+};
+
+export default Privacy;

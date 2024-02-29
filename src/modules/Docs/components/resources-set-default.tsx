@@ -21,7 +21,7 @@ import SectionOpera from "./components/set-default/SectionOpera";
 import WikiLink from "./common/WikiLink";
 import { useSearchParams } from "@remix-run/react";
 
-const WikiSearchSetDefault = () => {
+const DocsResourcesSetDefault = () => {
   const [searchParams] = useSearchParams();
   const browser = useBrowser();
   const theme = useMantineTheme();
@@ -108,4 +108,4 @@ const WikiSearchSetDefault = () => {
   );
 };
 
-export default WikiSearchSetDefault;
+export default DocsResourcesSetDefault;

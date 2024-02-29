@@ -16,7 +16,7 @@ const getChangelogData = async () => {
   return changelog;
 };
 
-const Changelog = () => {
+const PageChangelog = () => {
   const t = useTranslate();
 
   const [data, setData] = useState("");
@@ -54,4 +54,4 @@ const Changelog = () => {
   );
 };
 
-export default Changelog;
+export default PageChangelog;

@@ -1,10 +1,12 @@
 import type { MetaFunction } from "@remix-run/node";
-import PageIndex from "src/modules/Index";
+import PageAbout from "src/modules/About";
 
 export const meta: MetaFunction = () => {
   return [{ title: "About Khofly" }];
 };
 
-export default function Index() {
-  return <PageIndex />;
-}
+const About = () => {
+  return <PageAbout />;
+};
+
+export default About;

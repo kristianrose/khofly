@@ -9,7 +9,7 @@ import Timer from "@module/Search/components/InstantAnswer/Timer";
 import Translate from "@module/Search/components/InstantAnswer/Translate";
 import UUID from "@module/Search/components/InstantAnswer/UUID";
 
-const WikiSearchInstantAnswer = () => {
+const DocsResourcesInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
 
   return (
@@ -82,4 +82,4 @@ const WikiSearchInstantAnswer = () => {
   );
 };
 
-export default WikiSearchInstantAnswer;
+export default DocsResourcesInstantAnswer;

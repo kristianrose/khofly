@@ -63,7 +63,7 @@ const SettingsSearXNG = () => {
             Change this to your own url for better privacy & less load for
             default instance.{" "}
             <Text component="span" c="blue">
-              <RemixLink to={"/docs/searxng"}>Read more</RemixLink>
+              <RemixLink to={"/docs/self-host-searxng"}>Read more</RemixLink>
             </Text>
           </Text>
 
