@@ -9,7 +9,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsWIP from "./wip";
 import SectionVercel from "./components/sefl-host-khofly/SectionVercel";
 
-const WikiSelfHostKhofly = () => {
+const DocsSelfHostKhofly = () => {
   const { colors } = useMantineTheme();
 
   return (
@@ -75,4 +75,4 @@ const WikiSelfHostKhofly = () => {
   );
 };
 
-export default WikiSelfHostKhofly;
+export default DocsSelfHostKhofly;

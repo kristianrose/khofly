@@ -11,13 +11,12 @@ import DocsSelfHostSearxng from "./components/self-host-searxng";
 import DocsSelfHostKhofly from "./components/self-host-khofly";
 
 import { useParams } from "@remix-run/react";
+import DocsCustomSearxng from "./components/resources-custom-searxng";
 
 const Docs = () => {
   const params = useParams();
 
   const page = params.page;
-
-  console.log(page);
 
   // Basic first redirect
   if (!page) return <DocsIndex />;
@@ -26,6 +25,7 @@ const Docs = () => {
     overview: <DocsResourcesOverview />,
     "instant-answers": <DocsResourcesInstantAnswer />,
     "set-default": <DocsResourcesSetDefault />,
+    "custom-searxng": <DocsCustomSearxng />,
 
     "self-host-searxng": <DocsSelfHostSearxng />,
     "self-host-khofly": <DocsSelfHostKhofly />,

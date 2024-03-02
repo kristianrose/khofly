@@ -159,7 +159,7 @@ sudo systemctl reload nginx
 sudo service uwsgi restart searxng
 `;
 
-const WikiSelfHostSearxng = () => {
+const DocsSelfHostSearxng = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -553,4 +553,4 @@ const WikiSelfHostSearxng = () => {
   );
 };
 
-export default WikiSelfHostSearxng;
+export default DocsSelfHostSearxng;

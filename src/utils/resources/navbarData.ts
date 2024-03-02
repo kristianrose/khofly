@@ -1,5 +1,5 @@
 import { LinksGroupProps } from "@components/Navbar/Wiki/components/LinksGroup";
-import { IconApps, IconPick, IconServer } from "@tabler/icons-react";
+import { IconPick, IconServer } from "@tabler/icons-react";
 
 export const NAVBAR_DATA: LinksGroupProps[] = [
   {
@@ -13,6 +13,7 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
         isWip: false,
       },
       { label: "Set Default", link: "/docs/set-default", isWip: false },
+      { label: "Custom SearXNG", link: "/docs/custom-searxng", isWip: false },
     ],
   },
   {

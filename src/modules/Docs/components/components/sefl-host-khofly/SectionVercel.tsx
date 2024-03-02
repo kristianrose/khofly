@@ -5,6 +5,7 @@ import { IconInfoCircle } from "@tabler/icons-react";
 import { Alert, Code } from "@mantine/core";
 import WikiSubtitle from "../../common/WikiSubtitle";
 import { CodeHighlight } from "@mantine/code-highlight";
+import WikiTitle from "../../common/WikiTitle";
 
 const envVars = `
 HOST = # your domain, either set a custom domain or Vercel auto assigned one
@@ -18,6 +19,8 @@ APP_NAME = # Custom instance name
 const SectionVercel = () => {
   return (
     <>
+      <WikiTitle>Deploying to Vercel</WikiTitle>
+
       <WikiSubtitle>1. Clone Khofly repo on your machine</WikiSubtitle>
 
       <WikiText>
@@ -55,6 +58,16 @@ const SectionVercel = () => {
       <WikiSubtitle>
         5. Redeploy Vercel project so that env variables set in
       </WikiSubtitle>
+
+      <WikiTitle>Updating Khofly version</WikiTitle>
+
+      <WikiSubtitle>1. Get the latest code</WikiSubtitle>
+
+      <WikiText>
+        Open the folder where you originally cloned Khofly and run{" "}
+        <Code>git pull origin master</Code>, after this push the code to your
+        hosted repository and Vercel will automatically redeploy your app.
+      </WikiText>
 
       <Alert
         mt="xl"
