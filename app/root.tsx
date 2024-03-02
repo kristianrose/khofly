@@ -100,7 +100,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function App() {
+export function Layout({ children }: { children: React.ReactNode }) {
   // Load env variables in browser
   const data = useLoaderData<typeof loader>();
 
@@ -133,8 +133,7 @@ export default function App() {
       </head>
       <body>
         <AppLayout>
-          <Outlet />
-          <ScrollRestoration />
+          {children}
 
           {/* Set environment variables in browser */}
           <script
@@ -150,9 +149,14 @@ export default function App() {
             crossOrigin=""
           />
 
+          <ScrollRestoration />
           <Scripts />
         </AppLayout>
       </body>
     </html>
   );
+}
+
+export default function App() {
+  return <Outlet />;
 }

@@ -14,7 +14,7 @@ async function hydrate() {
     "en"
   );
   const contentReq = await fetch(
-    `http://localhost:3000/locales/${userLang}.json`
+    `${process.env.HOST}/locales/${userLang}.json`
   );
   const content = await contentReq.text();
 
