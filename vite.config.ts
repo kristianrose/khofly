@@ -10,7 +10,12 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  plugins: [remix(), tsconfigPaths()],
+  plugins: [
+    remix({
+      ignoredRouteFiles: ["**/.*", "**/*.css", "**/*.scss", "**/*.css.map"],
+    }),
+    tsconfigPaths(),
+  ],
   css: {
     preprocessorOptions: {
       scss: {
