@@ -7,21 +7,19 @@ import { hydrateRoot } from "react-dom/client";
 
 async function hydrate() {
   // All i18n stuff - client side
-  const cookies = document.cookie;
-  const userLang: ILanguage = getCookieProperty(
-    cookies || "",
-    "language",
-    "en"
+  const htmlLang = document.querySelector("html")?.getAttribute("lang");
+
+  // Dynamically fetch content JSON
+  const contentFetch = await fetch(
+    `${process.env.HOST}/locales/${htmlLang}.json`
   );
-  const contentReq = await fetch(
-    `${process.env.HOST}/locales/${userLang}.json`
-  );
-  const content = await contentReq.text();
+  const content = await contentFetch.json();
+
 
   startTransition(() => {
     hydrateRoot(
       document,
-      <I18nProvider content={JSON.parse(content)}>
+      <I18nProvider content={content}>
         <StrictMode>
           <RemixBrowser />
         </StrictMode>

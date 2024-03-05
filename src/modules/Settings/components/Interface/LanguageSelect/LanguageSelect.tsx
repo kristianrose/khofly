@@ -1,3 +1,5 @@
+"use client";
+
 import { Combobox, InputBase, useCombobox } from "@mantine/core";
 
 import { USFlag, FlagProps, DEFlag } from "mantine-flagpack";
@@ -10,6 +12,9 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/setCookie";
+import { getCookieProperty } from "@utils/functions/getCookieProperty";
+import { useEffect, useState } from "react";
+import { useNavigate, useRouteLoaderData } from "@remix-run/react";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;
@@ -31,11 +36,9 @@ const LANG_DATA: ILangData[] = [
 ];
 
 const LanguageSelect = () => {
-  const { language, changeLanguage } = useGlobalStore((state) => ({
-    language: state.language,
-    changeLanguage: state.changeLanguage,
-  }));
+  const data: any = useRouteLoaderData("root");
   const t = useTranslate();
+  const navigate = useNavigate();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -45,16 +48,18 @@ const LanguageSelect = () => {
     setCookie("language", next, {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
-      domain: "khofly.com",
+      domain:
+        process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
       secure: process.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
+    navigate(".", { replace: true });
 
-    changeLanguage(next);
     combobox.closeDropdown();
   };
 
-  const selected = LANG_DATA.find((l) => l.value === language) || LANG_DATA[1];
+  const selected =
+    LANG_DATA.find((l) => l.value === data?.language) || LANG_DATA[1];
 
   const items = LANG_DATA.map((item) => (
     <Combobox.Option value={item.value} key={item.value}>

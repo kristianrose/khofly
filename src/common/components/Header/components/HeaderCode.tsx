@@ -4,7 +4,11 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 const HeaderCode = () => {
   return (
-    <Anchor href="https://github.com/cufta22/khofly" target="_blank">
+    <Anchor
+      href="https://github.com/cufta22/khofly"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
       <ActionIcon
         // className={classes.action_icon}
         variant="subtle"

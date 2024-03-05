@@ -12,13 +12,19 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   json,
   useLoaderData,
+  useRouteError,
+  useRouteLoaderData,
 } from "@remix-run/react";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 
 import { ILanguage } from "@ts/global.types";
 import { MetaFunction } from "@remix-run/node";
+import ErrorPage from "@module/Error";
+import { ROOT_META } from "./meta/root";
+import { DEFAULT_ENV } from "@utils/resources/defaultEnv";
 
 export async function loader({ request }: { request: Request }) {
   const cookies = request.headers.get("Cookie");
@@ -43,69 +49,15 @@ export async function loader({ request }: { request: Request }) {
 
 // Meta tags
 export const meta: MetaFunction = () => {
-  return [
-    {
-      title: !+process.env.NEXT_PUBLIC_IS_SELF_HOST!
-        ? "Khofly"
-        : process.env.NEXT_PUBLIC_APP_NAME,
-    },
-    {
-      name: "description",
-      content:
-        "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
-    },
-    {
-      name: "keywords",
-      content:
-        "Khofly, Search, Khofly Search, SearXNG, FOSS, open source, meta search engine",
-    },
-    // Open Graph stuff
-    {
-      property: "og:title",
-      content: "Khofly",
-    },
-    {
-      property: "og:description",
-      content:
-        "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      property: "og:site_name",
-      content: "Khofly",
-    },
-    {
-      property: "og:image",
-      content: "https://khofly.com/images/og.png",
-    },
-    {
-      property: "og:image:width",
-      content: "1200",
-    },
-    {
-      property: "og:image:height",
-      content: "600",
-    },
-    {
-      property: "og:image:alt",
-      content: "Khofly og image",
-    },
-    {
-      property: "og:image:type",
-      content: "image/png",
-    },
-  ];
+  return ROOT_META;
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
   // Load env variables in browser
-  const data = useLoaderData<typeof loader>();
+  const data = useRouteLoaderData<typeof loader>("root");
 
   return (
-    <html lang={data.language}>
+    <html lang={data?.language || "en"}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -121,7 +73,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           title="Search khofly.com"
         />
 
-        {/* Leaflet stuff */}
+        {/* Leaflet styles */}
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -133,12 +85,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <AppLayout>
+          {/* children will be the root Component, ErrorBoundary, or HydrateFallback */}
           {children}
 
           {/* Set environment variables in browser */}
           <script
             dangerouslySetInnerHTML={{
-              __html: `window.process = ${JSON.stringify({ env: data.ENV })}`,
+              __html: `window.process = ${JSON.stringify({
+                env: data?.ENV || DEFAULT_ENV,
+              })}`,
             }}
           />
 
@@ -157,6 +112,39 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Default app
 export default function App() {
   return <Outlet />;
+}
+
+// Default error
+export function ErrorBoundary() {
+  const error: any = useRouteError();
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <ErrorPage
+        code={error.status}
+        title="You have found a secret place"
+        message={error.data}
+      />
+    );
+  } else if (error instanceof Error) {
+    return (
+      <ErrorPage
+        code={500}
+        title="You have found a secret place"
+        message={error.message}
+        stack={error.stack}
+      />
+    );
+  } else {
+    return (
+      <ErrorPage
+        code={500}
+        title="You have found a secret place"
+        message="Unknown Error"
+      />
+    );
+  }
 }

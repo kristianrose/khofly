@@ -13,10 +13,11 @@ import { getMantineTheme } from "@utils/resources/mantineTheme";
 import { useGlobalStore } from "@store/global";
 import NProgress from "@module/NProgress";
 import { useGeneralStore } from "@store/general";
-import { useLocation, useSearchParams } from "@remix-run/react";
+import { useLocation, useRouteError, useSearchParams } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
+  const error = useRouteError();
   const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
@@ -50,10 +51,10 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isHeaderCollapsed = isSearch && !pinned;
   const isHeaderOffset = !isSearch;
 
-  // const appName = !+process.env.IS_SELF_HOST!
-  //   ? t("_common.app_name")
-  //   : process.env.APP_NAME;
-  // useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
+  const appName = !+process.env.IS_SELF_HOST!
+    ? t("_common.app_name")
+    : process.env.APP_NAME;
+  useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
 
   useEffect(() => {
     if (!["/search"].includes(pathname)) {
@@ -112,7 +113,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           </AppShell.Navbar>
         )}
 
-        {isIndex && (
+        {isIndex && !error && (
           <AppShell.Footer>
             <Footer />
           </AppShell.Footer>

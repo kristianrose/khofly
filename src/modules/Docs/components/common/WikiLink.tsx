@@ -11,7 +11,7 @@ const WikiLink: React.FC<Props> = ({ href, label }) => {
     <>
       {" "}
       <Text component="span" c="blue.4">
-        <Anchor href={href} target="_blank">
+        <Anchor href={href} target="_blank" rel="noreferrer noopener">
           {label}
         </Anchor>
       </Text>

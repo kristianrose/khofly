@@ -43,7 +43,7 @@ const Lyrics: React.FC<Props> = ({ initialQ }) => {
 
       <Text size="sm" mt="xl" c="dimmed">
         Lyrics provided by{" "}
-        <Anchor href="https://genius.com">
+        <Anchor href="https://genius.com" rel="noreferrer noopener">
           <Text component="span" c="blue.4">
             Genius
           </Text>

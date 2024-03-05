@@ -75,6 +75,7 @@ const SettingsTheme = () => {
           <Anchor
             href="https://mantine.dev/theming/theme-object/"
             target="_blank"
+            rel="noreferrer noopener"
           >
             Learn more
           </Anchor>

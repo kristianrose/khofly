@@ -10,7 +10,11 @@ const Footer = () => {
     <Container size="xl" py="sm" className={classes.after_footer}>
       <Text c="dimmed" size="sm">
         Version {packageJson.version} beta, powered by{" "}
-        <Anchor href="https://docs.searxng.org/" target="_blank">
+        <Anchor
+          href="https://docs.searxng.org/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
           SearXNG
         </Anchor>
       </Text>

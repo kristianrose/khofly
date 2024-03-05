@@ -24,15 +24,8 @@ const VideoCell: React.FC<Props> = ({ videoData }) => {
     : "_self";
 
   return (
-    <Anchor href={url} target={anchorTarget}>
-      <Flex
-        className={classes.video_container}
-        direction="column"
-        p="xs"
-        //   href={url}
-        //   target={"_blank"}
-        //   rel="noreferrer noopener"
-      >
+    <Anchor href={url} target={anchorTarget} rel="noreferrer noopener">
+      <Flex className={classes.video_container} direction="column" p="xs">
         <Image
           src={thumbnail}
           w="100%"

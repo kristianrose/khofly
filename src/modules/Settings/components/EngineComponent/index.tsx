@@ -70,21 +70,33 @@ const EngineComponent: React.FC<Props> = ({
             <Text size="sm">{hoverData?.description}</Text>
 
             <Text mt="xs" component="span" c="blue.4">
-              <Anchor size="sm" href={hoverData?.linkUrl} target="_blank">
+              <Anchor
+                size="sm"
+                href={hoverData?.linkUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 {hoverData?.linkUrl}
               </Anchor>
             </Text>
 
-            <Text mb="xs" component="span" c="blue.4">
-              <Anchor size="sm" href={hoverData?.wikiUrl} target="_blank">
-                {hoverData?.wikiUrl}
-              </Anchor>
-            </Text>
+            {hoverData?.wikiUrl && (
+              <Text component="span" c="blue.4">
+                <Anchor
+                  size="sm"
+                  href={hoverData?.wikiUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {hoverData?.wikiUrl}
+                </Anchor>
+              </Text>
+            )}
 
-            <Flex mb="xs" align="center" justify="space-between">
+            <Flex my="xs" align="center" justify="space-between">
               <Flex align="center" justify="space-between" gap="xs">
                 {hoverData?.bangsEngine.map((bang, i) => (
-                  <Badge key={i} color="gray">
+                  <Badge key={i} size="lg" color="gray" tt="lowercase">
                     {bang}
                   </Badge>
                 ))}
@@ -96,7 +108,7 @@ const EngineComponent: React.FC<Props> = ({
             <Flex align="center" justify="space-between">
               <Flex align="center" justify="space-between" gap="xs">
                 {hoverData?.bangsCategory.map((bang, i) => (
-                  <Badge key={i} color="gray">
+                  <Badge key={i} size="lg" color="gray" tt="lowercase">
                     {bang}
                   </Badge>
                 ))}

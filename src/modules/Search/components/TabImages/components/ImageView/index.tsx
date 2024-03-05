@@ -69,7 +69,11 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
       <Image src={viewImage?.img_src} fit="contain" mt="lg" radius="md" />
 
       <Flex align="center" justify="flex-start" mt="xl" gap="xl">
-        <Anchor href={viewImage?.url} target={anchorTarget}>
+        <Anchor
+          href={viewImage?.url}
+          target={anchorTarget}
+          rel="noreferrer noopener"
+        >
           <Flex direction="column" align="center" justify="center">
             <ActionIcon variant="light" aria-label="Settings" size="xl">
               <IconExternalLink
@@ -84,7 +88,11 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
           </Flex>
         </Anchor>
 
-        <Anchor href={viewImage?.img_src} target="_blank">
+        <Anchor
+          href={viewImage?.img_src}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
           <Flex direction="column" align="center" justify="center">
             <ActionIcon variant="light" aria-label="Settings" size="xl">
               <IconDownload

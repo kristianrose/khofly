@@ -9,6 +9,7 @@ import { ITranslations } from "@store/global";
 import I18nProvider from "@store/language";
 import { ILanguage } from "@ts/global.types";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
+import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
 const ABORT_DELAY = 5_000;
 
@@ -21,15 +22,15 @@ export default async function handleRequest(
 ) {
   // All i18n stuff - server side
   const cookies = request.headers.get("Cookie");
-  const userLang: ILanguage = getCookieProperty(
-    cookies || "",
-    "language",
-    "en"
-  );
-  const contentReq = await fetch(
-    `${process.env.HOST}/locales/${userLang}.json`
-  );
-  const content = await contentReq.text();
+  const userLang = getCookieProperty(cookies || "", "language", "");
+  const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
+
+  // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
+  const appLang = userLang || prefLang || "en";
+
+  // Dynamically import content JSON
+  const contentImport = (await import(`../public/locales/${appLang}.json`))
+    .default;
 
   return isBotRequest(request.headers.get("user-agent"))
     ? handleBotRequest(
@@ -43,7 +44,7 @@ export default async function handleRequest(
         responseStatusCode,
         responseHeaders,
         remixContext,
-        JSON.parse(content)
+        contentImport
       );
 }
 

@@ -38,7 +38,12 @@ const Infobox: React.FC<ISearXNGResultsGeneral["infoboxes"][0]> = ({
 
         {urls?.length >= 1 &&
           urls.map((item, i) => (
-            <Anchor key={i} href={item.url} target="_self">
+            <Anchor
+              key={i}
+              href={item.url}
+              target="_self"
+              rel="noreferrer noopener"
+            >
               <Text c="blue">{item.title}</Text>
             </Anchor>
           ))}

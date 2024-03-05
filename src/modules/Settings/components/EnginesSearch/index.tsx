@@ -66,6 +66,7 @@ const SettingsEnginesSearch = () => {
           iconSrc="/assets/brave-icon.svg"
           label="pages.settings.engines.engineBrave"
           onChange={(next) => handleChangeEngines("brave", next)}
+          hoverData={HOVER_DATA["brave"]}
         />
 
         <Divider my="sm" w="100%" />
@@ -76,6 +77,7 @@ const SettingsEnginesSearch = () => {
           iconSrc="/assets/ddg-icon.svg"
           label="pages.settings.engines.engineDDG"
           onChange={(next) => handleChangeEngines("duckduckgo", next)}
+          hoverData={HOVER_DATA["duckDuckGo"]}
         />
 
         <Divider my="sm" w="100%" />
@@ -86,6 +88,7 @@ const SettingsEnginesSearch = () => {
           iconSrc="/assets/google-icon.svg"
           label="pages.settings.engines.engineGoogle"
           onChange={(next) => handleChangeEngines("google", next)}
+          hoverData={HOVER_DATA["google"]}
         />
 
         <Divider my="sm" w="100%" />
@@ -96,6 +99,7 @@ const SettingsEnginesSearch = () => {
           iconSrc="/assets/qwant-icon.svg"
           label="pages.settings.engines.engineQwant"
           onChange={(next) => handleChangeEngines("qwant", next)}
+          hoverData={HOVER_DATA["qwant"]}
         />
 
         <Divider my="sm" w="100%" />
@@ -106,6 +110,7 @@ const SettingsEnginesSearch = () => {
           iconSrc="/assets/yahoo-icon.svg"
           label="pages.settings.engines.engineYahoo"
           onChange={(next) => handleChangeEngines("yahoo", next)}
+          hoverData={HOVER_DATA["yahoo"]}
         />
 
         <Divider
