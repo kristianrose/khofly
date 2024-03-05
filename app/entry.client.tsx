@@ -10,11 +10,8 @@ async function hydrate() {
   const htmlLang = document.querySelector("html")?.getAttribute("lang");
 
   // Dynamically fetch content JSON
-  const contentFetch = await fetch(
-    `${process.env.HOST}/locales/${htmlLang}.json`
-  );
+  const contentFetch = await fetch(`/locales/${htmlLang}.json`);
   const content = await contentFetch.json();
-
 
   startTransition(() => {
     hydrateRoot(
