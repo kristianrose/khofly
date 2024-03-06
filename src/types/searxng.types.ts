@@ -53,6 +53,7 @@ export interface ISearXNGResultsImages {
     content: string;
     source: string;
     img_format: string;
+    resolution: string;
     score: number;
     category: string;
   }>;

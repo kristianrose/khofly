@@ -87,26 +87,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <AppLayout>
           {/* children will be the root Component, ErrorBoundary, or HydrateFallback */}
           {children}
-
-          {/* Set environment variables in browser */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.process = ${JSON.stringify({
-                env: data?.ENV || DEFAULT_ENV,
-              })}`,
-            }}
-          />
-
-          {/* Leaflet script */}
-          <script
-            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossOrigin=""
-          />
-
-          <ScrollRestoration />
-          <Scripts />
         </AppLayout>
+
+        {/* Set environment variables in browser */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.process = ${JSON.stringify({
+              env: data?.ENV || DEFAULT_ENV,
+            })}`,
+          }}
+        />
+
+        {/* Leaflet script */}
+        <script
+          src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossOrigin=""
+        />
+
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );

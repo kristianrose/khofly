@@ -51,9 +51,8 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
       opened={isOpen}
       onClose={handleClose}
       title="View image"
-      overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
       position="right"
-      size="lg"
+      size="xl"
       closeButtonProps={{
         size: "xl",
       }}
