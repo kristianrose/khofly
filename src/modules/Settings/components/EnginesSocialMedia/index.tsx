@@ -57,7 +57,7 @@ const SettingsEnginesSocialMedia = () => {
           onChange={(next) => handleChangeEngines("lemmycomments", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesSocialMedia.find((e) => e === "lemmycommunities")}
@@ -67,7 +67,7 @@ const SettingsEnginesSocialMedia = () => {
           onChange={(next) => handleChangeEngines("lemmycommunities", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesSocialMedia.find((e) => e === "lemmyposts")}
@@ -77,7 +77,7 @@ const SettingsEnginesSocialMedia = () => {
           onChange={(next) => handleChangeEngines("lemmyposts", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesSocialMedia.find((e) => e === "lemmyusers")}
@@ -87,7 +87,7 @@ const SettingsEnginesSocialMedia = () => {
           onChange={(next) => handleChangeEngines("lemmyusers", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesSocialMedia.find((e) => e === "mastodonhashtags")}
@@ -97,7 +97,7 @@ const SettingsEnginesSocialMedia = () => {
           onChange={(next) => handleChangeEngines("mastodonhashtags", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesSocialMedia.find((e) => e === "mastodonusers")}
@@ -107,7 +107,7 @@ const SettingsEnginesSocialMedia = () => {
           onChange={(next) => handleChangeEngines("mastodonusers", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
       </Stack>
 
       <Space h="xl" />

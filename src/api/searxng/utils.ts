@@ -13,9 +13,17 @@ const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
   brave: "!br",
   duckduckgo: "!ddg",
   google: "!go",
+  mojeek: "!mjk",
+  presearch: "!ps",
   qwant: "!qw",
+  startpage: "!sp",
   yahoo: "!yh",
 
+  wikibooks: "!wb",
+  wikisource: "!ws",
+  wikispecies: "!wsp",
+
+  alexandria: "!alx",
   wikipedia: "!wp",
   wikidata: "!wd",
 };

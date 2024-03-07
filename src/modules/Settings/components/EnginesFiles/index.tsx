@@ -56,7 +56,7 @@ const SettingsEnginesFiles = () => {
           onChange={(next) => handleChangeEngines("apkmirror", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesFiles.find((e) => e === "fdroid")}
@@ -85,7 +85,7 @@ const SettingsEnginesFiles = () => {
           onChange={(next) => handleChangeEngines("1337x", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesFiles.find((e) => e === "annas")}
@@ -95,7 +95,7 @@ const SettingsEnginesFiles = () => {
           onChange={(next) => handleChangeEngines("annas", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesFiles.find((e) => e === "bt4g")}
@@ -105,7 +105,7 @@ const SettingsEnginesFiles = () => {
           onChange={(next) => handleChangeEngines("bt4g", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesFiles.find((e) => e === "nyaa")}
@@ -115,7 +115,7 @@ const SettingsEnginesFiles = () => {
           onChange={(next) => handleChangeEngines("nyaa", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesFiles.find((e) => e === "piratebay")}
@@ -125,7 +125,7 @@ const SettingsEnginesFiles = () => {
           onChange={(next) => handleChangeEngines("piratebay", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
       </Stack>
 
       <Space h="xl" />

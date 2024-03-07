@@ -3,11 +3,18 @@ import { persist } from "zustand/middleware";
 
 export type IGeneralEngines =
   | "google"
+  | "mojeek"
   | "duckduckgo"
   | "bing"
   | "brave"
+  | "presearch"
   | "qwant"
+  | "startpage"
   | "yahoo"
+  | "wikibooks"
+  | "wikisource"
+  | "wikispecies"
+  | "alexandria"
   | "wikipedia"
   | "wikidata";
 
@@ -119,7 +126,7 @@ interface SearchState {
 export const useSearchStore = create<SearchState>()(
   persist(
     (set) => ({
-      enginesGeneral: ["duckduckgo", "wikipedia"],
+      enginesGeneral: ["duckduckgo", "brave", "wikipedia"],
       setEnginesGeneral: (next) => set({ enginesGeneral: next }),
 
       enginesImages: ["duckduckgo", "bing", "qwant"],

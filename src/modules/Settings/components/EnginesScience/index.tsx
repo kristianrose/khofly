@@ -56,7 +56,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("arxiv", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesScience.find((e) => e === "crossref")}
@@ -66,7 +66,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("crossref", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesScience.find((e) => e === "googlescholar")}
@@ -76,7 +76,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("googlescholar", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesScience.find((e) => e === "archive")}
@@ -86,7 +86,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("archive", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesScience.find((e) => e === "pubmed")}
@@ -96,7 +96,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("pubmed", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesScience.find((e) => e === "semanticscholar")}
@@ -121,7 +121,7 @@ const SettingsEnginesScience = () => {
           checked={!!enginesScience.find((e) => e === "wikispecies")}
           iconAlt="Wikispecies logo"
           iconSrc="/assets/wikispecies-icon.svg"
-          label="pages.settings.engines.engineWikispeciesScience"
+          label="pages.settings.engines.engineWikispecies"
           onChange={(next) => handleChangeEngines("wikispecies", next)}
         />
 
@@ -144,7 +144,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("openairedatasets", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesScience.find((e) => e === "openairepublications")}
@@ -154,7 +154,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("openairepublications", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesScience.find((e) => e === "pdbe")}
@@ -164,7 +164,7 @@ const SettingsEnginesScience = () => {
           onChange={(next) => handleChangeEngines("pdbe", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
       </Stack>
 
       <Space h="xl" />

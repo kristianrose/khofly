@@ -18,15 +18,32 @@ import EnginesTabs from "./components/EnginesTabs";
 import SettingsCategories from "./components/Categories";
 import { useGlobalStore } from "@store/global";
 import SettingsNominatim from "./components/Nominatim";
+import { useNavigate, useSearchParams } from "@remix-run/react";
 
 const PageSettings = () => {
   const { appTheme } = useGlobalStore((state) => ({
     appTheme: state.appTheme,
   }));
 
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const handleChangeTab = (next: string | null) => {
+    if (!next) return;
+
+    navigate(`/settings?tab=${next}`, { replace: true });
+  };
+
+  const activeTab = searchParams.get("tab") || "interface";
+
   return (
-    <Container className={classes.settings_page} size="lg" py={80}>
-      <Tabs variant="default" defaultValue="interface" keepMounted={false}>
+    <Container className={classes.settings_page} size="lg" pt={40} pb={80}>
+      <Tabs
+        variant="default"
+        value={activeTab}
+        onChange={handleChangeTab}
+        keepMounted={false}
+      >
         <Tabs.List mb="xl" className={classes.tabs_scroll}>
           <Tabs.Tab
             value="interface"

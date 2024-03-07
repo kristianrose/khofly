@@ -112,14 +112,23 @@
         "title1": "Web engines",
         "title2": "wiki stuff",
         "title3": "web",
+        "title4": "other stuff",
 
         "engineGoogle": "Google",
         "engineDDG": "DuckDuckGo",
+        "enginePresearch": "Presearch",
         "engineQwant": "Qwant",
+        "engineMojeek": "Mojeek",
+        "engineStartpage": "Startpage",
         "engineBing": "Bing",
         "engineBrave": "Brave",
         "engineYahoo": "Yahoo!",
 
+        "engineWikibooks": "Wikibooks",
+        "engineWikisource": "Wikisource",
+        "engineWikispecies": "Wikispecies",
+
+        "engineAlexandria": "Alexandria",
         "engineWikipedia": "Wikipedia",
         "engineWikidata": "Wikidata",
 
@@ -196,7 +205,6 @@
         "engineIASScience": "Internet Archive Scholar",
         "enginePubMedScience": "PubMed",
         "engineSemanticScholarScience": "Semantic Scholar",
-        "engineWikispeciesScience": "Wikispecies",
         "engineOADatasetsScience": "OpenAIRE datasets",
         "engineOAPublicationsScience": "OpenAIRE publications",
         "enginePDBeScience": "PDBe",

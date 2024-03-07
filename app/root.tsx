@@ -21,21 +21,22 @@ import {
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 
 import { ILanguage } from "@ts/global.types";
-import { MetaFunction } from "@remix-run/node";
+import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import ErrorPage from "@module/Error";
 import { ROOT_META } from "./meta/root";
 import { DEFAULT_ENV } from "@utils/resources/defaultEnv";
+import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
-export async function loader({ request }: { request: Request }) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = request.headers.get("Cookie");
-  const userLang: ILanguage = getCookieProperty(
-    cookies || "",
-    "language",
-    "en"
-  );
+  const userLang = getCookieProperty(cookies || "", "language", "en");
+  const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
+
+  // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
+  const appLang = userLang || prefLang || "en";
 
   return json({
-    language: userLang,
+    language: appLang,
     ENV: {
       NODE_ENV: process.env.NODE_ENV,
       HOST: process.env.HOST,
@@ -89,7 +90,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </AppLayout>
 
-        {/* Set environment variables in browser */}
+        {/* Hack to set environment variables in browser */}
         <script
           dangerouslySetInnerHTML={{
             __html: `window.process = ${JSON.stringify({

@@ -94,7 +94,7 @@ const SettingsEnginesMusic = () => {
           onChange={(next) => handleChangeEngines("bandcamp", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesMusic.find((e) => e === "mixcloud")}
@@ -104,7 +104,7 @@ const SettingsEnginesMusic = () => {
           onChange={(next) => handleChangeEngines("mixcloud", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesMusic.find((e) => e === "pipedmusic")}
@@ -114,7 +114,7 @@ const SettingsEnginesMusic = () => {
           onChange={(next) => handleChangeEngines("pipedmusic", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesMusic.find((e) => e === "soundcloud")}
@@ -124,7 +124,7 @@ const SettingsEnginesMusic = () => {
           onChange={(next) => handleChangeEngines("soundcloud", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesMusic.find((e) => e === "youtube")}
@@ -134,7 +134,7 @@ const SettingsEnginesMusic = () => {
           onChange={(next) => handleChangeEngines("youtube", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
       </Stack>
 
       <Space h="xl" />

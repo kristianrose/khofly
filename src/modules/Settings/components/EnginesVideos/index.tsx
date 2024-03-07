@@ -64,7 +64,7 @@ const SettingsEnginesVideos = () => {
           onChange={(next) => handleChangeEngines("bing", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesVideos.find((e) => e === "brave")}
@@ -74,7 +74,7 @@ const SettingsEnginesVideos = () => {
           onChange={(next) => handleChangeEngines("brave", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesVideos.find((e) => e === "duckduckgo")}
@@ -84,7 +84,7 @@ const SettingsEnginesVideos = () => {
           onChange={(next) => handleChangeEngines("duckduckgo", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesVideos.find((e) => e === "google")}
@@ -94,7 +94,7 @@ const SettingsEnginesVideos = () => {
           onChange={(next) => handleChangeEngines("google", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesVideos.find((e) => e === "qwant")}
@@ -104,7 +104,7 @@ const SettingsEnginesVideos = () => {
           onChange={(next) => handleChangeEngines("qwant", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
       </Stack>
 
       <Space h="xl" />

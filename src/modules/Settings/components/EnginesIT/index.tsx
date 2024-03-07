@@ -65,7 +65,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("dockerhub", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesIT.find((e) => e === "npm")}
@@ -75,7 +75,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("npm", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesIT.find((e) => e === "pypi")}
@@ -104,7 +104,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("askubuntu", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesIT.find((e) => e === "stackoverflow")}
@@ -114,7 +114,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("stackoverflow", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesIT.find((e) => e === "superuser")}
@@ -143,7 +143,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("codeberg", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesIT.find((e) => e === "github")}
@@ -157,7 +157,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("github", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesIT.find((e) => e === "gitlab")}
@@ -186,7 +186,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("archwiki", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesIT.find((e) => e === "gentoo")}
@@ -215,7 +215,7 @@ const SettingsEnginesIT = () => {
           onChange={(next) => handleChangeEngines("mdn", next)}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
       </Stack>
 
       <Space h="xl" />

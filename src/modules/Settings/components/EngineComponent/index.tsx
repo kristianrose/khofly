@@ -84,7 +84,7 @@ const EngineComponent: React.FC<Props> = ({
               <Text component="span" c="blue.4">
                 <Anchor
                   size="sm"
-                  href={hoverData?.wikiUrl}
+                  href={"https://www." + hoverData?.wikiUrl}
                   target="_blank"
                   rel="noreferrer noopener"
                 >

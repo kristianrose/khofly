@@ -6,7 +6,7 @@ import EngineComponent from "../EngineComponent";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
 import { useTranslate } from "@hooks/translate/use-translate";
 
-const SettingsEnginesSearch = () => {
+const SettingsEnginesGeneral = () => {
   const t = useTranslate();
 
   const { enginesGeneral, setEnginesGeneral } = useSearchStore((state) => ({
@@ -58,7 +58,7 @@ const SettingsEnginesSearch = () => {
           hoverData={HOVER_DATA["bing"]}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "brave")}
@@ -69,7 +69,7 @@ const SettingsEnginesSearch = () => {
           hoverData={HOVER_DATA["brave"]}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "duckduckgo")}
@@ -80,7 +80,7 @@ const SettingsEnginesSearch = () => {
           hoverData={HOVER_DATA["duckDuckGo"]}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "google")}
@@ -91,7 +91,29 @@ const SettingsEnginesSearch = () => {
           hoverData={HOVER_DATA["google"]}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "mojeek")}
+          iconAlt="Mojeek logo"
+          iconSrc="/assets/mojeek-icon.svg"
+          label="pages.settings.engines.engineMojeek"
+          onChange={(next) => handleChangeEngines("mojeek", next)}
+          hoverData={HOVER_DATA["mojeek"]}
+        />
+
+        <Divider my="xs" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "presearch")}
+          iconAlt="Presearch logo"
+          iconSrc="/assets/presearch-icon.svg"
+          label="pages.settings.engines.enginePresearch"
+          onChange={(next) => handleChangeEngines("presearch", next)}
+          hoverData={HOVER_DATA["presearch"]}
+        />
+
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "qwant")}
@@ -102,7 +124,18 @@ const SettingsEnginesSearch = () => {
           hoverData={HOVER_DATA["qwant"]}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "startpage")}
+          iconAlt="Startpage logo"
+          iconSrc=""
+          label="pages.settings.engines.engineStartpage"
+          onChange={(next) => handleChangeEngines("startpage", next)}
+          hoverData={HOVER_DATA["startpage"]}
+        />
+
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "yahoo")}
@@ -125,14 +158,68 @@ const SettingsEnginesSearch = () => {
         />
 
         <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "wikibooks")}
+          iconAlt="Wikibooks logo"
+          iconSrc="/assets/wikibooks-icon.svg"
+          label="pages.settings.engines.engineWikibooks"
+          onChange={(next) => handleChangeEngines("wikibooks", next)}
+          hoverData={HOVER_DATA["wikibooks"]}
+        />
+
+        <Divider my="xs" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "wikisource")}
+          iconAlt="Wikisource logo"
+          iconSrc="/assets/wikisource-icon.svg"
+          label="pages.settings.engines.engineWikisource"
+          onChange={(next) => handleChangeEngines("wikisource", next)}
+          hoverData={HOVER_DATA["wikisource"]}
+        />
+
+        <Divider my="xs" w="100%" />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "wikispecies")}
+          iconAlt="Wikispecies logo"
+          iconSrc="/assets/wikispecies-icon.svg"
+          label="pages.settings.engines.engineWikispecies"
+          onChange={(next) => handleChangeEngines("wikispecies", next)}
+          hoverData={HOVER_DATA["wikispecies"]}
+        />
+
+        <Divider
+          label={
+            <Text fw={500} c="teal">
+              {t("pages.settings.engines.title4")}
+            </Text>
+          }
+          labelPosition="left"
+          my="sm"
+          w="100%"
+        />
+
+        <EngineComponent
+          checked={!!enginesGeneral.find((e) => e === "alexandria")}
+          iconAlt="Alexandria logo"
+          iconSrc=""
+          label="pages.settings.engines.engineAlexandria"
+          onChange={(next) => handleChangeEngines("alexandria", next)}
+          hoverData={HOVER_DATA["alexandria"]}
+        />
+
+        <Divider my="xs" w="100%" />
+
+        <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "wikipedia")}
           iconAlt="Wikipedia logo"
           iconSrc="/assets/wikipedia-icon.svg"
           label="pages.settings.engines.engineWikipedia"
           onChange={(next) => handleChangeEngines("wikipedia", next)}
+          hoverData={HOVER_DATA["wikipedia"]}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <EngineComponent
           checked={!!enginesGeneral.find((e) => e === "wikidata")}
@@ -140,9 +227,10 @@ const SettingsEnginesSearch = () => {
           iconSrc="/assets/wikidata-icon.svg"
           label="pages.settings.engines.engineWikidata"
           onChange={(next) => handleChangeEngines("wikidata", next)}
+          hoverData={HOVER_DATA["wikidata"]}
         />
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
       </Stack>
 
       <Space h="xl" />
@@ -150,4 +238,4 @@ const SettingsEnginesSearch = () => {
   );
 };
 
-export default SettingsEnginesSearch;
+export default SettingsEnginesGeneral;

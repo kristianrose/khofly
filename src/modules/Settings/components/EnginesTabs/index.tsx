@@ -12,7 +12,7 @@ import {
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import React from "react";
-import SettingsEnginesSearch from "../EnginesSearch";
+import SettingsEnginesSearch from "../EnginesGeneral";
 import SettingsEnginesImages from "../EnginesImages";
 import SettingsEnginesVideos from "../EnginesVideos";
 import SettingsEnginesNews from "../EnginesNews";
@@ -26,7 +26,7 @@ import SettingsEnginesSocialMedia from "../EnginesSocialMedia";
 const EnginesTabs = () => {
   return (
     <>
-      <Text my="lg">Currently used search engines</Text>
+      <Text my="sm">Currently used search engines</Text>
 
       <Tabs variant="default" defaultValue="general" keepMounted={false}>
         <Tabs.List mb="lg" className={classes.tabs_scroll}>
