@@ -18,6 +18,13 @@
     width: 100%;
   }
 }
+.settings_select {
+  width: 30%;
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    width: 100%;
+  }
+}
 
 .tabs_scroll {
   flex-wrap: nowrap;

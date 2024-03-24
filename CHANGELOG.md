@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Search - general, images, videos, news, map, music, IT, science, files, social media
+- Chunk of available search engines
 - Look & Feel customization
 - Multi-language support
 - Multiple instant answers

@@ -3,6 +3,7 @@ import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
 import {
+  IconApps,
   IconBrush,
   IconEngine,
   IconLink,
@@ -12,13 +13,13 @@ import {
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
-import SettingsTheme from "./components/Theme";
 import SettingsInterface from "./components/Interface";
 import EnginesTabs from "./components/EnginesTabs";
 import SettingsCategories from "./components/Categories";
 import { useGlobalStore } from "@store/global";
 import SettingsNominatim from "./components/Nominatim";
 import { useNavigate, useSearchParams } from "@remix-run/react";
+import SettingsShortcuts from "./components/Shortcuts";
 
 const PageSettings = () => {
   const { appTheme } = useGlobalStore((state) => ({
@@ -69,13 +70,16 @@ const PageSettings = () => {
           >
             Engines
           </Tabs.Tab>
+          {/* <Tabs.Tab
+            value="shortcuts"
+            leftSection={<IconApps style={getIconStyle(20)} />}
+          >
+            Shortcuts
+          </Tabs.Tab> */}
         </Tabs.List>
 
         <Tabs.Panel value="interface">
-          <>
-            <SettingsInterface />
-            {appTheme === "Custom" && <SettingsTheme />}
-          </>
+          <SettingsInterface />
         </Tabs.Panel>
 
         <Tabs.Panel value="general">
@@ -95,6 +99,10 @@ const PageSettings = () => {
         <Tabs.Panel value="engines">
           <EnginesTabs />
         </Tabs.Panel>
+        {/* 
+        <Tabs.Panel value="shortcuts">
+          <SettingsShortcuts />
+        </Tabs.Panel> */}
       </Tabs>
     </Container>
   );

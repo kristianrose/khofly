@@ -7,15 +7,7 @@ import { IAppTheme } from "@ts/global.types";
 export type ITranslations = typeof contentJson;
 
 interface GlobalState {
-  // profile: IProfile | null;
-  // setProfile: (profile: IProfile | null) => void;
-
-  // tier: ITiers;
-  // loadingTier: boolean;
-  // setTier: (profile: ITiers) => void;
-
   language: "en" | "de";
-  // content: ITranslations; // Content fetched from public/locales
   changeLanguage: (locale: "en") => void;
 
   appTheme: IAppTheme;
@@ -24,20 +16,11 @@ interface GlobalState {
 
 export const useGlobalStore = create<GlobalState>()(
   persist(
-    (set, getState) => ({
-      // profile: null,
-      // setProfile: (profile) => set({ profile }),
-
-      // tier: 1,
-      // loadingTier: true,
-      // setTier: (tier) => set({ tier, loadingTier: false }),
-
+    (set) => ({
       language: "en",
-      // content: content,
       changeLanguage: (locale) =>
         set({
           language: locale,
-          // content: content,
         }),
 
       appTheme: "Mantine-Old",

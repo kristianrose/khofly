@@ -39,17 +39,13 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
-
   const isIndex = pathname === "/";
 
   const isFooterOffset = isSearch || isDocs;
-
   const isSearchMaps = isSearch && tab === "maps";
-
   const headerHeight = isSearch ? 100 : 70;
-
   const isHeaderCollapsed = isSearch && !pinned;
-  const isHeaderOffset = !isSearch;
+  const isHeaderOffset = !isSearch && !isIndex;
 
   const appName = !+process.env.IS_SELF_HOST!
     ? t("_common.app_name")
@@ -67,7 +63,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   return (
     <MantineProvider
       theme={getMantineTheme(appTheme)}
-      defaultColorScheme="dark"
+      defaultColorScheme="auto"
     >
       <Notifications />
 

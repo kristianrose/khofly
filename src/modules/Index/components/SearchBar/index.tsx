@@ -129,6 +129,12 @@ const SearchBar = () => {
           onOptionSubmit: (val) => handleSearch(val),
           size: "md",
         }}
+        // Disable password manager stuff
+        autoComplete="off"
+        data-1p-ignore
+        data-bwignore
+        data-lpignore="true"
+        data-form-type="other"
       />
 
       {openKeyboard && (

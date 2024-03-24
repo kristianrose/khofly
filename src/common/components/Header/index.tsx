@@ -72,7 +72,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       {isSearch && <HeaderSettings />}
 
-      {(isAbout || isDocs) && <HeaderCode />}
+      {(isAbout || isDocs || isChangelog) && <HeaderCode />}
     </Group>
   );
 };

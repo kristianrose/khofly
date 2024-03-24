@@ -22,7 +22,7 @@ const Docs = () => {
   if (!page) return <DocsIndex />;
 
   const docsPage = {
-    overview: <DocsResourcesOverview />,
+    overview: <DocsWIP />, // DocsResourcesOverview
     "instant-answers": <DocsResourcesInstantAnswer />,
     "set-default": <DocsResourcesSetDefault />,
     "custom-searxng": <DocsCustomSearxng />,

@@ -28,16 +28,21 @@ const THEME_DATA: ILangData[] = [
     value: "Catppuccin-Mocha",
     image: "/assets/catppuccin.png",
   },
-  {
-    label: "pages.settings.interface.selectThemeOptions.rosepine",
-    value: "Rose-Pine",
-    image: "/assets/rosepine.png",
-  },
-  {
-    label: "pages.settings.interface.selectThemeOptions.custom",
-    value: "Custom",
-    image: "/assets/doge.svg",
-  },
+  // {
+  //   label: "pages.settings.interface.selectThemeOptions.tokyo_night",
+  //   value: "Tokyo-Night",
+  //   image: "/assets/rosepine.png",
+  // },
+  // {
+  //   label: "pages.settings.interface.selectThemeOptions.rosepine",
+  //   value: "Rose-Pine",
+  //   image: "/assets/rosepine.png",
+  // },
+  // {
+  //   label: "pages.settings.interface.selectThemeOptions.nord",
+  //   value: "Nord",
+  //   image: "/assets/rosepine.png",
+  // },
 ];
 
 const ThemeSelect = () => {

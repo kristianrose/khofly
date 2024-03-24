@@ -17,7 +17,9 @@ export type IAppTheme =
   | "Mantine-New"
   | "Catppuccin-Mocha"
   | "Rose-Pine"
-  | "Custom";
+  | "Custom"
+  | "Nord"
+  | "Tokyo-Night";
 
 // For translations
 

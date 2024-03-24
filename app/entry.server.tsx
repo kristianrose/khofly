@@ -7,7 +7,6 @@ import * as isbotModule from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { ITranslations } from "@store/global";
 import I18nProvider from "@store/language";
-import { ILanguage } from "@ts/global.types";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 

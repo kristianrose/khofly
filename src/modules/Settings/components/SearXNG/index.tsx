@@ -1,4 +1,16 @@
-import { Button, Flex, Group, Paper, Text, TextInput } from "@mantine/core";
+import {
+  Button,
+  Flex,
+  Group,
+  Paper,
+  Select,
+  SelectProps,
+  Stack,
+  Text,
+  TextInput,
+} from "@mantine/core";
+
+import { DEFlag, USFlag } from "mantine-flagpack";
 
 import classes from "../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -7,6 +19,19 @@ import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
 import { IconSearch } from "@tabler/icons-react";
+import { useEffect } from "react";
+
+const icons: Record<string, React.ReactNode> = {
+  [process.env.SEARXNG_URL_EU1!]: <DEFlag style={getIconStyle(20)} />,
+  [process.env.SEARXNG_URL_US1!]: <USFlag style={getIconStyle(20)} />,
+};
+
+const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
+  <Group flex="1" gap="xs">
+    {icons[option.value]}
+    {option.label}
+  </Group>
+);
 
 const SettingsSearXNG = () => {
   const { domain, setDomain } = useInstanceStore((state) => ({
@@ -16,7 +41,8 @@ const SettingsSearXNG = () => {
 
   const form = useForm({
     initialValues: {
-      domain: domain,
+      domain: "",
+      select: "",
     },
     validate: {
       domain: (value) =>
@@ -31,6 +57,18 @@ const SettingsSearXNG = () => {
     toast.show({ message: "URL changed!", color: "green" });
   };
 
+  useEffect(() => {
+    form.setFieldValue("domain", domain);
+
+    if (
+      [process.env.SEARXNG_URL_EU1, process.env.SEARXNG_URL_US1].includes(
+        domain
+      )
+    ) {
+      form.setFieldValue("select", domain);
+    }
+  }, [domain]);
+
   return (
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -43,14 +81,40 @@ const SettingsSearXNG = () => {
         </Flex>
 
         {/* Settings content */}
-        <Group px="lg" mb="xl">
+        <Stack px="lg" mb="xl">
           <TextInput
             placeholder="domain.com"
             size="md"
             className={classes.settings_input}
             {...form.getInputProps("domain")}
           />
-        </Group>
+
+          {!+process.env.NEXT_PUBLIC_IS_SELF_HOST! && (
+            <Select
+              className={classes.settings_select}
+              label="Default instances"
+              description="Pick one based on your location"
+              placeholder="Instance location"
+              value={form.values.select}
+              onChange={(val) => {
+                form.setFieldValue("select", val || "");
+                form.setFieldValue("domain", val || "");
+              }}
+              data={[
+                {
+                  label: "Nuremberg, Germany",
+                  value: process.env.SEARXNG_URL_EU1 || "1",
+                },
+                {
+                  label: "Ashburn, USA",
+                  value: process.env.SEARXNG_URL_US1 || "2",
+                },
+              ]}
+              renderOption={renderSelectOption}
+              leftSection={icons[form.values.select]}
+            />
+          )}
+        </Stack>
 
         <Flex
           align="center"

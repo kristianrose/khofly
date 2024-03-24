@@ -5,3 +5,9 @@ Features?
 
 move leaflet stuff to /search
 fix language change page refresh
+
+move mantine theme from zustand to cookie
+
+fix build errors
+reduce file sizes
+make about page

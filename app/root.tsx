@@ -37,14 +37,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   return json({
     language: appLang,
-    ENV: {
-      NODE_ENV: process.env.NODE_ENV,
-      HOST: process.env.HOST,
-      SEARXNG_URL: process.env.SEARXNG_URL,
-      NOMINATIM_URL: process.env.NOMINATIM_URL,
-      IS_SELF_HOST: process.env.IS_SELF_HOST,
-      APP_NAME: process.env.APP_NAME,
-    },
   });
 }
 
@@ -64,7 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <ColorSchemeScript defaultColorScheme="dark" />
+        <ColorSchemeScript defaultColorScheme="auto" />
 
         {/* OpenSearch XML */}
         <link
@@ -91,13 +83,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </AppLayout>
 
         {/* Hack to set environment variables in browser */}
-        <script
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `window.process = ${JSON.stringify({
               env: data?.ENV || DEFAULT_ENV,
             })}`,
           }}
-        />
+        /> */}
 
         {/* Leaflet script */}
         <script

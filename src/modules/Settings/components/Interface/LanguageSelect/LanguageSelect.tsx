@@ -12,8 +12,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/setCookie";
-import { getCookieProperty } from "@utils/functions/getCookieProperty";
-import { useEffect, useState } from "react";
+
 import { useNavigate, useRouteLoaderData } from "@remix-run/react";
 
 interface ILangData {
@@ -28,11 +27,11 @@ const LANG_DATA: ILangData[] = [
     value: "en",
     icon: USFlag,
   },
-  {
-    label: "pages.settings.interface.selectLangOptions.de",
-    value: "de",
-    icon: DEFlag,
-  },
+  // {
+  //   label: "pages.settings.interface.selectLangOptions.de",
+  //   value: "de",
+  //   icon: DEFlag,
+  // },
 ];
 
 const LanguageSelect = () => {
@@ -48,8 +47,7 @@ const LanguageSelect = () => {
     setCookie("language", next, {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
-      domain:
-        process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
+      domain: process.env.NODE_ENV === "development" ? "i" : "khofly.com",
       secure: process.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
