@@ -4,12 +4,15 @@ import classes from "./styles.module.scss";
 import {
   IconAdjustmentsHorizontal,
   IconCpu,
+  IconFiles,
   IconMapPin,
   IconMusic,
   IconNews,
   IconPhoto,
   IconPlayerPlay,
+  IconSchool,
   IconSearch,
+  IconUsers,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useSearchStore } from "@store/search";
@@ -91,7 +94,7 @@ const SearchSectionTabs = () => {
           )}
           {categories.includes("music") && (
             <Tabs.Tab
-              value="maps"
+              value="music"
               leftSection={<IconMusic style={getIconStyle(iconSize)} />}
             >
               Music
@@ -100,10 +103,37 @@ const SearchSectionTabs = () => {
 
           {categories.includes("it") && (
             <Tabs.Tab
-              value="maps"
+              value="it"
               leftSection={<IconCpu style={getIconStyle(iconSize)} />}
             >
               IT
+            </Tabs.Tab>
+          )}
+
+          {categories.includes("science") && (
+            <Tabs.Tab
+              value="science"
+              leftSection={<IconSchool style={getIconStyle(iconSize)} />}
+            >
+              Science
+            </Tabs.Tab>
+          )}
+
+          {categories.includes("files") && (
+            <Tabs.Tab
+              value="files"
+              leftSection={<IconFiles style={getIconStyle(iconSize)} />}
+            >
+              Files
+            </Tabs.Tab>
+          )}
+
+          {categories.includes("social-media") && (
+            <Tabs.Tab
+              value="social-media"
+              leftSection={<IconUsers style={getIconStyle(iconSize)} />}
+            >
+              Social Media
             </Tabs.Tab>
           )}
         </Tabs.List>

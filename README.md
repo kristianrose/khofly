@@ -18,7 +18,7 @@
 <br />
 
 <h3 align="center">
-    <a href="https://github.com/khofly/search/blob/master/CONTRIBUTING.md">Contribute</a>
+    <a href="https://github.com/cufta22/khofly/blob/master/CONTRIBUTING.md">Contribute</a>
     <span> · </span>
     <a href="https://discord.gg/mQ68HppVbt">Community</a>
     <span> · </span>
@@ -38,9 +38,7 @@ If you're working on an **issue**, create an issue branch - [ fix/issue-\* ] ( e
 
 See [CONTRIBUTING.md](https://github.com/khofly/search/blob/master/CONTRIBUTING.md) for all details.
 
-Also check out the [Project Board]() for all available and future tasks
-
-I recommend creating an issue or message me on discord [ cufta22#8160 ] to let me know what you are working on first that way we don't overwrite each other.
+I recommend creating an issue or message me on discord [ cufta22 ] to let me know what you are working on first that way we don't overwrite each other.
 
 ## Code of Conduct
 

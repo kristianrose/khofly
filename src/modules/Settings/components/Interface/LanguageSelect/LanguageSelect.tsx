@@ -4,10 +4,8 @@ import { Combobox, InputBase, useCombobox } from "@mantine/core";
 
 import { USFlag, FlagProps, DEFlag } from "mantine-flagpack";
 
-import { ITranslations, useGlobalStore } from "@store/global";
-
 import classes from "./styles.module.scss";
-import { DotNestedKeys, ILanguage } from "@ts/global.types";
+import { DotNestedKeys, ILanguage, ITranslations } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { useTranslate } from "@hooks/translate/use-translate";
@@ -44,10 +42,11 @@ const LanguageSelect = () => {
   });
 
   const handleChange = (next: ILanguage) => {
-    setCookie("language", next, {
+    setCookie("khofly-language", next, {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
-      domain: process.env.NODE_ENV === "development" ? "i" : "khofly.com",
+      domain:
+        process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
       secure: process.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });

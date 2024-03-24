@@ -3,7 +3,6 @@ import { Blockquote, Code, Container, Paper, Text } from "@mantine/core";
 import WikiText from "./common/WikiText";
 import WikiSubtitle from "./common/WikiSubtitle";
 import RemixLink from "@components/RemixLink";
-import WikiTitle from "./common/WikiTitle";
 
 const CODE_SEARXNG_CONFIG = `
 search:
@@ -15,11 +14,9 @@ server:
   secret_key: "sercet" # make sure to change this
 `;
 
-const DocsResourcesCustomSearxng = () => {
+const DocsResourcesInternationalization = () => {
   return (
     <Container size="lg" p="xl" pb={100}>
-      <WikiTitle>Custom SearXNG instance</WikiTitle>
-
       <Blockquote
         color="blue"
         // cite="- https://docs.searxng.org/"
@@ -75,4 +72,4 @@ const DocsResourcesCustomSearxng = () => {
   );
 };
 
-export default DocsResourcesCustomSearxng;
+export default DocsResourcesInternationalization;

@@ -1,14 +1,10 @@
-import React from "react";
 import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
 import {
-  IconApps,
   IconBrush,
-  IconEngine,
   IconLink,
   IconRadar,
-  IconSearch,
   IconSettings2,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -16,16 +12,10 @@ import SettingsGeneral from "./components/General";
 import SettingsInterface from "./components/Interface";
 import EnginesTabs from "./components/EnginesTabs";
 import SettingsCategories from "./components/Categories";
-import { useGlobalStore } from "@store/global";
 import SettingsNominatim from "./components/Nominatim";
 import { useNavigate, useSearchParams } from "@remix-run/react";
-import SettingsShortcuts from "./components/Shortcuts";
 
 const PageSettings = () => {
-  const { appTheme } = useGlobalStore((state) => ({
-    appTheme: state.appTheme,
-  }));
-
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 

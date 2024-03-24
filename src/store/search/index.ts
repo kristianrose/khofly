@@ -95,6 +95,8 @@ export type ISocialMediaEngines =
   | "mastodonusers";
 
 interface SearchState {
+  hydrated: boolean;
+
   enginesGeneral: IGeneralEngines[];
   setEnginesGeneral: (next: IGeneralEngines[]) => void;
 
@@ -126,6 +128,8 @@ interface SearchState {
 export const useSearchStore = create<SearchState>()(
   persist(
     (set) => ({
+      hydrated: false,
+
       enginesGeneral: ["duckduckgo", "brave", "wikipedia"],
       setEnginesGeneral: (next) => set({ enginesGeneral: next }),
 
@@ -161,6 +165,11 @@ export const useSearchStore = create<SearchState>()(
       setEnginesSocialMedia: (next) => set({ enginesSocialMedia: next }),
     }),
     {
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.hydrated = true;
+        }
+      },
       name: "search-store", // name of the item in the storage (must be unique)
       partialize: (state) => ({
         enginesGeneral: state.enginesGeneral,

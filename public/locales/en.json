@@ -110,10 +110,9 @@
       "engines": {
         "titleWithout": "other stuff",
 
-        "title1": "Web engines",
-        "title2": "wiki stuff",
-        "title3": "web",
-        "title4": "other stuff",
+        "title": "Web engines",
+        "title2": "web",
+        "title3": "wiki stuff",
 
         "engineGoogle": "Google",
         "engineDDG": "DuckDuckGo",
@@ -178,10 +177,10 @@
         "engineYTMusic": "YouTube",
 
         "titleIT": "IT engines",
-        "titleIT2": "q&a",
-        "titleIT3": "repos",
-        "titleIT4": "software wikis",
-        "titleIT5": "packages",
+        "titleIT2": "packages",
+        "titleIT3": "q&a",
+        "titleIT4": "repos",
+        "titleIT5": "software wikis",
 
         "engineDockerHubIT": "Docker hub",
         "engineNPMIT": "NPM",

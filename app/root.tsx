@@ -29,14 +29,23 @@ import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = request.headers.get("Cookie");
-  const userLang = getCookieProperty(cookies || "", "language", "en");
+
+  // Get user language
+  const userLang = getCookieProperty(cookies || "", "khofly-language", "en");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
   // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
   const appLang = userLang || prefLang || "en";
 
+  const appTheme = getCookieProperty(
+    cookies || "",
+    "khofly-app-theme",
+    "Mantine-Old"
+  );
+
   return json({
     language: appLang,
+    theme: appTheme,
   });
 }
 

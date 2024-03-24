@@ -8,15 +8,16 @@ import Stopwatch from "@module/Search/components/InstantAnswer/Stopwatch";
 import Timer from "@module/Search/components/InstantAnswer/Timer";
 import Translate from "@module/Search/components/InstantAnswer/Translate";
 import UUID from "@module/Search/components/InstantAnswer/UUID";
+import WikiTitle from "./common/WikiTitle";
+import WikiSubtitle from "./common/WikiSubtitle";
 
 const DocsResourcesInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <Text fz="34" fw={600} mb="md">
-        Adding instant answer
-      </Text>
+      <WikiTitle>Adding instant answer</WikiTitle>
+
       <Text mt="md">
         All instant answers code is located in{" "}
         <Code>/src/modules/Search/components/InstantAnswer</Code>
@@ -28,53 +29,40 @@ const DocsResourcesInstantAnswer = () => {
         others are displayed conditionally.
       </Text>
 
-      <Text fz="34" mt="md" fw={600} mb="md">
-        All available instant answers
-      </Text>
+      <WikiSubtitle>All available instant answers</WikiSubtitle>
+
       <Text mt="md">
         Below is a list of all currently available Instant Answers, some of them
         might still be work in progress but offer enough functionality to still
         be included and be useful. More will be available in the future.
       </Text>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        1. Calculator
-      </Text>
+      <WikiTitle>1. Calculator</WikiTitle>
       <Box className={classes.search_box}>
         <Calculator />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        2. Coin Flip
-      </Text>
+      <WikiTitle>2. Coin Flip</WikiTitle>
       <Box className={classes.search_box}>
         <CoinFlip />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        3. Lyrics
-      </Text>
+      <WikiTitle>3. Lyrics</WikiTitle>
       <Box className={classes.search_box}>
         <Lyrics initialQ="rick astley never gonna give you up" />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        4. Timer
-      </Text>
+      <WikiTitle>4. Timer</WikiTitle>
       <Box className={classes.search_box}>
         <Timer />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        5. Translate
-      </Text>
+      <WikiTitle>5. Translate</WikiTitle>
       <Box className={classes.search_box}>
         <Translate />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        6. Random UUID
-      </Text>
+      <WikiTitle>6. Random UUID</WikiTitle>
       <Box className={classes.search_box}>
         <UUID />
       </Box>

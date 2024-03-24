@@ -12,9 +12,5 @@ export const parseAcceptLanguage = (
     return "en";
   }
 
-  if (headerString.includes("de")) {
-    return "de";
-  }
-
   return "";
 };

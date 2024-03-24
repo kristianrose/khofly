@@ -8,8 +8,13 @@ import ImageSkeleton from "./components/ImageSkeleton";
 import { useDisclosure } from "@mantine/hooks";
 import ImageView from "./components/ImageView";
 import SearchOptions from "../SearchOptions";
+import { useSearchStore } from "@store/search";
 
 const TabImages = () => {
+  const { hydrated } = useSearchStore((state) => ({
+    hydrated: state.hydrated,
+  }));
+
   const { data, error, isLoading, isValidating, mutate, setSize, size } =
     useSearXNGSWR<ISearXNGResultsImages>();
 
@@ -26,8 +31,8 @@ const TabImages = () => {
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length) mutate();
-  }, []);
+    if (!data?.length && hydrated) mutate();
+  }, [hydrated]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
 

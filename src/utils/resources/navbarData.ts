@@ -14,6 +14,11 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
       },
       { label: "Set Default", link: "/docs/set-default", isWip: false },
       { label: "Custom SearXNG", link: "/docs/custom-searxng", isWip: false },
+      {
+        label: "Languages",
+        link: "/docs/internationalization",
+        isWip: false,
+      },
     ],
   },
   {

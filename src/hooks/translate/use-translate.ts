@@ -1,7 +1,6 @@
-import { DotNestedKeys } from "@ts/global.types";
+import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 import { useI18nContent } from "@store/language";
-import { ITranslations } from "@store/global";
 
 const getValueByString = (
   obj: ITranslations,

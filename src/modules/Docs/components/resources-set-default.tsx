@@ -1,11 +1,19 @@
 import { useBrowser } from "@hooks/use-browser";
-import { Container, Flex, Text, useMantineTheme } from "@mantine/core";
+import {
+  Center,
+  Container,
+  Flex,
+  Loader,
+  Text,
+  useMantineTheme,
+} from "@mantine/core";
 import {
   IconBrandChrome,
   IconBrandEdge,
   IconBrandFirefox,
   IconBrandOpera,
   IconBrandSafari,
+  IconBrandVivaldi,
   IconWorldWww,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -20,89 +28,146 @@ import SectionSafari from "./components/set-default/SectionSafari";
 import SectionOpera from "./components/set-default/SectionOpera";
 import WikiLink from "./common/WikiLink";
 import { useSearchParams } from "@remix-run/react";
+import WikiTitle from "./common/WikiTitle";
+import SectionVivaldi from "./components/set-default/SectionVivaldi";
 
 const DocsResourcesSetDefault = () => {
   const [searchParams] = useSearchParams();
   const browser = useBrowser();
   const theme = useMantineTheme();
 
-  const paramsBrowser = searchParams.get("browser") || browser;
+  const paramsBrowser =
+    searchParams.get("browser")?.toLocaleLowerCase() ||
+    browser.toLocaleLowerCase();
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      {paramsBrowser === "Firefox" && (
+      {paramsBrowser === "firefox" && (
         <>
-          <SetDefaultTitle
-            icon={IconBrandFirefox}
-            iconColor={theme.colors.orange[5]}
-            label="Adding search engine to Firefox"
-          />
+          <WikiTitle
+            leftSection={
+              <IconBrandFirefox
+                style={getIconStyle(48)}
+                color={theme.colors.orange[5]}
+              />
+            }
+          >
+            Adding search engine to Firefox
+          </WikiTitle>
 
           <SectionFirefox />
         </>
       )}
 
-      {paramsBrowser === "Chromium" && (
+      {["chromium", "chrome"].includes(paramsBrowser) && (
         <>
-          <SetDefaultTitle
-            icon={IconBrandChrome}
-            iconColor={theme.colors.blue[4]}
-            label="Adding search engine to Chromium"
-          />
+          <WikiTitle
+            leftSection={
+              <IconBrandChrome
+                style={getIconStyle(48)}
+                color={theme.colors.blue[4]}
+              />
+            }
+          >
+            Adding search engine to Chromium
+          </WikiTitle>
 
           <SectionChromium />
         </>
       )}
 
-      {paramsBrowser === "Edge" && (
+      {paramsBrowser === "edge" && (
         <>
-          <SetDefaultTitle
-            icon={IconBrandEdge}
-            iconColor={theme.colors.blue[5]}
-            label="Adding search engine to Edge"
-          />
+          <WikiTitle
+            leftSection={
+              <IconBrandEdge
+                style={getIconStyle(48)}
+                color={theme.colors.blue[5]}
+              />
+            }
+          >
+            Adding search engine to Edge
+          </WikiTitle>
 
           <SectionEdge />
         </>
       )}
 
-      {paramsBrowser === "Safari" && (
+      {paramsBrowser === "safari" && (
         <>
-          <SetDefaultTitle
-            icon={IconBrandSafari}
-            iconColor={theme.colors.blue[5]}
-            label="Adding search engine to Safari"
-          />
+          <WikiTitle
+            leftSection={
+              <IconBrandSafari
+                style={getIconStyle(48)}
+                color={theme.colors.blue[5]}
+              />
+            }
+          >
+            Adding search engine to Safari
+          </WikiTitle>
 
           <SectionSafari />
         </>
       )}
 
-      {paramsBrowser === "Opera" && (
+      {paramsBrowser === "vivaldi" && (
         <>
-          <SetDefaultTitle
-            icon={IconBrandOpera}
-            iconColor={theme.colors.red[6]}
-            label="Adding search engine to Opera"
-          />
+          <WikiTitle
+            leftSection={
+              <IconBrandVivaldi
+                style={getIconStyle(48)}
+                color={theme.colors.red[4]}
+              />
+            }
+          >
+            Adding search engine to Vivaldi
+          </WikiTitle>
+
+          <SectionVivaldi />
+        </>
+      )}
+
+      {paramsBrowser === "opera" && (
+        <>
+          <WikiTitle
+            leftSection={
+              <IconBrandOpera
+                style={getIconStyle(48)}
+                color={theme.colors.red[6]}
+              />
+            }
+          >
+            Adding search engine to Opera
+          </WikiTitle>
 
           <SectionOpera />
         </>
       )}
 
-      {["IE", "Samsung", "unknown"].includes(paramsBrowser) && (
+      {["ie", "samsung", "unknown"].includes(paramsBrowser) && (
         <>
-          <SetDefaultTitle
-            icon={IconWorldWww}
-            iconColor={theme.colors.blue[4]}
-            label="Adding search engine to [your browser]"
-          />
+          <WikiTitle
+            leftSection={
+              <IconWorldWww
+                style={getIconStyle(48)}
+                color={theme.colors.blue[4]}
+              />
+            }
+          >
+            Adding search engine to [your browser]
+          </WikiTitle>
 
           <WikiLink
             href={`https://khofly.com/search?q=How to add a custom search engine to ${browser}`}
             label="How to add a custom search engine to [your browser]"
           />
         </>
+      )}
+
+      {["loading"].includes(paramsBrowser) && (
+        <Center mt="xl">
+          <Loader size="xl" />
+        </Center>
       )}
     </Container>
   );

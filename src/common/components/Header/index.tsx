@@ -19,8 +19,6 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const t = useTranslate();
   const { pathname } = useLocation();
 
-  // const { profile } = useGlobalStore((state) => ({ profile: state.profile }));
-
   const isChangelog = pathname.startsWith("/changelog");
   const isSettings = pathname.startsWith("/settings");
   const isPrivacy = pathname.startsWith("/privacy");

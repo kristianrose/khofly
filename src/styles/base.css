@@ -9,3 +9,7 @@ a {
 .leaflet-attribution-flag {
   width: 0px !important;
 }
+
+table th {
+  white-space: nowrap;
+}

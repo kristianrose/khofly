@@ -1,13 +1,13 @@
-import React from "react";
+import React, { ForwardRefExoticComponent, RefAttributes } from "react";
 import { Flex, Text, useMantineTheme } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { TablerIconsProps } from "@tabler/icons-react";
+import { Icon, IconProps } from "@tabler/icons-react";
 
 interface Props {
   label: string;
-  icon: (props: TablerIconsProps) => JSX.Element;
+  icon: ForwardRefExoticComponent<Omit<IconProps, "ref"> & RefAttributes<Icon>>;
   iconColor: string;
 }
 

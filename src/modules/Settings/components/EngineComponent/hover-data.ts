@@ -26,7 +26,7 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!brave", "!br"],
     bangsCategory: ["!general", "!web"],
   },
-  duckDuckGo: {
+  duckduckgo: {
     description:
       "DuckDuckGo is an American software company that offers a number of software products oriented towards helping people protect their privacy online. The company also provides a private search engine, a tracker-blocking browser extension, email protection, and app tracking protection. (Source: wikipedia)",
     linkUrl: "https://duckduckgo.com/",

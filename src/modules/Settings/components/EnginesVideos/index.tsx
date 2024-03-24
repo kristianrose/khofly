@@ -6,12 +6,15 @@ import {
   Space,
   Stack,
   Switch,
+  Table,
   Text,
 } from "@mantine/core";
 import { IVideosEngines, useSearchStore } from "@store/search";
 import { IconPlayerPlay } from "@tabler/icons-react";
 import EngineComponent from "../EngineComponent";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { DATA_ENGINES_VIDEOS } from "./data";
+import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesVideos = () => {
   const t = useTranslate();
@@ -33,82 +36,36 @@ const SettingsEnginesVideos = () => {
     setEnginesVideos(newEngines);
   };
 
+  const rows = DATA_ENGINES_VIDEOS.map((item, i) => (
+    <EngineComponent
+      key={i}
+      type={item.type}
+      checked={!!enginesVideos.find((e) => e === item.value)}
+      iconAlt={item.alt}
+      iconSrc={item.icon}
+      label={item.label}
+      onChange={(next) =>
+        handleChangeEngines(item.value as IVideosEngines, next)
+      }
+      hoverData={HOVER_DATA[item.value]}
+      safeSearch={item.safeSearch}
+      timeRange={item.timeRange}
+    />
+  ));
+
   return (
-    <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16}>
-        <IconPlayerPlay size={32} />
-
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.engines.titleVid")}
-        </Text>
-      </Flex>
-
-      {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" gap={6}>
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleVid1")}
-            </Text>
-          }
-          labelPosition="left"
-          mb="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesVideos.find((e) => e === "bing")}
-          iconAlt="Bing logo"
-          iconSrc="/assets/bing-icon.svg"
-          label="pages.settings.engines.engineBingVid"
-          onChange={(next) => handleChangeEngines("bing", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesVideos.find((e) => e === "brave")}
-          iconAlt="Brave logo"
-          iconSrc="/assets/brave-icon.svg"
-          label="pages.settings.engines.engineBraveVid"
-          onChange={(next) => handleChangeEngines("brave", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesVideos.find((e) => e === "duckduckgo")}
-          iconAlt="DuckDuckGo logo"
-          iconSrc="/assets/ddg-icon.svg"
-          label="pages.settings.engines.engineDDGVid"
-          onChange={(next) => handleChangeEngines("duckduckgo", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesVideos.find((e) => e === "google")}
-          iconAlt="Google logo"
-          iconSrc="/assets/google-icon.svg"
-          label="pages.settings.engines.engineGoogleVid"
-          onChange={(next) => handleChangeEngines("google", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesVideos.find((e) => e === "qwant")}
-          iconAlt="Qwant logo"
-          iconSrc="/assets/qwant-icon.svg"
-          label="pages.settings.engines.engineQwantVid"
-          onChange={(next) => handleChangeEngines("qwant", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-      </Stack>
-
-      <Space h="xl" />
-    </Paper>
+    <Table verticalSpacing="sm" px="md" w="100%">
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th w="100%">Engine</Table.Th>
+          <Table.Th pr="xl">Safe search</Table.Th>
+          <Table.Th pr="xl">Time range</Table.Th>
+          <Table.Th pr="xl">Status</Table.Th>
+          <Table.Th ta="right">Active</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>{rows}</Table.Tbody>
+    </Table>
   );
 };
 

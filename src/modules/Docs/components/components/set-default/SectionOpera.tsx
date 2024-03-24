@@ -7,19 +7,19 @@ import RemixLink from "@components/RemixLink";
 const SectionOpera = () => {
   return (
     <>
-      <WikiText>1. Take a deep breath.</WikiText>
+      <WikiText>1. 深呼吸。</WikiText>
 
       <WikiText>
-        2. Open Firefox{" "}
+        2. 打开 Firefox{" "}
         <WikiLink
           href="https://www.mozilla.org/en-US/firefox/new/"
           label="download page"
         />{" "}
-        and proceed with installation.
+        并继续安装.
       </WikiText>
 
       <WikiText>
-        3. Once the installation is finished follow the steps from{" "}
+        3. 安装完成后，请按照以下步骤操作{" "}
         <RemixLink to={"/docs/set-default?browser=Firefox"}>
           <Text component="span" c="blue">
             this page

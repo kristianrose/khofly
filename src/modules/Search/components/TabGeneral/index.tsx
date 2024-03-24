@@ -15,17 +15,22 @@ import clsx from "clsx";
 import CaramelldansenAudio from "./components/Memes/Caramelldansen";
 import SearchOptions from "../SearchOptions";
 import { useSearchParams } from "@remix-run/react";
+import { useSearchStore } from "@store/search";
 
 const TabGeneral = () => {
   const [searchParams] = useSearchParams();
+
+  const { hydrated } = useSearchStore((state) => ({
+    hydrated: state.hydrated,
+  }));
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length) mutate();
-  }, []);
+    if (!data?.length && hydrated) mutate();
+  }, [hydrated]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
 

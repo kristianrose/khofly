@@ -1,10 +1,11 @@
 import { Combobox, Image, InputBase, useCombobox } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-import { DotNestedKeys, IAppTheme } from "@ts/global.types";
+import { DotNestedKeys, IAppTheme, ITranslations } from "@ts/global.types";
 
-import { ITranslations, useGlobalStore } from "@store/global";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { setCookie } from "@utils/functions/setCookie";
+import { useNavigate, useRouteLoaderData } from "@remix-run/react";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;
@@ -46,21 +47,27 @@ const THEME_DATA: ILangData[] = [
 ];
 
 const ThemeSelect = () => {
+  const data: any = useRouteLoaderData("root");
   const t = useTranslate();
-  const { appTheme, setAppTheme } = useGlobalStore((state) => ({
-    appTheme: state.appTheme,
-    setAppTheme: state.setAppTheme,
-  }));
+  const navigate = useNavigate();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
   const selected =
-    THEME_DATA.find((l) => l.value === appTheme) || THEME_DATA[1];
+    THEME_DATA.find((l) => l.value === data?.theme) || THEME_DATA[1];
 
   const handleChange = (next: IAppTheme) => {
-    setAppTheme(next);
+    setCookie("khofly-app-theme", next, {
+      expires: 60 * 60 * 24 * 90, // ~ 90 days
+      path: "/",
+      domain:
+        process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
+      secure: process.env.HOST?.includes("https") ? true : false,
+      sameSite: "Strict",
+    });
+    navigate(".", { replace: true });
 
     combobox.closeDropdown();
   };

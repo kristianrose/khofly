@@ -1,7 +1,7 @@
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import { AppShell, MantineProvider } from "@mantine/core";
-import { IFC } from "@ts/global.types";
+import { IAppTheme, IFC } from "@ts/global.types";
 import React, { useEffect } from "react";
 
 import classes from "./styles.module.scss";
@@ -10,24 +10,28 @@ import WikiNavbar from "@components/Navbar/Wiki";
 import { useDisclosure, useDocumentTitle, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
-import { useGlobalStore } from "@store/global";
 import NProgress from "@module/NProgress";
 import { useGeneralStore } from "@store/general";
-import { useLocation, useRouteError, useSearchParams } from "@remix-run/react";
+import {
+  useLocation,
+  useRouteError,
+  useRouteLoaderData,
+  useSearchParams,
+} from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
+  const data: any = useRouteLoaderData("root");
+
   const error = useRouteError();
   const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
-  const { appTheme } = useGlobalStore((state) => ({
-    appTheme: state.appTheme,
-  }));
-
   const { resetVisitedLinks } = useGeneralStore((state) => ({
     resetVisitedLinks: state.resetVisitedLinks,
   }));
+
+  const appTheme: IAppTheme = data.theme;
 
   const pinned = useHeadroom({ fixedAt: 120 });
 

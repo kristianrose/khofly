@@ -1,10 +1,6 @@
-export interface IEnvironment {
-  HOST: string;
-  SEARXNG_URL: string;
-  IS_SELF_HOST: "0" | "1";
-  APP_NAME: string;
-  NODE_ENV: "development" | "production" | "test";
-}
+import contentJson from "public/locales/en.json";
+
+export type ITranslations = typeof contentJson;
 
 export interface IFC {
   children?: React.ReactNode;

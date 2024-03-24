@@ -4,13 +4,13 @@ import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import * as isbotModule from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
-import { ITranslations } from "@store/global";
 import I18nProvider from "@store/language";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { handleRequest as handleVercelRequest } from "@vercel/remix";
+import { ITranslations } from "@ts/global.types";
 
 const ABORT_DELAY = 5_000;
 
@@ -23,11 +23,14 @@ export default async function handleRequest(
 ) {
   // All i18n stuff - server side
   const cookies = request.headers.get("Cookie");
-  const userLang = getCookieProperty(cookies || "", "language", "");
+  const userLang = getCookieProperty(cookies || "", "khofly-language", "");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
+  // Check if user accept-language exists as option
+  const existingPrefLang = ["en"].includes(prefLang) ? prefLang : "en";
+
   // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
-  const appLang = userLang || prefLang || "en";
+  const appLang = userLang || existingPrefLang || "en";
 
   // Dynamically import content JSON
   const contentImport = (await import(`../public/locales/${appLang}.json`))

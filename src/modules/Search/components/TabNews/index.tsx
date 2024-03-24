@@ -1,7 +1,6 @@
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
-import WikiWIP from "@module/Docs/components/wip";
 import { ISearXNGResultsNews } from "@ts/searxng.types";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 
 import classes from "./styles.module.scss";
@@ -9,15 +8,20 @@ import NewsRow from "./components/NewsRow";
 import SearchResultSkeleton from "../TabGeneral/components/SearchResultSkeleton";
 import ScrollToTop from "../ScrollToTop";
 import SearchOptions from "../SearchOptions";
+import { useSearchStore } from "@store/search";
 
 const TabNews = () => {
+  const { hydrated } = useSearchStore((state) => ({
+    hydrated: state.hydrated,
+  }));
+
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsNews>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length) mutate();
-  }, []);
+    if (!data?.length && hydrated) mutate();
+  }, [hydrated]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
 

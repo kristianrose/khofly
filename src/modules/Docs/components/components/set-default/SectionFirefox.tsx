@@ -59,7 +59,7 @@ const SectionFirefox = () => {
         w="100%"
         maw={900}
         my="xl"
-        alt="Edge add search engine"
+        alt="Firefox add search engine"
       />
 
       <WikiText>
@@ -86,7 +86,7 @@ const SectionFirefox = () => {
         w="100%"
         maw={600}
         my="xl"
-        alt="Edge add search engine"
+        alt="Firefox add search engine"
       />
 
       <WikiText>

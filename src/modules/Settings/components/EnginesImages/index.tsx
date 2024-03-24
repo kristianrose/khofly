@@ -1,8 +1,9 @@
-import { Divider, Flex, Paper, Space, Stack, Text } from "@mantine/core";
+import { Table } from "@mantine/core";
 import { IImagesEngines, useSearchStore } from "@store/search";
-import { IconPhoto } from "@tabler/icons-react";
 import EngineComponent from "../EngineComponent";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { DATA_ENGINES_IMAGES } from "./data";
+import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesImages = () => {
   const t = useTranslate();
@@ -24,82 +25,36 @@ const SettingsEnginesImages = () => {
     setEnginesImages(newEngines);
   };
 
+  const rows = DATA_ENGINES_IMAGES.map((item, i) => (
+    <EngineComponent
+      key={i}
+      type={item.type}
+      checked={!!enginesImages.find((e) => e === item.value)}
+      iconAlt={item.alt}
+      iconSrc={item.icon}
+      label={item.label}
+      onChange={(next) =>
+        handleChangeEngines(item.value as IImagesEngines, next)
+      }
+      hoverData={HOVER_DATA[item.value]}
+      safeSearch={item.safeSearch}
+      timeRange={item.timeRange}
+    />
+  ));
+
   return (
-    <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16}>
-        <IconPhoto size={32} />
-
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.engines.titleImg")}
-        </Text>
-      </Flex>
-
-      {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" gap={6}>
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleImg1")}
-            </Text>
-          }
-          labelPosition="left"
-          mb="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesImages.find((e) => e === "bing")}
-          iconAlt="Bing logo"
-          iconSrc="/assets/bing-icon.svg"
-          label="pages.settings.engines.engineBingImg"
-          onChange={(next) => handleChangeEngines("bing", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesImages.find((e) => e === "brave")}
-          iconAlt="Brave logo"
-          iconSrc="/assets/brave-icon.svg"
-          label="pages.settings.engines.engineBraveImg"
-          onChange={(next) => handleChangeEngines("brave", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesImages.find((e) => e === "duckduckgo")}
-          iconAlt="DuckDuckGo logo"
-          iconSrc="/assets/ddg-icon.svg"
-          label="pages.settings.engines.engineDDGImg"
-          onChange={(next) => handleChangeEngines("duckduckgo", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesImages.find((e) => e === "google")}
-          iconAlt="Google logo"
-          iconSrc="/assets/google-icon.svg"
-          label="pages.settings.engines.engineGoogleImg"
-          onChange={(next) => handleChangeEngines("google", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesImages.find((e) => e === "qwant")}
-          iconAlt="Qwant logo"
-          iconSrc="/assets/qwant-icon.svg"
-          label="pages.settings.engines.engineQwantImg"
-          onChange={(next) => handleChangeEngines("qwant", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-      </Stack>
-
-      <Space h="xl" />
-    </Paper>
+    <Table verticalSpacing="sm" px="md" w="100%">
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th w="100%">Engine</Table.Th>
+          <Table.Th pr="xl">Safe search</Table.Th>
+          <Table.Th pr="xl">Time range</Table.Th>
+          <Table.Th pr="xl">Status</Table.Th>
+          <Table.Th ta="right">Active</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>{rows}</Table.Tbody>
+    </Table>
   );
 };
 

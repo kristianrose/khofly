@@ -73,7 +73,12 @@ const SearchSectionInput = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    if (!useAutocomplete || !debouncedQ) return;
+    if (
+      !useAutocomplete ||
+      !debouncedQ ||
+      document.activeElement !== combobox.targetRef.current
+    )
+      return;
 
     trigger(debouncedQ);
   }, [debouncedQ]);

@@ -22,11 +22,11 @@ const CATEGORIES_DATA = [
   { id: "videos", title: "Videos", icon: IconPlayerPlay },
   { id: "news", title: "News", icon: IconNews },
   { id: "maps", title: "Maps", icon: IconMapPin },
-  { id: "music", title: "Music", icon: IconMusic },
-  { id: "it", title: "IT", icon: IconCpu },
-  { id: "science", title: "Science", icon: IconSchool },
-  { id: "files", title: "Files", icon: IconFiles },
-  { id: "social-media", title: "Social Media", icon: IconUsers },
+  // { id: "music", title: "Music", icon: IconMusic },
+  // { id: "it", title: "IT", icon: IconCpu },
+  // { id: "science", title: "Science", icon: IconSchool },
+  // { id: "files", title: "Files", icon: IconFiles },
+  // { id: "social-media", title: "Social Media", icon: IconUsers },
 ];
 
 const SettingsCategories = () => {

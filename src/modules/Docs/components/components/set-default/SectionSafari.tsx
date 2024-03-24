@@ -9,6 +9,8 @@ const SectionSafari = () => {
     <>
       <WikiText>1. Take a deep breath.</WikiText>
 
+      <WikiText>1.1. Ask Apple® for permission to install Firefox.</WikiText>
+
       <WikiText>
         2. Open Firefox{" "}
         <WikiLink

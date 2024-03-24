@@ -1,5 +1,4 @@
-import { ITranslations } from "@store/global";
-import { IFC } from "@ts/global.types";
+import { IFC, ITranslations } from "@ts/global.types";
 import { createContext, useContext } from "react";
 
 interface I18nState {

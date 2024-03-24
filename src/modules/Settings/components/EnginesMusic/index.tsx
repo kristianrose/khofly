@@ -1,9 +1,9 @@
-import { Divider, Flex, Paper, Space, Stack, Text } from "@mantine/core";
+import { Table } from "@mantine/core";
 import { IMusicEngines, useSearchStore } from "@store/search";
-import { IconMusic } from "@tabler/icons-react";
-import React from "react";
 import EngineComponent from "../EngineComponent";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { DATA_ENGINES_MUSIC } from "./data";
+import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesMusic = () => {
   const t = useTranslate();
@@ -25,120 +25,36 @@ const SettingsEnginesMusic = () => {
     setEnginesMusic(newEngines);
   };
 
+  const rows = DATA_ENGINES_MUSIC.map((item, i) => (
+    <EngineComponent
+      key={i}
+      type={item.type}
+      checked={!!enginesMusic.find((e) => e === item.value)}
+      iconAlt={item.alt}
+      iconSrc={item.icon}
+      label={item.label}
+      onChange={(next) =>
+        handleChangeEngines(item.value as IMusicEngines, next)
+      }
+      hoverData={HOVER_DATA[item.value]}
+      safeSearch={item.safeSearch}
+      timeRange={item.timeRange}
+    />
+  ));
+
   return (
-    <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16}>
-        <IconMusic size={32} />
-
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.engines.titleMusic")}
-        </Text>
-      </Flex>
-
-      {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" gap={6}>
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleMusic2")}
-            </Text>
-          }
-          labelPosition="left"
-          mb="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesMusic.find((e) => e === "genius")}
-          iconAlt="Genius logo"
-          iconSrc="/assets/genius-icon.svg"
-          label="pages.settings.engines.engineGeniusMusic"
-          onChange={(next) => handleChangeEngines("genius", next)}
-        />
-
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleMusic3")}
-            </Text>
-          }
-          labelPosition="left"
-          my="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesMusic.find((e) => e === "radiobrowser")}
-          iconAlt="Radio Browser logo"
-          iconSrc=""
-          label="pages.settings.engines.engineRBMusic"
-          onChange={(next) => handleChangeEngines("radiobrowser", next)}
-        />
-
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleWithout")}
-            </Text>
-          }
-          labelPosition="left"
-          my="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesMusic.find((e) => e === "bandcamp")}
-          iconAlt="Bandcamp logo"
-          iconSrc="/assets/bandcamp-icon.svg"
-          label="pages.settings.engines.engineBandcampMusic"
-          onChange={(next) => handleChangeEngines("bandcamp", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesMusic.find((e) => e === "mixcloud")}
-          iconAlt="Mixcloud logo"
-          iconSrc="/assets/mixcloud-icon.svg"
-          label="pages.settings.engines.engineMixcloudMusic"
-          onChange={(next) => handleChangeEngines("mixcloud", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesMusic.find((e) => e === "pipedmusic")}
-          iconAlt="Piped logo"
-          iconSrc="/assets/piped-icon.svg"
-          label="pages.settings.engines.enginePipedMusic"
-          onChange={(next) => handleChangeEngines("pipedmusic", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesMusic.find((e) => e === "soundcloud")}
-          iconAlt="Soundcloud logo"
-          iconSrc="/assets/soundcloud-icon.svg"
-          label="pages.settings.engines.engineSCMusic"
-          onChange={(next) => handleChangeEngines("soundcloud", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesMusic.find((e) => e === "youtube")}
-          iconAlt="YouTube logo"
-          iconSrc="/assets/youtube-icon.svg"
-          label="pages.settings.engines.engineYTMusic"
-          onChange={(next) => handleChangeEngines("youtube", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-      </Stack>
-
-      <Space h="xl" />
-    </Paper>
+    <Table verticalSpacing="sm" px="md" w="100%">
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th w="100%">Engine</Table.Th>
+          <Table.Th pr="xl">Safe search</Table.Th>
+          <Table.Th pr="xl">Time range</Table.Th>
+          <Table.Th pr="xl">Status</Table.Th>
+          <Table.Th ta="right">Active</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>{rows}</Table.Tbody>
+    </Table>
   );
 };
 

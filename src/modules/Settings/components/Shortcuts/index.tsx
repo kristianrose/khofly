@@ -1,7 +1,6 @@
 import { Button, Flex, Paper, Text } from "@mantine/core";
 
 import { IconApps } from "@tabler/icons-react";
-import { useGlobalStore } from "@store/global";
 
 import classes from "../../styles.module.scss";
 
@@ -10,13 +9,7 @@ import { useTranslate } from "@hooks/translate/use-translate";
 const SettingsShortcuts = () => {
   const t = useTranslate();
 
-  const { setAppTheme } = useGlobalStore((state) => ({
-    setAppTheme: state.setAppTheme,
-  }));
-
-  const handleApply = () => {
-    setAppTheme("Custom");
-  };
+  const handleApply = () => {};
 
   return (
     <Paper radius="md" mt={40} withBorder>

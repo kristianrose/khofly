@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 type IBrowser =
+  | "LOADING"
   | "Firefox"
   | "Samsung"
   | "Opera"
@@ -11,10 +12,10 @@ type IBrowser =
   | "unknown";
 
 export const useBrowser = () => {
-  const [browser, setBrowser] = useState<IBrowser>("unknown");
+  const [browser, setBrowser] = useState<IBrowser>("LOADING");
 
   useEffect(() => {
-    var sUsrAg = navigator.userAgent;
+    let sUsrAg = navigator.userAgent;
 
     if (sUsrAg.indexOf("Firefox") > -1) {
       setBrowser("Firefox");
