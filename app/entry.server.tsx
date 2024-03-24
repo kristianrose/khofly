@@ -1,7 +1,6 @@
 import { PassThrough } from "node:stream";
 
 import type { AppLoadContext, EntryContext } from "@remix-run/node";
-import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import * as isbotModule from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
@@ -9,6 +8,9 @@ import { ITranslations } from "@store/global";
 import I18nProvider from "@store/language";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
+
+import { createReadableStreamFromReadable } from "@remix-run/node";
+import { handleRequest as handleVercelRequest } from "@vercel/remix";
 
 const ABORT_DELAY = 5_000;
 
@@ -31,6 +33,27 @@ export default async function handleRequest(
   const contentImport = (await import(`../public/locales/${appLang}.json`))
     .default;
 
+  // Handle vercel request
+  if (process.env.HOST_TARGET === "vercel") {
+    let remixServer = (
+      <I18nProvider content={contentImport}>
+        <RemixServer
+          context={remixContext}
+          url={request.url}
+          abortDelay={ABORT_DELAY}
+        />
+      </I18nProvider>
+    );
+
+    return handleVercelRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixServer
+    );
+  }
+
+  // Handle node request
   return isBotRequest(request.headers.get("user-agent"))
     ? handleBotRequest(
         request,
