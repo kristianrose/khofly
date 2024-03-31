@@ -1,4 +1,3 @@
-import React from "react";
 import WikiSubtitle from "../../common/WikiSubtitle";
 import WikiText from "../../common/WikiText";
 import WikiLink from "../../common/WikiLink";

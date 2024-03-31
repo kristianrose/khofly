@@ -1,5 +1,5 @@
 import { RemixBrowser } from "@remix-run/react";
-import I18nProvider from "@store/language";
+import ClientServerProvider from "@store/client-server";
 import { ILanguage } from "@ts/global.types";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { startTransition, StrictMode } from "react";
@@ -7,7 +7,18 @@ import { hydrateRoot } from "react-dom/client";
 
 async function hydrate() {
   // All i18n stuff - client side
-  const htmlLang = document.querySelector("html")?.getAttribute("lang");
+  const cookies = document.cookie;
+
+  const htmlLang = document
+    .querySelector("html")
+    ?.getAttribute("lang") as ILanguage;
+
+  // Get app theme
+  const appTheme = getCookieProperty(
+    cookies || "",
+    "khofly-app-theme",
+    "Mantine-Old"
+  );
 
   // Dynamically fetch content JSON
   const contentFetch = await fetch(`/locales/${htmlLang}.json`);
@@ -16,11 +27,15 @@ async function hydrate() {
   startTransition(() => {
     hydrateRoot(
       document,
-      <I18nProvider content={content}>
+      <ClientServerProvider
+        content={content}
+        language={htmlLang}
+        theme={appTheme}
+      >
         <StrictMode>
           <RemixBrowser />
         </StrictMode>
-      </I18nProvider>
+      </ClientServerProvider>
     );
   });
 }

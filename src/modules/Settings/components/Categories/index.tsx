@@ -1,16 +1,11 @@
 import { Flex, Paper, Stack, Text } from "@mantine/core";
 import {
   IconCategory,
-  IconCpu,
-  IconFiles,
   IconMapPin,
-  IconMusic,
   IconNews,
   IconPhoto,
   IconPlayerPlay,
-  IconSchool,
   IconSearch,
-  IconUsers,
 } from "@tabler/icons-react";
 import { CategoryCheckbox } from "./components/CategoryCheckbox";
 import { ICategories, useGeneralStore } from "@store/general";

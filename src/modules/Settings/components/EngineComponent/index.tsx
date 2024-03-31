@@ -1,7 +1,6 @@
 import {
   Anchor,
   Badge,
-  Chip,
   Flex,
   HoverCard,
   Image,

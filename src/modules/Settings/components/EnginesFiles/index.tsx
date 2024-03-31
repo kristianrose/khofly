@@ -1,13 +1,10 @@
-import { Divider, Flex, Paper, Space, Stack, Text } from "@mantine/core";
+import { Table } from "@mantine/core";
 import { IFilesEngines, useSearchStore } from "@store/search";
-import { IconFiles } from "@tabler/icons-react";
-import React from "react";
 import EngineComponent from "../EngineComponent";
-import { useTranslate } from "@hooks/translate/use-translate";
+import { DATA_ENGINES_FILES } from "./data";
+import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesFiles = () => {
-  const t = useTranslate();
-
   const { enginesFiles, setEnginesFiles } = useSearchStore((state) => ({
     enginesFiles: state.enginesFiles,
     setEnginesFiles: state.setEnginesFiles,
@@ -25,111 +22,36 @@ const SettingsEnginesFiles = () => {
     setEnginesFiles(newEngines);
   };
 
+  const rows = DATA_ENGINES_FILES.map((item, i) => (
+    <EngineComponent
+      key={i}
+      type={item.type}
+      checked={!!enginesFiles.find((e) => e === item.value)}
+      iconAlt={item.alt}
+      iconSrc={item.icon}
+      label={item.label}
+      onChange={(next) =>
+        handleChangeEngines(item.value as IFilesEngines, next)
+      }
+      hoverData={HOVER_DATA[item.value]}
+      safeSearch={item.safeSearch}
+      timeRange={item.timeRange}
+    />
+  ));
+
   return (
-    <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16}>
-        <IconFiles size={32} />
-
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.engines.titleFiles")}
-        </Text>
-      </Flex>
-
-      {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" gap={6}>
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleFiles2")}
-            </Text>
-          }
-          labelPosition="left"
-          mb="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesFiles.find((e) => e === "apkmirror")}
-          iconAlt="APKMirror logo"
-          iconSrc=""
-          label="pages.settings.engines.engineAPKMirrorFiles"
-          onChange={(next) => handleChangeEngines("apkmirror", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesFiles.find((e) => e === "fdroid")}
-          iconAlt="Fdroid logo"
-          iconSrc="/assets/fdroid-icon.svg"
-          label="pages.settings.engines.engineFdriodFiles"
-          onChange={(next) => handleChangeEngines("fdroid", next)}
-        />
-
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleWithout")}
-            </Text>
-          }
-          labelPosition="left"
-          my="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesFiles.find((e) => e === "1337x")}
-          iconAlt="1337x logo"
-          iconSrc="/assets/1337x-icon.svg"
-          label="pages.settings.engines.engine1337xFiles"
-          onChange={(next) => handleChangeEngines("1337x", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesFiles.find((e) => e === "annas")}
-          iconAlt="Anna's Archive logo"
-          iconSrc=""
-          label="pages.settings.engines.engineAnnasFiles"
-          onChange={(next) => handleChangeEngines("annas", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesFiles.find((e) => e === "bt4g")}
-          iconAlt="bt4g logo"
-          iconSrc=""
-          label="pages.settings.engines.engineBt4gFiles"
-          onChange={(next) => handleChangeEngines("bt4g", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesFiles.find((e) => e === "nyaa")}
-          iconAlt="nyaa logo"
-          iconSrc=""
-          label="pages.settings.engines.engineNyaaFiles"
-          onChange={(next) => handleChangeEngines("nyaa", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesFiles.find((e) => e === "piratebay")}
-          iconAlt="Pirate Bay logo"
-          iconSrc="/assets/piratebay-icon.svg"
-          label="pages.settings.engines.enginePiratebayFiles"
-          onChange={(next) => handleChangeEngines("piratebay", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-      </Stack>
-
-      <Space h="xl" />
-    </Paper>
+    <Table verticalSpacing="sm" px="md" w="100%">
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th w="100%">Engine</Table.Th>
+          <Table.Th pr="xl">Safe search</Table.Th>
+          <Table.Th pr="xl">Time range</Table.Th>
+          <Table.Th pr="xl">Status</Table.Th>
+          <Table.Th ta="right">Active</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>{rows}</Table.Tbody>
+    </Table>
   );
 };
 

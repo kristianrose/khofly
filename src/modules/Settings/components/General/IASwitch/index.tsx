@@ -2,7 +2,6 @@ import RemixLink from "@components/RemixLink";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { Flex, Switch, Text } from "@mantine/core";
 import { useGeneralStore } from "@store/general";
-import React from "react";
 
 const IASwitch = () => {
   const t = useTranslate();

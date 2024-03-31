@@ -21,7 +21,7 @@ import {
 import { useTranslate } from "@hooks/translate/use-translate";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
-  const data: any = useRouteLoaderData("root");
+  const data = useRouteLoaderData("root") as { theme: IAppTheme };
 
   const error = useRouteError();
   const t = useTranslate();
@@ -31,7 +31,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     resetVisitedLinks: state.resetVisitedLinks,
   }));
 
-  const appTheme: IAppTheme = data.theme;
+  const appTheme: IAppTheme = data?.theme;
 
   const pinned = useHeadroom({ fixedAt: 120 });
 

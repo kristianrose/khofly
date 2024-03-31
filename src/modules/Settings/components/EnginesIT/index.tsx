@@ -1,29 +1,14 @@
-import {
-  Divider,
-  Flex,
-  Paper,
-  Space,
-  Stack,
-  Table,
-  Text,
-  useMantineColorScheme,
-} from "@mantine/core";
+import { Table } from "@mantine/core";
 import { IITEngines, useSearchStore } from "@store/search";
-import { IconCpu } from "@tabler/icons-react";
 import EngineComponent from "../EngineComponent";
-import { useTranslate } from "@hooks/translate/use-translate";
 import { DATA_ENGINES_IT } from "./data";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesIT = () => {
-  const t = useTranslate();
-
   const { enginesIT, setEnginesIT } = useSearchStore((state) => ({
     enginesIT: state.enginesIT,
     setEnginesIT: state.setEnginesIT,
   }));
-
-  const { colorScheme } = useMantineColorScheme();
 
   const handleChangeEngines = (e: IITEngines, next: boolean) => {
     let newEngines = [];

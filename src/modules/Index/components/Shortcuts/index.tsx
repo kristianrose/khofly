@@ -2,8 +2,6 @@ import {
   Anchor,
   Box,
   Flex,
-  Grid,
-  Group,
   Image,
   Text,
   UnstyledButton,

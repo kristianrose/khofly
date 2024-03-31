@@ -2,7 +2,6 @@ import {
   Anchor,
   Button,
   Flex,
-  Group,
   Paper,
   Stack,
   Text,
@@ -15,7 +14,6 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useForm } from "@mantine/form";
 import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
-import RemixLink from "@components/RemixLink";
 
 const SettingsNominatim = () => {
   const { domain, setDomain } = useInstanceStore((state) => ({

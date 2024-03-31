@@ -15,7 +15,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "",
     alt: "",
     icon: "",
-    label: "pages.settings.engines.titleVid1",
+    label: "pages.settings.engines.titleVid2",
     safeSearch: false,
     timeRange: false,
   },

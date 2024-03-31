@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IAWrapper } from "../wrapper";
 import {
   ActionIcon,
-  Anchor,
   Box,
   Button,
   Flex,
-  Image,
   LoadingOverlay,
   Select,
   Text,

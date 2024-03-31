@@ -1,6 +1,5 @@
 import {
   ActionIcon,
-  Button,
   CloseButton,
   Flex,
   Paper,
@@ -10,23 +9,14 @@ import {
 import React, { useRef, useState } from "react";
 
 import classes from "./styles.module.scss";
-import { useMove } from "@mantine/hooks";
 import { useDrag } from "@hooks/use-drag";
 import {
   IconArrowBadgeUp,
-  IconArrowBigUpLine,
-  IconArrowBigUpLines,
   IconBackspace,
-  IconBrandWindows,
-  IconBulb,
   IconChevronsUp,
-  IconFunction,
-  IconLetterCaseUpper,
-  IconX,
-} from "@tabler/icons-react";
+ IconSun } from "@tabler/icons-react";
 import { IKeyboard, KEYBOARD_EN_US } from "@utils/resources/keyboards";
 import clsx from "clsx";
-import { IconSun } from "@tabler/icons-react";
 
 interface Props {
   value: string;

@@ -1,5 +1,4 @@
 import useFetch from "../use-fetch";
-import { INominatimResults } from "@ts/nominatim.tyles";
 import useSWRMutation from "swr/mutation";
 
 interface Args {

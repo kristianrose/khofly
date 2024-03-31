@@ -1,4 +1,4 @@
-import { CodeHighlight, CodeHighlightTabs } from "@mantine/code-highlight";
+import { CodeHighlightTabs } from "@mantine/code-highlight";
 import { Blockquote, Code, Container, Paper, Text } from "@mantine/core";
 import WikiText from "./common/WikiText";
 import WikiSubtitle from "./common/WikiSubtitle";

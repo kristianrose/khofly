@@ -1,13 +1,10 @@
-import { Divider, Flex, Paper, Space, Stack, Text } from "@mantine/core";
+import { Table } from "@mantine/core";
 import { IScienceEngines, useSearchStore } from "@store/search";
-import { IconSchool } from "@tabler/icons-react";
-import React from "react";
 import EngineComponent from "../EngineComponent";
-import { useTranslate } from "@hooks/translate/use-translate";
+import { DATA_ENGINES_SCIENCE } from "./data";
+import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesScience = () => {
-  const t = useTranslate();
-
   const { enginesScience, setEnginesScience } = useSearchStore((state) => ({
     enginesScience: state.enginesScience,
     setEnginesScience: state.setEnginesScience,
@@ -25,150 +22,36 @@ const SettingsEnginesScience = () => {
     setEnginesScience(newEngines);
   };
 
+  const rows = DATA_ENGINES_SCIENCE.map((item, i) => (
+    <EngineComponent
+      key={i}
+      type={item.type}
+      checked={!!enginesScience.find((e) => e === item.value)}
+      iconAlt={item.alt}
+      iconSrc={item.icon}
+      label={item.label}
+      onChange={(next) =>
+        handleChangeEngines(item.value as IScienceEngines, next)
+      }
+      hoverData={HOVER_DATA[item.value]}
+      safeSearch={item.safeSearch}
+      timeRange={item.timeRange}
+    />
+  ));
+
   return (
-    <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16}>
-        <IconSchool size={32} />
-
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.engines.titleScience")}
-        </Text>
-      </Flex>
-
-      {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" gap={6}>
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleScience2")}
-            </Text>
-          }
-          labelPosition="left"
-          mb="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "arxiv")}
-          iconAlt="Arxiv logo"
-          iconSrc="/assets/arxiv-icon.svg"
-          label="pages.settings.engines.engineArxivScience"
-          onChange={(next) => handleChangeEngines("arxiv", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "crossref")}
-          iconAlt="Crossref logo"
-          iconSrc="/assets/crossref-icon.svg"
-          label="pages.settings.engines.engineCrossrefScience"
-          onChange={(next) => handleChangeEngines("crossref", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "googlescholar")}
-          iconAlt="Google Scholar logo"
-          iconSrc="/assets/google-scholar-icon.svg"
-          label="pages.settings.engines.engineGoogleScholarScience"
-          onChange={(next) => handleChangeEngines("googlescholar", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "archive")}
-          iconAlt="Internet Archive Scholar logo"
-          iconSrc=""
-          label="pages.settings.engines.engineIASScience"
-          onChange={(next) => handleChangeEngines("archive", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "pubmed")}
-          iconAlt="PubMed logo"
-          iconSrc="/assets/pubmed-icon.svg"
-          label="pages.settings.engines.enginePubMedScience"
-          onChange={(next) => handleChangeEngines("pubmed", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "semanticscholar")}
-          iconAlt="Semantic Scholar logo"
-          iconSrc=""
-          label="pages.settings.engines.engineSemanticScholarScience"
-          onChange={(next) => handleChangeEngines("semanticscholar", next)}
-        />
-
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleScience3")}
-            </Text>
-          }
-          labelPosition="left"
-          my="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "wikispecies")}
-          iconAlt="Wikispecies logo"
-          iconSrc="/assets/wikispecies-icon.svg"
-          label="pages.settings.engines.engineWikispecies"
-          onChange={(next) => handleChangeEngines("wikispecies", next)}
-        />
-
-        <Divider
-          label={
-            <Text fw={500} c="teal">
-              {t("pages.settings.engines.titleWithout")}
-            </Text>
-          }
-          labelPosition="left"
-          my="sm"
-          w="100%"
-        />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "openairedatasets")}
-          iconAlt="OpenAIRE logo"
-          iconSrc=""
-          label="pages.settings.engines.engineOADatasetsScience"
-          onChange={(next) => handleChangeEngines("openairedatasets", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "openairepublications")}
-          iconAlt="OpenAIRE logo"
-          iconSrc=""
-          label="pages.settings.engines.engineOAPublicationsScience"
-          onChange={(next) => handleChangeEngines("openairepublications", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <EngineComponent
-          checked={!!enginesScience.find((e) => e === "pdbe")}
-          iconAlt="PDBe logo"
-          iconSrc="/assets/pdbe-icon.svg"
-          label="pages.settings.engines.enginePDBeScience"
-          onChange={(next) => handleChangeEngines("pdbe", next)}
-        />
-
-        <Divider my="xs" w="100%" />
-      </Stack>
-
-      <Space h="xl" />
-    </Paper>
+    <Table verticalSpacing="sm" px="md" w="100%">
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th w="100%">Engine</Table.Th>
+          <Table.Th pr="xl">Safe search</Table.Th>
+          <Table.Th pr="xl">Time range</Table.Th>
+          <Table.Th pr="xl">Status</Table.Th>
+          <Table.Th ta="right">Active</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>{rows}</Table.Tbody>
+    </Table>
   );
 };
 

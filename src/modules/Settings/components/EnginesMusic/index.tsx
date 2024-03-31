@@ -1,13 +1,10 @@
 import { Table } from "@mantine/core";
 import { IMusicEngines, useSearchStore } from "@store/search";
 import EngineComponent from "../EngineComponent";
-import { useTranslate } from "@hooks/translate/use-translate";
 import { DATA_ENGINES_MUSIC } from "./data";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesMusic = () => {
-  const t = useTranslate();
-
   const { enginesMusic, setEnginesMusic } = useSearchStore((state) => ({
     enginesMusic: state.enginesMusic,
     setEnginesMusic: state.setEnginesMusic,

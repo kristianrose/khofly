@@ -1,7 +1,6 @@
 import RemixLink from "@components/RemixLink";
 import {
   ActionIcon,
-  Autocomplete,
   Combobox,
   Divider,
   Flex,
@@ -10,7 +9,7 @@ import {
 } from "@mantine/core";
 import { IconSearch, IconTriangleFilled, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import classes from "./styles.module.scss";
 import { useDebouncedValue } from "@mantine/hooks";

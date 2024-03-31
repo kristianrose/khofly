@@ -1,5 +1,5 @@
 import React, { ForwardRefExoticComponent, RefAttributes } from "react";
-import { Flex, Text, useMantineTheme } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";

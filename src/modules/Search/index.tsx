@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 
 import TabGeneral from "./components/TabGeneral";
 import TabImages from "./components/TabImages";

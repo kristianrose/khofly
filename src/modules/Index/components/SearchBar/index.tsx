@@ -1,21 +1,16 @@
 import {
   ActionIcon,
   Autocomplete,
-  Button,
   Flex,
   Loader,
-  Menu,
-  TextInput,
   rem,
 } from "@mantine/core";
 import {
   IconArrowRight,
   IconKeyboard,
-  IconListSearch,
-  IconMicrophone,
   IconSearch,
 } from "@tabler/icons-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
 import { useDebouncedValue, useDisclosure } from "@mantine/hooks";

@@ -1,6 +1,6 @@
 import { Button, Center, Flex, Text } from "@mantine/core";
 import { ISearXNGResultsImages } from "@ts/searxng.types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import ImageCell from "./components/ImageCell";
 import classes from "./styles.module.scss";

@@ -2,7 +2,6 @@ import { ActionIcon, Affix, Transition } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import { IconArrowUp } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React from "react";
 
 const ScrollToTop = () => {
   const [scroll, scrollTo] = useWindowScroll();

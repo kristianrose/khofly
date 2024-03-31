@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IAWrapper } from "../wrapper";
 import { Button, Flex, Grid, Paper, Text, Transition } from "@mantine/core";
 
@@ -19,7 +19,7 @@ const calculateResult = (numbers: number[], operations: string[]) => {
 
 const getFloatPrecision = (a: number) => {
   if (!isFinite(a)) return 0;
-  var e = 1,
+  let e = 1,
     p = 0;
   while (Math.round(a * e) / e !== a) {
     e *= 10;

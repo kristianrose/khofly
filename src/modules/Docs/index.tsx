@@ -3,7 +3,6 @@ import "@mantine/code-highlight/styles.css";
 import DocsIndex from "./components";
 import DocsWIP from "./components/wip";
 
-import DocsResourcesOverview from "./components/resources-overview";
 import DocsResourcesInstantAnswer from "./components/resources-instant-answer";
 import DocsResourcesSetDefault from "./components/resources-set-default";
 import DocsResourcesCustomSearxng from "./components/resources-custom-searxng";

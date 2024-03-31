@@ -5,7 +5,7 @@ import "@mantine/nprogress/styles.css";
 import "@mantine/notifications/styles.css";
 
 import AppLayout from "@layout/index";
-import { ColorSchemeScript } from "@mantine/core";
+import { ColorSchemeScript, useMantineColorScheme } from "@mantine/core";
 import {
   Links,
   Meta,
@@ -14,27 +14,25 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
   json,
-  useLoaderData,
   useRouteError,
   useRouteLoaderData,
 } from "@remix-run/react";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 
-import { ILanguage } from "@ts/global.types";
 import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import ErrorPage from "@module/Error";
 import { ROOT_META } from "./meta/root";
-import { DEFAULT_ENV } from "@utils/resources/defaultEnv";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
+import { useClientServerState } from "@store/client-server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = request.headers.get("Cookie");
 
-  // Get user language
+  // // Get user language
   const userLang = getCookieProperty(cookies || "", "khofly-language", "en");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
-  // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
+  // // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
   const appLang = userLang || prefLang || "en";
 
   const appTheme = getCookieProperty(
@@ -55,11 +53,10 @@ export const meta: MetaFunction = () => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  // Load env variables in browser
-  const data = useRouteLoaderData<typeof loader>("root");
+  const { language } = useClientServerState();
 
   return (
-    <html lang={data?.language || "en"}>
+    <html lang={language || "en"}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -91,15 +88,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </AppLayout>
 
-        {/* Hack to set environment variables in browser */}
-        {/* <script
-          dangerouslySetInnerHTML={{
-            __html: `window.process = ${JSON.stringify({
-              env: data?.ENV || DEFAULT_ENV,
-            })}`,
-          }}
-        /> */}
-
         {/* Leaflet script */}
         <script
           src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -107,7 +95,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           crossOrigin=""
         />
 
+        {/* Manages scroll position for client-side transitions */}
         <ScrollRestoration />
+        {/* Script tags go here */}
         <Scripts />
       </body>
     </html>

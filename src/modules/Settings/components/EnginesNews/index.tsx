@@ -1,13 +1,10 @@
 import { Table } from "@mantine/core";
 import { INewsEngines, useSearchStore } from "@store/search";
 import EngineComponent from "../EngineComponent";
-import { useTranslate } from "@hooks/translate/use-translate";
 import { DATA_ENGINES_NEWS } from "./data";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
 
 const SettingsEnginesNews = () => {
-  const t = useTranslate();
-
   const { enginesNews, setEnginesNews } = useSearchStore((state) => ({
     enginesNews: state.enginesNews,
     setEnginesNews: state.setEnginesNews,

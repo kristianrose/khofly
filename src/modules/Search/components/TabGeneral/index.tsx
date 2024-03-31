@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import InstantAnswer from "../InstantAnswer";
 import SearchResultRow from "./components/SearchResultRow";
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";

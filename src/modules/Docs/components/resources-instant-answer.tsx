@@ -4,7 +4,6 @@ import classes from "./styles.module.scss";
 import Calculator from "@module/Search/components/InstantAnswer/Calculator";
 import CoinFlip from "@module/Search/components/InstantAnswer/CoinFilp";
 import Lyrics from "@module/Search/components/InstantAnswer/Lyrics";
-import Stopwatch from "@module/Search/components/InstantAnswer/Stopwatch";
 import Timer from "@module/Search/components/InstantAnswer/Timer";
 import Translate from "@module/Search/components/InstantAnswer/Translate";
 import UUID from "@module/Search/components/InstantAnswer/UUID";

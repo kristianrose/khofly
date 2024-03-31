@@ -12,7 +12,7 @@ installGlobals();
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
-  let loadedPresets: Preset[] = [];
+  const loadedPresets: Preset[] = [];
 
   if (env.HOST_TARGET === "vercel") {
     loadedPresets.push(vercelPreset());

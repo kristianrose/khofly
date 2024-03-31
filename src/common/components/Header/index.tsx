@@ -1,5 +1,5 @@
 import classes from "./styles.module.scss";
-import { Anchor, Button, Group, Text } from "@mantine/core";
+import { Group, Text } from "@mantine/core";
 
 import React from "react";
 import SearchSection from "@module/Search/components/SearchSection";

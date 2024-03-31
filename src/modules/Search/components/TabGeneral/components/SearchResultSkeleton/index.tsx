@@ -1,5 +1,4 @@
 import { Flex, Skeleton } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
 
 const SearchResultSkeleton = () => {

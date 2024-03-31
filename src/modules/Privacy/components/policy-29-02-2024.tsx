@@ -1,4 +1,3 @@
-import RemixLink from "@components/RemixLink";
 import {
   Anchor,
   Card,
@@ -11,7 +10,6 @@ import {
 import {
   IconCookie,
   IconLock,
-  IconNews,
   IconPhone,
   IconSpy,
   IconUsers,

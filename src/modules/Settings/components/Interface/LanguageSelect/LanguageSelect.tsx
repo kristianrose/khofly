@@ -11,7 +11,8 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/setCookie";
 
-import { useNavigate, useRouteLoaderData } from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
+import { useClientServerState } from "@store/client-server";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;
@@ -33,7 +34,8 @@ const LANG_DATA: ILangData[] = [
 ];
 
 const LanguageSelect = () => {
-  const data: any = useRouteLoaderData("root");
+  const { language } = useClientServerState();
+
   const t = useTranslate();
   const navigate = useNavigate();
 
@@ -50,13 +52,15 @@ const LanguageSelect = () => {
       secure: process.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
-    navigate(".", { replace: true });
+    // TODO: better way to handle this???
+    // navigate() doesn't work because content/language comes from entry.client
+    // navigate("/settings?tab=interface", { replace: false });
+    window.location.reload();
 
     combobox.closeDropdown();
   };
 
-  const selected =
-    LANG_DATA.find((l) => l.value === data?.language) || LANG_DATA[1];
+  const selected = LANG_DATA.find((l) => l.value === language) || LANG_DATA[1];
 
   const items = LANG_DATA.map((item) => (
     <Combobox.Option value={item.value} key={item.value}>

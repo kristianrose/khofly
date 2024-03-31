@@ -1,4 +1,3 @@
-import React from "react";
 import WikiText from "../../common/WikiText";
 import WikiLink from "../../common/WikiLink";
 import { Text } from "@mantine/core";

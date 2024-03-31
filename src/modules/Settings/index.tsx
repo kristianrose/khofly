@@ -14,39 +14,44 @@ import EnginesTabs from "./components/EnginesTabs";
 import SettingsCategories from "./components/Categories";
 import SettingsNominatim from "./components/Nominatim";
 import { useNavigate, useSearchParams } from "@remix-run/react";
+import { useState } from "react";
 
 const PageSettings = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
+  const paramTab = searchParams.get("tab");
+
+  // Keep local state so app feels faster
+  const [stateTab, setStateTab] = useState(paramTab || "general");
+
   const handleChangeTab = (next: string | null) => {
     if (!next) return;
 
+    setStateTab(next);
     navigate(`/settings?tab=${next}`, { replace: true });
   };
-
-  const activeTab = searchParams.get("tab") || "interface";
 
   return (
     <Container className={classes.settings_page} size="lg" pt={40} pb={80}>
       <Tabs
         variant="default"
-        value={activeTab}
+        value={stateTab}
         onChange={handleChangeTab}
         keepMounted={false}
       >
         <Tabs.List mb="xl" className={classes.tabs_scroll}>
           <Tabs.Tab
-            value="interface"
-            leftSection={<IconBrush style={getIconStyle(20)} />}
-          >
-            Interface
-          </Tabs.Tab>
-          <Tabs.Tab
             value="general"
             leftSection={<IconSettings2 style={getIconStyle(20)} />}
           >
             General
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="interface"
+            leftSection={<IconBrush style={getIconStyle(20)} />}
+          >
+            Interface
           </Tabs.Tab>
           <Tabs.Tab
             value="instance"

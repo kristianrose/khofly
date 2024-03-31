@@ -4,13 +4,13 @@ import type { AppLoadContext, EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import * as isbotModule from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
-import I18nProvider from "@store/language";
+import ClientServerProvider from "@store/client-server";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
 import { createReadableStreamFromReadable } from "@remix-run/node";
 import { handleRequest as handleVercelRequest } from "@vercel/remix";
-import { ITranslations } from "@ts/global.types";
+import { IAppTheme, ILanguage, ITranslations } from "@ts/global.types";
 
 const ABORT_DELAY = 5_000;
 
@@ -32,20 +32,33 @@ export default async function handleRequest(
   // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
   const appLang = userLang || existingPrefLang || "en";
 
+  // Get app theme
+  const appTheme = getCookieProperty(
+    cookies || "",
+    "khofly-app-theme",
+    "Mantine-Old"
+  );
+
   // Dynamically import content JSON
   const contentImport = (await import(`../public/locales/${appLang}.json`))
     .default;
 
-  // Handle vercel request
+  // -------------------------------------------------
+  // Handle Vercel request
+  // -------------------------------------------------
   if (process.env.HOST_TARGET === "vercel") {
-    let remixServer = (
-      <I18nProvider content={contentImport}>
+    const remixServer = (
+      <ClientServerProvider
+        content={contentImport}
+        language={appLang}
+        theme={appTheme}
+      >
         <RemixServer
           context={remixContext}
           url={request.url}
           abortDelay={ABORT_DELAY}
         />
-      </I18nProvider>
+      </ClientServerProvider>
     );
 
     return handleVercelRequest(
@@ -56,7 +69,9 @@ export default async function handleRequest(
     );
   }
 
-  // Handle node request
+  // -------------------------------------------------
+  // Handle Node request
+  // -------------------------------------------------
   return isBotRequest(request.headers.get("user-agent"))
     ? handleBotRequest(
         request,
@@ -69,7 +84,9 @@ export default async function handleRequest(
         responseStatusCode,
         responseHeaders,
         remixContext,
-        contentImport
+        contentImport,
+        appLang,
+        appTheme
       );
 }
 
@@ -149,18 +166,20 @@ function handleBrowserRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  content: ITranslations
+  content: ITranslations,
+  language: ILanguage,
+  theme: IAppTheme
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <I18nProvider content={content}>
+      <ClientServerProvider content={content} language={language} theme={theme}>
         <RemixServer
           context={remixContext}
           url={request.url}
           abortDelay={ABORT_DELAY}
         />
-      </I18nProvider>,
+      </ClientServerProvider>,
       {
         onShellReady() {
           shellRendered = true;

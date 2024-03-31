@@ -4,11 +4,7 @@ import {
   IconEqual,
   IconMinus,
   IconPlus,
-} from "@tabler/icons-react";
-import { IconX } from "@tabler/icons-react";
-import { IconReplace } from "@tabler/icons-react";
-import { IconPercentage } from "@tabler/icons-react";
-import { IconCe } from "@tabler/icons-react";
+ IconX , IconReplace , IconPercentage , IconCe } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 export const BTN_VALUES_BASIC = [

@@ -15,7 +15,7 @@ export const DATA_ENGINES_IMAGES: {
     value: "",
     alt: "",
     icon: "",
-    label: "pages.settings.engines.titleImg1",
+    label: "pages.settings.engines.titleImg2",
     safeSearch: false,
     timeRange: false,
   },

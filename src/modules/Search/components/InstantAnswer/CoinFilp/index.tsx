@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Center, Paper } from "@mantine/core";
 
 import classes from "./styles.module.scss";

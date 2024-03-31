@@ -1,16 +1,7 @@
 import {
-  Divider,
-  Flex,
-  Image,
-  Paper,
-  Space,
-  Stack,
-  Switch,
   Table,
-  Text,
 } from "@mantine/core";
 import { IVideosEngines, useSearchStore } from "@store/search";
-import { IconPlayerPlay } from "@tabler/icons-react";
 import EngineComponent from "../EngineComponent";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { DATA_ENGINES_VIDEOS } from "./data";

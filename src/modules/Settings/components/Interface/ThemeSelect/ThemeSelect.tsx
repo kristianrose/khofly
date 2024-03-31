@@ -47,7 +47,7 @@ const THEME_DATA: ILangData[] = [
 ];
 
 const ThemeSelect = () => {
-  const data: any = useRouteLoaderData("root");
+  const data = useRouteLoaderData("root") as { theme: IAppTheme };
   const t = useTranslate();
   const navigate = useNavigate();
 
@@ -67,7 +67,7 @@ const ThemeSelect = () => {
       secure: process.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
-    navigate(".", { replace: true });
+    navigate("/settings?tab=interface", { replace: true });
 
     combobox.closeDropdown();
   };

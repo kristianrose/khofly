@@ -1,4 +1,4 @@
-import React, { lazy, useState } from "react";
+import { useState } from "react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 
 import classes from "./styles.module.scss";
@@ -12,7 +12,7 @@ const TabMaps = () => {
   const { latitude, longitude } = coords;
 
   function MapView() {
-    let map = useMap();
+    const map = useMap();
 
     map.setView([latitude, longitude], map.getZoom());
 

@@ -1,5 +1,4 @@
 import { ActionIcon, Flex, Tabs } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
 import {
   IconAdjustmentsHorizontal,
@@ -15,7 +14,6 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useSearchStore } from "@store/search";
 import { ICategories, useGeneralStore } from "@store/general";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 

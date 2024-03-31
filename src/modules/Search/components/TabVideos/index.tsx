@@ -1,6 +1,6 @@
 import { Button, Center, Flex, SimpleGrid, Text } from "@mantine/core";
 import { ISearXNGResultsVideos } from "@ts/searxng.types";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import VideoCell from "./components/VideoCell";
 import VideoSkeleton from "./components/VideoSkeleton";

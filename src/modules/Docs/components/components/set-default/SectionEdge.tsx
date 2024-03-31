@@ -1,4 +1,3 @@
-import React from "react";
 import WikiText from "../../common/WikiText";
 import { Alert, Image } from "@mantine/core";
 import { IconDots, IconInfoCircle, IconSettings } from "@tabler/icons-react";

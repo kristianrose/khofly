@@ -7,7 +7,7 @@ import {
   Spoiler,
   Text,
 } from "@mantine/core";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import useLyricsSWR from "src/api/lyrics/use-lyrics-query";

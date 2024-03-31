@@ -1,6 +1,6 @@
 {
   "_common": {
-    "app_name": "Khofly"
+    "app_name": "Khofly DE"
   },
 
   "header": {
@@ -31,7 +31,7 @@
 
     "settings": {
       "interface": {
-        "title": "User interface",
+        "title": "User interface DE",
 
         "selectLang": "Language select",
         "selectLangOptions": {

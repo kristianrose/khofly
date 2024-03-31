@@ -1,5 +1,4 @@
 import {
-  Button,
   MantineThemeComponents,
   MantineThemeOverride,
 } from "@mantine/core";

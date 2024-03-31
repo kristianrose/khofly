@@ -1,4 +1,3 @@
-import React from "react";
 import { IAWrapper } from "../wrapper";
 
 const Stopwatch = () => {

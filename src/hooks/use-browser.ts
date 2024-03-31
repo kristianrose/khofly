@@ -15,7 +15,7 @@ export const useBrowser = () => {
   const [browser, setBrowser] = useState<IBrowser>("LOADING");
 
   useEffect(() => {
-    let sUsrAg = navigator.userAgent;
+    const sUsrAg = navigator.userAgent;
 
     if (sUsrAg.indexOf("Firefox") > -1) {
       setBrowser("Firefox");

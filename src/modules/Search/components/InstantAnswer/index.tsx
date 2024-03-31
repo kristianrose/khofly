@@ -3,7 +3,6 @@ import { useResponsive } from "@hooks/use-responsive";
 import CoinFlip from "./CoinFilp";
 import Calculator from "./Calculator";
 import Lyrics from "./Lyrics";
-import Translate from "./Translate";
 import UUID from "./UUID";
 import Timer from "./Timer";
 import { shouldDisplayIA } from "./utils";

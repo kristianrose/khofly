@@ -2,9 +2,7 @@ import { useBrowser } from "@hooks/use-browser";
 import {
   Center,
   Container,
-  Flex,
   Loader,
-  Text,
   useMantineTheme,
 } from "@mantine/core";
 import {
@@ -17,10 +15,7 @@ import {
   IconWorldWww,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React from "react";
 
-import classes from "./styles.module.scss";
-import SetDefaultTitle from "./components/set-default/SetDefaultTitle";
 import SectionFirefox from "./components/set-default/SectionFirefox";
 import SectionChromium from "./components/set-default/SectionChromium";
 import SectionEdge from "./components/set-default/SectionEdge";

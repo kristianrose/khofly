@@ -1,9 +1,7 @@
-import { Container, Image, Tabs, useMantineTheme } from "@mantine/core";
+import { Container, Tabs, useMantineTheme } from "@mantine/core";
 import {
-  IconBrandCloudflare,
   IconBrandVercel,
   IconServer,
-  IconVaccine,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsWIP from "./wip";
