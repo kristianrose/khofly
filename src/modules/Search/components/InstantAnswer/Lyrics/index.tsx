@@ -26,7 +26,7 @@ const Lyrics: React.FC<Props> = ({ initialQ }) => {
     if (q) trigger(q.replace("lyrics", ""));
   }, [q]);
 
-  if (!data) return null;
+  if (!data) return <IAWrapper />;
 
   return (
     <IAWrapper>

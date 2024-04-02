@@ -7,7 +7,7 @@ interface Args {
   to: string;
 }
 
-const LT_URL = "https://api-b2b.backenster.com/b1/api/v3";
+const API_URL = "https://api-b2b.backenster.com/b1/api/v3";
 
 const useTranslateSWR = () => {
   const { fetchData } = useFetch();
@@ -35,7 +35,7 @@ const useTranslateSWR = () => {
   };
 
   return useSWRMutation<{ result: string; err: string }, any, any, Args>(
-    `${LT_URL}`,
+    `${API_URL}`,
     fetcher,
     {}
   );

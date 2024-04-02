@@ -1,6 +1,7 @@
 import { ActionIcon, Anchor, rem } from "@mantine/core";
 import { IconBrandGithub } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import classes from "../styles.module.scss";
 
 const HeaderCode = () => {
   return (
@@ -10,7 +11,7 @@ const HeaderCode = () => {
       rel="noreferrer noopener"
     >
       <ActionIcon
-        // className={classes.action_icon}
+        className={classes.action_button}
         variant="subtle"
         size={rem(36)}
         ml="md"

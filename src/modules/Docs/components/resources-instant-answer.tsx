@@ -9,6 +9,7 @@ import Translate from "@module/Search/components/InstantAnswer/Translate";
 import UUID from "@module/Search/components/InstantAnswer/UUID";
 import WikiTitle from "./common/WikiTitle";
 import WikiSubtitle from "./common/WikiSubtitle";
+import Weather from "@module/Search/components/InstantAnswer/Weather";
 
 const DocsResourcesInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
@@ -56,14 +57,19 @@ const DocsResourcesInstantAnswer = () => {
         <Timer />
       </Box>
 
-      <WikiTitle>5. Translate</WikiTitle>
+      {/* <WikiTitle>5. Translate</WikiTitle>
       <Box className={classes.search_box}>
         <Translate />
-      </Box>
+      </Box> */}
 
-      <WikiTitle>6. Random UUID</WikiTitle>
+      <WikiTitle>5. Random UUID</WikiTitle>
       <Box className={classes.search_box}>
         <UUID />
+      </Box>
+
+      <WikiTitle>6. Weather</WikiTitle>
+      <Box className={classes.search_box}>
+        <Weather />
       </Box>
     </Container>
   );

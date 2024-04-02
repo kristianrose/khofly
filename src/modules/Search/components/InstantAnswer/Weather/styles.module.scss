@@ -1,6 +1,6 @@
 @use "functions" as func;
 
-.item {
+.weather_daily {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,5 +18,19 @@
   &:hover {
     box-shadow: var(--mantine-shadow-md);
     transform: scale(1.05);
+  }
+}
+
+.weather_icon_cloud_rain {
+  :nth-child(2) {
+    stroke: var(--mantine-color-blue-4);
+    stroke-width: 2px;
+  }
+}
+
+.weather_icon_cloud_storm {
+  :nth-child(2) {
+    stroke: var(--mantine-color-yellow-6);
+    stroke-width: 2px;
   }
 }

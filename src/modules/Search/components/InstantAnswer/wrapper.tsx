@@ -1,11 +1,15 @@
 import { Divider, Flex, Stack, Text, Transition } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { useLocation } from "@remix-run/react";
 import { IconSelector } from "@tabler/icons-react";
 import { IFC } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 export const IAWrapper: React.FC<IFC> = ({ children }) => {
-  const [visible, { toggle }] = useDisclosure(true);
+  const { pathname } = useLocation();
+  const isDocs = pathname.includes("docs");
+
+  const [visible, { toggle }] = useDisclosure(isDocs ? false : true);
 
   return (
     <Stack gap={0}>

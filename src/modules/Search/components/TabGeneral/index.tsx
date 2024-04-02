@@ -12,7 +12,6 @@ import Suggestions from "./components/Suggestions";
 import Infobox from "./components/Infobox";
 import Lyricsbox from "./components/Lyricsbox";
 import clsx from "clsx";
-import CaramelldansenAudio from "./components/Memes/Caramelldansen";
 import SearchOptions from "../SearchOptions";
 import { useSearchParams } from "@remix-run/react";
 import { useSearchStore } from "@store/search";
@@ -126,9 +125,6 @@ const TabGeneral = () => {
 
         {<Lyricsbox />}
       </Flex>
-
-      {/* Memes */}
-      <CaramelldansenAudio />
     </Flex>
   );
 };

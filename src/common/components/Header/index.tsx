@@ -60,7 +60,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
             openNavbar={openNavbar}
             toggleNavbar={toggleNavbar}
           />
-          <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
+          <Text ml="sm" size="xl" fw={700}>
             / {pageTitle}
           </Text>
         </>

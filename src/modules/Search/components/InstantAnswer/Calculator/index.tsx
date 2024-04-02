@@ -3,8 +3,18 @@ import { IAWrapper } from "../wrapper";
 import { Button, Flex, Grid, Paper, Text, Transition } from "@mantine/core";
 
 import { BTN_VALUES_BASIC } from "./data";
+import { calculate } from "./utils";
 
-const calculateResult = (numbers: number[], operations: string[]) => {
+const countDecimals = (value: number) => {
+  if (Math.floor(value) === value) return 0;
+  return value.toString().split(".")[1].length || 0;
+};
+
+const calculateResult = (
+  numbers: number[],
+  operations: string[],
+  hightstFloatPrecision: number
+) => {
   let equation = "";
   for (let i = 0; i < numbers.length; i++) {
     equation += numbers[i];
@@ -14,7 +24,10 @@ const calculateResult = (numbers: number[], operations: string[]) => {
   }
 
   // Calculate the result of the equation
-  return eval(equation);
+  const res = calculate(equation);
+  const resDecimals = Math.min(countDecimals(res), 5);
+
+  return res.toFixed(Math.max(resDecimals, hightstFloatPrecision));
 };
 
 const getFloatPrecision = (a: number) => {
@@ -83,9 +96,7 @@ const Calculator = () => {
       const hightstFloatPrecision = Math.max(...floatPrecisions);
 
       setResult(
-        `${calculateResult(floatArray, operations).toFixed(
-          hightstFloatPrecision
-        )}`
+        `${calculateResult(floatArray, operations, hightstFloatPrecision)}`
       );
     }
 
@@ -150,7 +161,7 @@ const Calculator = () => {
                 w="100%"
                 color={gridBtn.color}
                 onClick={() => handlePress(gridBtn.value)}
-                disabled={gridBtn.value === "switch"}
+                // disabled={gridBtn.value === "switch"}
               >
                 {gridBtn.label}
               </Button>
