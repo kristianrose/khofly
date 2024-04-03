@@ -19,7 +19,7 @@ export type ICategories =
   | "it"
   | "science"
   | "files"
-  | "social-media";
+  | "social_media";
 
 interface GeneralState {
   categories: ICategories[];
@@ -37,6 +37,8 @@ interface GeneralState {
   setSafeSearch: (next: ISafeSearch) => void;
   dateRange: IDateRange;
   setDateRange: (next: IDateRange) => void;
+  selectedTab: ICategories;
+  setSelectedTab: (next: ICategories) => void;
 
   visitedLinks: string[];
   updateVisitedLinks: (next: string) => void;
@@ -73,6 +75,8 @@ export const useGeneralStore = create<GeneralState>()(
       setSafeSearch: (next) => set({ safeSearch: next }),
       dateRange: "all",
       setDateRange: (next) => set({ dateRange: next }),
+      selectedTab: "general",
+      setSelectedTab: (next) => set({ selectedTab: next }),
 
       visitedLinks: [],
       updateVisitedLinks: (next) =>

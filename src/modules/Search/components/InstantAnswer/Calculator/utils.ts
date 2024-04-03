@@ -94,7 +94,10 @@ const top = (stack: string[]): string | undefined => stack[stack.length - 1];
  * https://github.com/poteat/shunting-yard-typescript
  * https://blog.kallisti.net.nz/2008/02/extension-to-the-shunting-yard-algorithm-to-allow-variable-numbers-of-arguments-to-functions/
  */
-export function shuntingYard(tokens: string[]) {
+export function shuntingYard(tokens: string[] | string) {
+  // Error check
+  if (typeof tokens === "string") return tokens;
+
   const output = new Array<string>();
   const operatorStack = new Array<string>();
 
@@ -106,7 +109,8 @@ export function shuntingYard(tokens: string[]) {
         output.push(operatorStack.pop()!);
       }
       if (operatorStack.length === 0) {
-        throw new Error("Misplaced ','");
+        // throw new Error("Misplaced ','");
+        return "Misplaced ','";
       }
     } else if (operators[token] !== undefined) {
       const o1 = token;
@@ -132,7 +136,8 @@ export function shuntingYard(tokens: string[]) {
       if (operatorStack.length > 0 && top(operatorStack) === "(") {
         operatorStack.pop();
       } else {
-        throw new Error("Parentheses mismatch");
+        // throw new Error("Parentheses mismatch");
+        return "Parentheses mismatch";
       }
       if (functions[top(operatorStack)!] !== undefined) {
         output.push(operatorStack.pop()!);
@@ -146,7 +151,8 @@ export function shuntingYard(tokens: string[]) {
   while (operatorStack.length > 0) {
     const operator = top(operatorStack);
     if (operator === "(") {
-      throw new Error("Parentheses mismatch");
+      // throw new Error("Parentheses mismatch");
+      return "Parentheses mismatch";
     } else {
       output.push(operatorStack.pop()!);
     }
@@ -163,7 +169,10 @@ export function shuntingYard(tokens: string[]) {
  * https://en.wikipedia.org/wiki/Reverse_Polish_notation
  * https://github.com/poteat/shunting-yard-typescript
  */
-export function evalReversePolishNotation(tokens: string[]) {
+export function evalReversePolishNotation(tokens: string[] | string) {
+  // Error check
+  if (typeof tokens === "string") return tokens;
+
   const stack = new Array<string>();
 
   const ops = { ...operators, ...functions };
@@ -184,7 +193,8 @@ export function evalReversePolishNotation(tokens: string[]) {
   }
 
   if (stack.length > 1) {
-    throw new Error("Insufficient operators");
+    // throw new Error("Insufficient operators");
+    return "Insufficient operators";
   }
 
   return Number(stack[0]);
@@ -230,13 +240,15 @@ export function tokenize(expression: string) {
       currentNumber += c;
     } else if (c === ".") {
       if (numberParsingStarted && currentNumber.includes(".")) {
-        throw new Error(`Double '.' in number: '${currentNumber}${c}'`);
+        // throw new Error(`Double '.' in number: '${currentNumber}${c}'`);
+        return `Double '.' in number: '${currentNumber}${c}'`;
       } else {
         currentNumber += c;
       }
     } else if (c === " ") {
       if (/\d/.test(prev_c) && /\d/.test(next_c)) {
-        throw new Error(`Space in number: '${currentNumber}${c}${next_c}'`);
+        // throw new Error(`Space in number: '${currentNumber}${c}${next_c}'`);
+        return `Space in number: '${currentNumber}${c}${next_c}'`;
       }
     } else if (functionsKeys.includes(acc + c)) {
       acc += c;
@@ -255,7 +267,8 @@ export function tokenize(expression: string) {
         !numberParsingStarted &&
         operatorsKeys.includes(lastToken!)
       ) {
-        throw new Error(`Consecutive operators: '${lastToken!}${c}'`);
+        // throw new Error(`Consecutive operators: '${lastToken!}${c}'`);
+        return `Consecutive operators: '${lastToken!}${c}'`;
       }
       if (numberParsingStarted) {
         tokens.push(currentNumber);
@@ -268,7 +281,8 @@ export function tokenize(expression: string) {
   }
 
   if (acc !== "") {
-    throw new Error(`Invalid characters: '${acc}'`);
+    // throw new Error(`Invalid characters: '${acc}'`);
+    return `Invalid characters: '${acc}'`;
   }
 
   // Add last number to the tokens
@@ -288,5 +302,11 @@ export function tokenize(expression: string) {
 export function calculate(expression: string) {
   const tokens = tokenize(expression);
   const rpn = shuntingYard(tokens);
-  return evalReversePolishNotation(rpn);
+
+  const result = evalReversePolishNotation(rpn);
+
+  return {
+    success: typeof result === "number",
+    result: result,
+  };
 }

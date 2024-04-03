@@ -21,18 +21,26 @@ const SearchSectionTabs = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const { isSearchOptionsOpen, setIsSearchOptionsOpen, categories } =
-    useGeneralStore((state) => ({
-      setIsSearchOptionsOpen: state.setIsSearchOptionsOpen,
-      isSearchOptionsOpen: state.isSearchOptionsOpen,
-      categories: state.categories,
-    }));
+  const {
+    isSearchOptionsOpen,
+    setIsSearchOptionsOpen,
+    categories,
+    selectedTab,
+    setSelectedTab,
+  } = useGeneralStore((state) => ({
+    setIsSearchOptionsOpen: state.setIsSearchOptionsOpen,
+    isSearchOptionsOpen: state.isSearchOptionsOpen,
+    categories: state.categories,
+    selectedTab: state.selectedTab,
+    setSelectedTab: state.setSelectedTab,
+  }));
 
   const iconSize = 16;
 
   const handleChangeTab = (tab: ICategories) => {
     const query = searchParams.get("q") || "";
 
+    // setSelectedTab(tab);
     navigate(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
 
@@ -44,6 +52,7 @@ const SearchSectionTabs = () => {
           list: classes.tab_list,
         }}
         defaultValue="general"
+        // value={selectedTab || "general"}
         value={searchParams.get("tab") || "general"}
         onChange={(tab) => handleChangeTab(tab as ICategories)}
         variant="default"
@@ -126,9 +135,9 @@ const SearchSectionTabs = () => {
             </Tabs.Tab>
           )}
 
-          {categories.includes("social-media") && (
+          {categories.includes("social_media") && (
             <Tabs.Tab
-              value="social-media"
+              value="social_media"
               leftSection={<IconUsers style={getIconStyle(iconSize)} />}
             >
               Social Media

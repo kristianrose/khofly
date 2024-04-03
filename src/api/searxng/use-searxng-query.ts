@@ -92,7 +92,7 @@ const useSearXNGSWR = <IResults>() => {
     it: enginesIT,
     science: [],
     files: [],
-    "social-media": [],
+    social_media: [],
   }[tab];
 
   return useSWRInfinite<IResults>(

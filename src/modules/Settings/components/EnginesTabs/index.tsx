@@ -9,7 +9,6 @@ import {
   IconSchool,
   IconSearch,
   IconUsers,
-  IconWorld,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsEnginesSearch from "../EnginesGeneral";
@@ -23,17 +22,66 @@ import SettingsEnginesScience from "../EnginesScience";
 import SettingsEnginesFiles from "../EnginesFiles";
 import SettingsEnginesSocialMedia from "../EnginesSocialMedia";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { useState } from "react";
+import { DotNestedKeys, ITranslations } from "@ts/global.types";
+
+const TAB_DATA: {
+  [key: string]: {
+    label: DotNestedKeys<ITranslations>;
+    icon: any;
+  };
+} = {
+  general: {
+    label: "pages.settings.engines.title",
+    icon: <IconSearch size={32} />,
+  },
+  images: {
+    label: "pages.settings.engines.titleImg",
+    icon: <IconPhoto size={32} />,
+  },
+  videos: {
+    label: "pages.settings.engines.titleVid",
+    icon: <IconPlayerPlay size={32} />,
+  },
+  news: {
+    label: "pages.settings.engines.titleNews",
+    icon: <IconNews size={32} />,
+  },
+
+  music: {
+    label: "pages.settings.engines.titleMusic",
+    icon: <IconMusic size={32} />,
+  },
+  it: {
+    label: "pages.settings.engines.titleIT",
+    icon: <IconCpu size={32} />,
+  },
+  science: {
+    label: "pages.settings.engines.titleScience",
+    icon: <IconSchool size={32} />,
+  },
+  files: {
+    label: "pages.settings.engines.titleFiles",
+    icon: <IconFiles size={32} />,
+  },
+  social_media: {
+    label: "pages.settings.engines.titleSocial",
+    icon: <IconUsers size={32} />,
+  },
+};
 
 const EnginesTabs = () => {
   const t = useTranslate();
 
+  const [tab, setTab] = useState("general");
+
   return (
     <Paper radius="md" withBorder>
       <Flex align="center" p="lg" mb={0}>
-        <IconWorld size={32} />
+        {TAB_DATA[tab].icon}
 
         <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.engines.title")}
+          {t(TAB_DATA[tab].label)}
         </Text>
 
         <div style={{ flex: 1 }}></div>
@@ -42,7 +90,12 @@ const EnginesTabs = () => {
       </Flex>
 
       <Stack w="100%" px="lg" gap={6}>
-        <Tabs variant="default" defaultValue="general" keepMounted={false}>
+        <Tabs
+          variant="default"
+          value={tab}
+          onChange={(val) => setTab(val || "general")}
+          keepMounted={false}
+        >
           <Tabs.List mb="lg" className={classes.tabs_scroll}>
             <Tabs.Tab
               value="general"
@@ -93,7 +146,7 @@ const EnginesTabs = () => {
               Files
             </Tabs.Tab> */}
             {/* <Tabs.Tab
-              value="social-media"
+              value="social_media"
               leftSection={<IconUsers style={getIconStyle(20)} />}
             >
               Social Media
@@ -132,7 +185,7 @@ const EnginesTabs = () => {
             <SettingsEnginesFiles />
           </Tabs.Panel>
 
-          <Tabs.Panel value="social-media">
+          <Tabs.Panel value="social_media">
             <SettingsEnginesSocialMedia />
           </Tabs.Panel>
         </Tabs>

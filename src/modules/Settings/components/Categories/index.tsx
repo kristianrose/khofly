@@ -21,7 +21,7 @@ const CATEGORIES_DATA = [
   // { id: "it", title: "IT", icon: IconCpu },
   // { id: "science", title: "Science", icon: IconSchool },
   // { id: "files", title: "Files", icon: IconFiles },
-  // { id: "social-media", title: "Social Media", icon: IconUsers },
+  // { id: "social_media", title: "Social Media", icon: IconUsers },
 ];
 
 const SettingsCategories = () => {

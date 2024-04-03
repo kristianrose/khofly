@@ -123,7 +123,7 @@ const TabGeneral = () => {
             <Infobox {...data[0].infoboxes[0]} />
           )}
 
-        {<Lyricsbox />}
+        <Lyricsbox />
       </Flex>
     </Flex>
   );
