@@ -14,12 +14,12 @@ import Lyricsbox from "./components/Lyricsbox";
 import clsx from "clsx";
 import SearchOptions from "../SearchOptions";
 import { useSearchParams } from "@remix-run/react";
-import { useSearchStore } from "@store/search";
+import { useEnginesStore } from "@store/engines";
 
 const TabGeneral = () => {
   const [searchParams] = useSearchParams();
 
-  const { hydrated } = useSearchStore((state) => ({
+  const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 

@@ -1,11 +1,11 @@
 import { Table } from "@mantine/core";
-import { ISocialMediaEngines, useSearchStore } from "@store/search";
 import EngineComponent from "../EngineComponent";
 import { DATA_ENGINES_SOCIAL_MEDIA } from "./data";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
+import { ISocialMediaEngines, useEnginesStore } from "@store/engines";
 
 const SettingsEnginesSocialMedia = () => {
-  const { enginesSocialMedia, setEnginesSocialMedia } = useSearchStore(
+  const { enginesSocialMedia, setEnginesSocialMedia } = useEnginesStore(
     (state) => ({
       enginesSocialMedia: state.enginesSocialMedia,
       setEnginesSocialMedia: state.setEnginesSocialMedia,

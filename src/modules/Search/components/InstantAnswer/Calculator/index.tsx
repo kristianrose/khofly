@@ -14,32 +14,15 @@ import {
 import { BTN_VALUES } from "./data";
 import { calculate } from "./utils";
 import { useWindowEvent } from "@mantine/hooks";
-import { IconEqual, IconHistory } from "@tabler/icons-react";
+import { IconCalculator, IconEqual, IconHistory } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { handlePress } from "./handlePress";
 
-const countDecimals = (value: number) => {
-  if (Math.floor(value) === value) return 0;
-  return value.toString().split(".")[1].length || 0;
-};
+const WIP_BUTTONS = ["deg", "rad", "2nd", "ln", "square_root", "pi", "x!", "e"];
 
-const calculateResult = (equation: string): string | number => {
-  // Calculate the result of the equation
-  const { success, result } = calculate(equation);
-
-  if (success && typeof result === "number") {
-    const resDecimals = Math.min(countDecimals(result), 10);
-
-    // Calculated result
-    return result.toFixed(resDecimals);
-  } else {
-    // Error message
-    return result;
-  }
-};
-
-const Calculator = () => {
+const IACalculator = () => {
   // Calculator state
-  const [equation, setEquation] = useState<string>("");
+  const [equation, setEquation] = useState<string>("0");
   const [result, setResult] = useState("");
   const [historyOpen, setHistoryOpen] = useState(false);
   const [history, setHistory] = useState<
@@ -48,119 +31,26 @@ const Calculator = () => {
 
   const [variant, setVariant] = useState<"basic" | "scientific">("basic");
 
-  const handlePress = (btn: string) => {
-    // Calculate equation
-    if (btn === "equals") {
-      // Check if equation exists
-      if (!equation.length) return;
-
-      const calculatedResult = calculateResult(equation);
-
-      setHistory((h) => [...h, { equation, result: `${calculatedResult}` }]);
-      setResult(`${calculatedResult}`);
-    }
-
-    // Switch basic/scientific
-    if (btn === "switch") {
-      setVariant((v) => (v === "basic" ? "scientific" : "basic"));
-    }
-
-    // Clear all
-    if (btn === "clear") {
-      setEquation("");
-      setResult("");
-    }
-
-    // Clear last
-    if (btn === "backspace") {
-      // Continue equation if result exists
-      if (result.length) return setResult("");
-
-      // Handle 3 letter operations
-      if (["sin(", "cos(", "tan(", "log("].includes(equation.slice(-4)))
-        return setEquation(`${equation.substring(0, equation.length - 4)}`);
-
-      // Handle 2 letter operations
-      if (["ln("].includes(equation.slice(-3)))
-        return setEquation(`${equation.substring(0, equation.length - 3)}`);
-
-      return setEquation(`${equation.substring(0, equation.length - 1)}`);
-    }
-
-    // Set numbers
-    if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(btn)) {
-      // Continue equation if result exists
-      if (result.length) setResult("");
-
-      if (equation.slice(-1) === ")") return setEquation(`${equation}*${btn}`);
-
-      return setEquation(`${equation}${btn}`);
-    }
-
-    // Set operation
-    if (["+", "-", "*", "/", "%"].includes(btn)) {
-      // Continue equation if result exists
-      if (result.length) setResult("");
-
-      // Only one operation
-      if (
-        ["+", "-", "*", "/", "%"].includes(equation.slice(-1)) &&
-        ["+", "*", "/", "%"].includes(btn)
-      )
-        return setEquation(
-          `${equation.substring(0, equation.length - 1)}${btn}`
-        );
-
-      // Handle negative numbers, part 2
-      if (!["+", "*", "/", "%"].includes(equation.slice(-1)) && btn === "-")
-        return setEquation(`${equation}-`);
-
-      // Handle negative numbers, part 2
-      if (["+", "*", "/", "%"].includes(equation.slice(-1)) && btn === "-")
-        return setEquation(`${equation}(-`);
-
-      return setEquation(`${equation}${btn}`);
-    }
-
-    // Set .
-    if (btn === ".") {
-      // Check only one dot
-      if (equation.slice(-1) === ".") return;
-
-      // Continue equation if result exists
-      if (result.length) setResult("");
-
-      return setEquation(`${equation}.`);
-    }
-
-    // Set parentheses
-    if (["(", ")"].includes(btn)) {
-      // Continue equation if result exists
-      if (result.length) setResult("");
-
-      return setEquation(`${equation}${btn}`);
-    }
-
-    // Set functions
-    if (["sin", "cos", "tan", "log", "ln"].includes(btn)) {
-      // Continue equation if result exists
-      if (result.length) setResult("");
-
-      return setEquation(`${equation}${btn}(`);
-    }
-  };
-
   // Handle keypress
   useWindowEvent("keydown", (e) => {
-    handlePress(
+    return handlePress({
+      equation,
+      history,
+      result,
+      setEquation,
+      setHistory,
+      setResult,
+      setVariant,
+      variant,
       // Handle result
-      e.key === "Enter"
-        ? "equals"
-        : // Handle backspace
-        e.key === "Backspace"
-        ? "backspace"
-        : e.key
-    );
+      btn:
+        e.key === "Enter"
+          ? "equals"
+          : // Handle backspace
+          e.key === "Backspace"
+          ? "backspace"
+          : e.key,
+    });
   });
 
   return (
@@ -185,8 +75,8 @@ const Calculator = () => {
             </ActionIcon>
           </Popover.Target>
           <Popover.Dropdown>
-            {history.map((val) => (
-              <Flex align="center" justify="flex-start" gap={4} my="xs">
+            {history.map((val, i) => (
+              <Flex key={i} align="center" justify="flex-start" gap={4} my="xs">
                 <Button
                   onClick={() => {
                     setEquation(val.equation);
@@ -216,7 +106,7 @@ const Calculator = () => {
                 >
                   <Text size="xs" fw={600} truncate="end">
                     {val.result}
-                  </Text>{" "}
+                  </Text>
                 </Button>
               </Flex>
             ))}
@@ -226,7 +116,8 @@ const Calculator = () => {
         <Flex h="100%" justify="flex-end" align="flex-end" direction="column">
           <Text
             c={!result.length ? "" : "dimmed"}
-            size={!result.length ? "xl" : "md"}
+            // size={!result.length ? "xl" : "md"}
+            fz={!result.length ? 30 : 16}
             fw={!result.length ? 600 : 400}
           >
             {equation}
@@ -235,7 +126,7 @@ const Calculator = () => {
           {/* Slide in result */}
           <Transition transition="pop" duration={300} mounted={!!result.length}>
             {(transitionStyles) => (
-              <Text fz={28} fw={600} style={transitionStyles}>
+              <Text fz={30} fw={600} style={transitionStyles}>
                 {result}
               </Text>
             )}
@@ -254,16 +145,24 @@ const Calculator = () => {
                   <Button
                     w="100%"
                     color={gridBtn.color}
-                    onClick={() => handlePress(gridBtn.value)}
-                    disabled={[
-                      "deg",
-                      "rad",
-                      "2nd",
-                      "to_the_power",
-                      "ln",
-                    ].includes(gridBtn.value)}
+                    onClick={() =>
+                      handlePress({
+                        equation,
+                        history,
+                        result,
+                        setEquation,
+                        setHistory,
+                        setResult,
+                        setVariant,
+                        variant,
+                        btn: gridBtn.value,
+                      })
+                    }
+                    disabled={WIP_BUTTONS.includes(gridBtn.value)}
                   >
-                    {gridBtn.label}
+                    {WIP_BUTTONS.includes(gridBtn.value)
+                      ? "WIP"
+                      : gridBtn.label}
                   </Button>
                 </Grid.Col>
               );
@@ -274,4 +173,4 @@ const Calculator = () => {
   );
 };
 
-export default Calculator;
+export default IACalculator;

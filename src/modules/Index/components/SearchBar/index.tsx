@@ -1,15 +1,5 @@
-import {
-  ActionIcon,
-  Autocomplete,
-  Flex,
-  Loader,
-  rem,
-} from "@mantine/core";
-import {
-  IconArrowRight,
-  IconKeyboard,
-  IconSearch,
-} from "@tabler/icons-react";
+import { ActionIcon, Autocomplete, Flex, Loader, rem } from "@mantine/core";
+import { IconArrowRight, IconKeyboard, IconSearch } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
@@ -20,14 +10,14 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { nprogress } from "@mantine/nprogress";
-import { useGeneralStore } from "@store/general";
 import { useNavigate } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { useSettingsStore } from "@store/settings";
 
 const SearchBar = () => {
   const t = useTranslate();
 
-  const { useAutocomplete } = useGeneralStore((state) => ({
+  const { useAutocomplete } = useSettingsStore((state) => ({
     useAutocomplete: state.useAutocomplete,
   }));
 

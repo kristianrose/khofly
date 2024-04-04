@@ -6,6 +6,7 @@ import {
   IconGrain,
   IconMist,
   IconMoon,
+  IconMoonStars,
   IconSnowflake,
   IconSun,
   IconTornado,
@@ -15,19 +16,22 @@ import React from "react";
 
 import classes from "./styles.module.scss";
 import { OpenWeatherCode } from "src/api/weather/types";
+import dayjs from "dayjs";
 
 interface Props {
   code: OpenWeatherCode;
   size: "normal" | "small";
+  date: number;
 }
 
-const WeatherIcon: React.FC<Props> = ({ code, size }) => {
+const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
   const theme = useMantineTheme();
 
-  const isNight = false;
+  const hours = parseInt(dayjs.unix(date).format("HH"));
+  const isNight = hours >= 21 || hours < 8;
 
   const IconMain = isNight ? IconMoon : IconSun;
-  const colorMain = isNight ? theme.colors.dark[4] : theme.colors.orange[5];
+  const colorMain = isNight ? theme.colors.gray[7] : theme.colors.orange[5];
 
   const modifier = size === "normal" ? 1.4 : 0.8;
 
@@ -40,9 +44,9 @@ const WeatherIcon: React.FC<Props> = ({ code, size }) => {
       return (
         <IconMain
           style={getIconStyle(sizeBig)}
-          stroke={2}
-          color={colorMain}
-          fill={colorMain}
+          stroke={isNight ? 1 : 2}
+          // color={colorMain}
+          // fill={colorMain}
         />
       );
 
@@ -67,7 +71,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size }) => {
               top: 0,
               right: 0,
             }}
-            stroke={2}
+            stroke={isNight ? 2 : 2}
             color={colorMain}
             fill={colorMain}
           />
@@ -166,7 +170,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size }) => {
               top: 0,
               right: 0,
             }}
-            stroke={2}
+            stroke={isNight ? 1 : 2}
             color={colorMain}
             fill={colorMain}
           />
@@ -275,7 +279,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size }) => {
       return (
         <IconMain
           style={getIconStyle(sizeBig)}
-          stroke={2}
+          stroke={isNight ? 1 : 2}
           color={colorMain}
           fill={colorMain}
         />

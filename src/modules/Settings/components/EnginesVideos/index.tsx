@@ -1,16 +1,14 @@
-import {
-  Table,
-} from "@mantine/core";
-import { IVideosEngines, useSearchStore } from "@store/search";
+import { Table } from "@mantine/core";
 import EngineComponent from "../EngineComponent";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { DATA_ENGINES_VIDEOS } from "./data";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
+import { IVideosEngines, useEnginesStore } from "@store/engines";
 
 const SettingsEnginesVideos = () => {
   const t = useTranslate();
 
-  const { enginesVideos, setEnginesVideos } = useSearchStore((state) => ({
+  const { enginesVideos, setEnginesVideos } = useEnginesStore((state) => ({
     enginesVideos: state.enginesVideos,
     setEnginesVideos: state.setEnginesVideos,
   }));

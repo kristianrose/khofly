@@ -301,6 +301,7 @@ export function tokenize(expression: string) {
 
 export function calculate(expression: string) {
   const tokens = tokenize(expression);
+
   const rpn = shuntingYard(tokens);
 
   const result = evalReversePolishNotation(rpn);

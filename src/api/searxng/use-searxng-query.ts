@@ -1,16 +1,12 @@
 import useFetch from "../use-fetch";
-import { useSearchStore } from "@store/search";
+import { IDateRange, ISafeSearch, ISearchLang, useSearchStore } from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
-import {
-  ICategories,
-  IDateRange,
-  ISafeSearch,
-  ISearchLang,
-  useGeneralStore,
-} from "@store/general";
+
 import { useSearchParams } from "@remix-run/react";
 import { useInstanceStore } from "@store/instance";
+import { useEnginesStore } from "@store/engines";
+import { ICategories } from "@store/settings";
 
 const getKey = (
   pageIndex: number,
@@ -57,7 +53,7 @@ const useSearXNGSWR = <IResults>() => {
     enginesNews,
     enginesMusic,
     enginesIT,
-  } = useSearchStore((state) => ({
+  } = useEnginesStore((state) => ({
     enginesGeneral: state.enginesGeneral,
     enginesImages: state.enginesImages,
     enginesVideos: state.enginesVideos,
@@ -66,7 +62,7 @@ const useSearXNGSWR = <IResults>() => {
     enginesIT: state.enginesIT,
   }));
 
-  const { safeSearch, dateRange, searchLanguage } = useGeneralStore(
+  const { safeSearch, dateRange, searchLanguage } = useSearchStore(
     (state) => ({
       safeSearch: state.safeSearch,
       dateRange: state.dateRange,

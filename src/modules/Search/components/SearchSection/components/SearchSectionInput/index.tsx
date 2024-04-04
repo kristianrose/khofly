@@ -15,9 +15,9 @@ import classes from "./styles.module.scss";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
-import { useGeneralStore } from "@store/general";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { useSettingsStore } from "@store/settings";
 
 const SearchSectionInput = () => {
   const t = useTranslate();
@@ -30,7 +30,7 @@ const SearchSectionInput = () => {
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const { useAutocomplete } = useGeneralStore((state) => ({
+  const { useAutocomplete } = useSettingsStore((state) => ({
     useAutocomplete: state.useAutocomplete,
   }));
 

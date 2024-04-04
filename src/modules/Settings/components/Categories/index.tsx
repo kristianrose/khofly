@@ -8,8 +8,8 @@ import {
   IconSearch,
 } from "@tabler/icons-react";
 import { CategoryCheckbox } from "./components/CategoryCheckbox";
-import { ICategories, useGeneralStore } from "@store/general";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { ICategories, useSettingsStore } from "@store/settings";
 
 const CATEGORIES_DATA = [
   { id: "general", title: "General", icon: IconSearch },
@@ -27,7 +27,7 @@ const CATEGORIES_DATA = [
 const SettingsCategories = () => {
   const t = useTranslate();
 
-  const { categories, setCategories } = useGeneralStore((state) => ({
+  const { categories, setCategories } = useSettingsStore((state) => ({
     categories: state.categories,
     setCategories: state.setCategories,
   }));

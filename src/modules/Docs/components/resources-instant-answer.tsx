@@ -1,15 +1,18 @@
 import { Box, Code, Container, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-import Calculator from "@module/Search/components/InstantAnswer/Calculator";
-import CoinFlip from "@module/Search/components/InstantAnswer/CoinFilp";
-import Lyrics from "@module/Search/components/InstantAnswer/Lyrics";
-import Timer from "@module/Search/components/InstantAnswer/Timer";
-import Translate from "@module/Search/components/InstantAnswer/Translate";
-import UUID from "@module/Search/components/InstantAnswer/UUID";
 import WikiTitle from "./common/WikiTitle";
 import WikiSubtitle from "./common/WikiSubtitle";
-import Weather from "@module/Search/components/InstantAnswer/Weather";
+
+import IACalculator from "@module/Search/components/InstantAnswer/Calculator";
+import IACoinFlip from "@module/Search/components/InstantAnswer/CoinFilp";
+import IALyrics from "@module/Search/components/InstantAnswer/Lyrics";
+import IATimer from "@module/Search/components/InstantAnswer/Timer";
+import IATranslate from "@module/Search/components/InstantAnswer/Translate";
+import IAUUID from "@module/Search/components/InstantAnswer/UUID";
+import IAWeather from "@module/Search/components/InstantAnswer/Weather";
+import IACalendar from "@module/Search/components/InstantAnswer/Calendar";
+import IAStopwatch from "@module/Search/components/InstantAnswer/Stopwatch";
 
 const DocsResourcesInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
@@ -39,37 +42,47 @@ const DocsResourcesInstantAnswer = () => {
 
       <WikiTitle>1. Calculator</WikiTitle>
       <Box className={classes.search_box}>
-        <Calculator />
+        <IACalculator />
       </Box>
 
-      <WikiTitle>2. Coin Flip</WikiTitle>
+      <WikiTitle>2. Calendar</WikiTitle>
       <Box className={classes.search_box}>
-        <CoinFlip />
+        <IACalendar />
       </Box>
 
-      <WikiTitle>3. Lyrics</WikiTitle>
+      <WikiTitle>3. Coin Flip</WikiTitle>
       <Box className={classes.search_box}>
-        <Lyrics initialQ="rick astley never gonna give you up" />
+        <IACoinFlip />
       </Box>
 
-      <WikiTitle>4. Timer</WikiTitle>
+      <WikiTitle>4. Lyrics</WikiTitle>
       <Box className={classes.search_box}>
-        <Timer />
+        <IALyrics initialQ="rick astley never gonna give you up" />
       </Box>
 
-      {/* <WikiTitle>5. Translate</WikiTitle>
+      <WikiTitle>5. Stopwatch</WikiTitle>
+      <Box className={classes.search_box}>
+        <IAStopwatch withIAWrapper />
+      </Box>
+
+      <WikiTitle>6. Timer</WikiTitle>
+      <Box className={classes.search_box}>
+        <IATimer withIAWrapper />
+      </Box>
+
+      {/* <WikiTitle>7. Translate</WikiTitle>
       <Box className={classes.search_box}>
         <Translate />
       </Box> */}
 
-      <WikiTitle>5. Random UUID</WikiTitle>
+      <WikiTitle>7. Random UUID</WikiTitle>
       <Box className={classes.search_box}>
-        <UUID />
+        <IAUUID />
       </Box>
 
-      <WikiTitle>6. Weather</WikiTitle>
+      <WikiTitle>8. Weather</WikiTitle>
       <Box className={classes.search_box}>
-        <Weather />
+        <IAWeather />
       </Box>
     </Container>
   );

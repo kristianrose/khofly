@@ -1,6 +1,6 @@
 {
   "name": "@khofly/search",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "cufta22",
   "private": false,
   "sideEffects": false,
@@ -16,6 +16,7 @@
   "dependencies": {
     "@mantine/code-highlight": "^7.7.1",
     "@mantine/core": "^7.7.1",
+    "@mantine/dates": "^7.7.1",
     "@mantine/form": "^7.7.1",
     "@mantine/hooks": "^7.7.1",
     "@mantine/notifications": "^7.7.1",
@@ -28,7 +29,7 @@
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
     "genius-lyrics": "^4.4.6",
-    "isbot": "^5.1.2",
+    "isbot": "^5.1.4",
     "leaflet": "^1.9.4",
     "mantine-flagpack": "^4.0.0",
     "react": "18.3.0-canary-c3048aab4-20240326",

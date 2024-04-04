@@ -14,8 +14,9 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { ICategories, useGeneralStore } from "@store/general";
 import { useNavigate, useSearchParams } from "@remix-run/react";
+import { useSearchStore } from "@store/search";
+import { ICategories, useSettingsStore } from "@store/settings";
 
 const SearchSectionTabs = () => {
   const [searchParams] = useSearchParams();
@@ -24,15 +25,16 @@ const SearchSectionTabs = () => {
   const {
     isSearchOptionsOpen,
     setIsSearchOptionsOpen,
-    categories,
     selectedTab,
     setSelectedTab,
-  } = useGeneralStore((state) => ({
+  } = useSearchStore((state) => ({
     setIsSearchOptionsOpen: state.setIsSearchOptionsOpen,
     isSearchOptionsOpen: state.isSearchOptionsOpen,
-    categories: state.categories,
     selectedTab: state.selectedTab,
     setSelectedTab: state.setSelectedTab,
+  }));
+  const { categories } = useSettingsStore((state) => ({
+    categories: state.categories,
   }));
 
   const iconSize = 16;

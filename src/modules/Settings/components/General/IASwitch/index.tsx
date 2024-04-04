@@ -1,12 +1,12 @@
 import RemixLink from "@components/RemixLink";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { Flex, Switch, Text } from "@mantine/core";
-import { useGeneralStore } from "@store/general";
+import { useSettingsStore } from "@store/settings";
 
 const IASwitch = () => {
   const t = useTranslate();
 
-  const { useInstantAnswers, setUseInstantAnswers } = useGeneralStore(
+  const { useInstantAnswers, setUseInstantAnswers } = useSettingsStore(
     (state) => ({
       useInstantAnswers: state.useInstantAnswers,
       setUseInstantAnswers: state.setUseInstantAnswers,

@@ -57,6 +57,10 @@
 
     svg {
       color: var(--mantine-color-red-6);
+      // fill: var(--mantine-color-red-6);
+      :nth-child(2) {
+        fill: var(--mantine-color-red-6);
+      }
     }
   }
 

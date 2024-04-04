@@ -7,10 +7,10 @@ import VideoSkeleton from "./components/VideoSkeleton";
 
 import classes from "./styles.module.scss";
 import SearchOptions from "../SearchOptions";
-import { useSearchStore } from "@store/search";
+import { useEnginesStore } from "@store/engines";
 
 const TabVideos = () => {
-  const { hydrated } = useSearchStore((state) => ({
+  const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 

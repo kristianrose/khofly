@@ -1,11 +1,11 @@
 import { Table } from "@mantine/core";
-import { IGeneralEngines, useSearchStore } from "@store/search";
 import EngineComponent from "../EngineComponent";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
 import { DATA_ENGINES_GENERAL } from "./data";
+import { IGeneralEngines, useEnginesStore } from "@store/engines";
 
 const SettingsEnginesGeneral = () => {
-  const { enginesGeneral, setEnginesGeneral } = useSearchStore((state) => ({
+  const { enginesGeneral, setEnginesGeneral } = useEnginesStore((state) => ({
     enginesGeneral: state.enginesGeneral,
     setEnginesGeneral: state.setEnginesGeneral,
   }));

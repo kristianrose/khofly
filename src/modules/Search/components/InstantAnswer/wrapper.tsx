@@ -5,7 +5,11 @@ import { IconSelector } from "@tabler/icons-react";
 import { IFC } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
-export const IAWrapper: React.FC<IFC> = ({ children }) => {
+interface Props extends IFC {
+  label?: React.ReactElement;
+}
+
+export const IAWrapper: React.FC<Props> = ({ children, label }) => {
   const { pathname } = useLocation();
   const isDocs = pathname.includes("docs");
 
@@ -23,9 +27,11 @@ export const IAWrapper: React.FC<IFC> = ({ children }) => {
       </Transition>
 
       <Flex mt="lg" align="center" justify="space-between">
-        <Text c="dimmed" size="sm">
-          This is an instant answer
-        </Text>
+        {label || (
+          <Text c="dimmed" size="sm">
+            This is an instant answer
+          </Text>
+        )}
 
         <Flex
           align="center"

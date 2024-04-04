@@ -6,14 +6,14 @@ import TabVideos from "./components/TabVideos";
 import TabNews from "./components/TabNews";
 import { useSearchParams } from "@remix-run/react";
 import ClientOnly from "@components/ClientOnly";
-import { useGeneralStore } from "@store/general";
+import { useSearchStore } from "@store/search";
 
 const TabMapsWithoutSSR = lazy(() => import("./components/TabMaps"));
 
 const PageSearch = () => {
   const [searchParams] = useSearchParams();
 
-  const { selectedTab } = useGeneralStore((state) => ({
+  const { selectedTab } = useSearchStore((state) => ({
     selectedTab: state.selectedTab,
   }));
 

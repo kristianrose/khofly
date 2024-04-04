@@ -18,7 +18,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import useTranslateSWR from "src/api/translate/use-translate-query";
 import useToast from "@hooks/use-toast";
 
-const Translate = () => {
+const IATranslate = () => {
   const { trigger, isMutating } = useTranslateSWR();
   const { toast } = useToast();
 
@@ -142,4 +142,4 @@ const Translate = () => {
   );
 };
 
-export default Translate;
+export default IATranslate;

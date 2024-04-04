@@ -1,11 +1,11 @@
 import { Table } from "@mantine/core";
-import { IScienceEngines, useSearchStore } from "@store/search";
 import EngineComponent from "../EngineComponent";
 import { DATA_ENGINES_SCIENCE } from "./data";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
+import { IScienceEngines, useEnginesStore } from "@store/engines";
 
 const SettingsEnginesScience = () => {
-  const { enginesScience, setEnginesScience } = useSearchStore((state) => ({
+  const { enginesScience, setEnginesScience } = useEnginesStore((state) => ({
     enginesScience: state.enginesScience,
     setEnginesScience: state.setEnginesScience,
   }));

@@ -5,11 +5,11 @@ import { ISearXNGResultsNews } from "@ts/searxng.types";
 import clsx from "clsx";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import {
-  IconClock } from "@tabler/icons-react";
+import { IconClock } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import { useGeneralStore } from "@store/general";
+import { useSettingsStore } from "@store/settings";
 
 dayjs.extend(relativeTime);
 
@@ -21,13 +21,14 @@ const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
   engines,
   publishedDate,
 }) => {
-  const { visitedLinks, updateVisitedLinks, openInNewTab, displayFavicon } =
-    useGeneralStore((state) => ({
-      visitedLinks: state.visitedLinks,
-      updateVisitedLinks: state.updateVisitedLinks,
-      openInNewTab: state.openInNewTab,
-      displayFavicon: state.displayFavicon,
-    }));
+  const { visitedLinks, updateVisitedLinks } = useGeneralStore((state) => ({
+    visitedLinks: state.visitedLinks,
+    updateVisitedLinks: state.updateVisitedLinks,
+  }));
+  const { openInNewTab, displayFavicon } = useSettingsStore((state) => ({
+    openInNewTab: state.openInNewTab,
+    displayFavicon: state.displayFavicon,
+  }));
 
   const isXs = useResponsive("max", "xs");
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs

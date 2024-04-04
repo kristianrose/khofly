@@ -1,187 +1,45 @@
+import { ICategories } from "@store/settings";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export type IGeneralEngines =
-  | "google"
-  | "mojeek"
-  | "duckduckgo"
-  | "bing"
-  | "brave"
-  | "presearch"
-  | "qwant"
-  | "startpage"
-  | "yahoo"
-  | "wikibooks"
-  | "wikisource"
-  | "wikispecies"
-  | "alexandria"
-  | "wikipedia"
-  | "wikidata";
+export type ISearchLang = "all" | "auto" | string;
 
-export type IImagesEngines =
-  | "google"
-  | "duckduckgo"
-  | "bing"
-  | "brave"
-  | "qwant";
+export type ISafeSearch = 0 | 1 | 2;
 
-export type IVideosEngines =
-  | "google"
-  | "duckduckgo"
-  | "bing"
-  | "brave"
-  | "qwant";
-
-export type INewsEngines =
-  | "google"
-  | "duckduckgo"
-  | "bing"
-  | "brave"
-  | "qwant"
-  | "yahoo"
-  | "presearch"
-  | "wikinews";
-
-export type IMusicEngines =
-  | "genius"
-  | "radiobrowser"
-  | "bandcamp"
-  | "mixcloud"
-  | "pipedmusic"
-  | "soundcloud"
-  | "youtube";
-
-export type IITEngines =
-  | "dockerhub"
-  | "npm"
-  | "pypi"
-  | "askubuntu"
-  | "stackoverflow"
-  | "superuser"
-  | "codeberg"
-  | "github"
-  | "gitlab"
-  | "archwiki"
-  | "gentoo"
-  | "mdn";
-
-export type IScienceEngines =
-  | "arxiv"
-  | "crossref"
-  | "googlescholar"
-  | "archive"
-  | "pubmed"
-  | "semanticscholar"
-  | "wikispecies"
-  | "openairedatasets"
-  | "openairepublications"
-  | "pdbe";
-
-export type IFilesEngines =
-  | "apkmirror"
-  | "fdroid"
-  | "1337x"
-  | "annas"
-  | "bt4g"
-  | "nyaa"
-  | "piratebay";
-
-export type ISocialMediaEngines =
-  | "lemmycomments"
-  | "lemmycommunities"
-  | "lemmyposts"
-  | "lemmyusers"
-  | "mastodonhashtags"
-  | "mastodonusers";
+export type IDateRange = "all" | "day" | "month" | "year";
 
 interface SearchState {
-  hydrated: boolean;
+  // Search options
+  isSearchOptionsOpen: boolean;
+  setIsSearchOptionsOpen: (next: boolean) => void;
+  searchLanguage: ISearchLang;
+  setSearchLanguage: (next: ISearchLang) => void;
+  safeSearch: ISafeSearch;
+  setSafeSearch: (next: ISafeSearch) => void;
+  dateRange: IDateRange;
+  setDateRange: (next: IDateRange) => void;
 
-  enginesGeneral: IGeneralEngines[];
-  setEnginesGeneral: (next: IGeneralEngines[]) => void;
-
-  enginesImages: IImagesEngines[];
-  setEnginesImages: (next: IImagesEngines[]) => void;
-
-  enginesVideos: IImagesEngines[];
-  setEnginesVideos: (next: IImagesEngines[]) => void;
-
-  enginesNews: INewsEngines[];
-  setEnginesNews: (next: INewsEngines[]) => void;
-
-  enginesMusic: IMusicEngines[];
-  setEnginesMusic: (next: IMusicEngines[]) => void;
-
-  enginesIT: IITEngines[];
-  setEnginesIT: (next: IITEngines[]) => void;
-
-  enginesScience: IScienceEngines[];
-  setEnginesScience: (next: IScienceEngines[]) => void;
-
-  enginesFiles: IFilesEngines[];
-  setEnginesFiles: (next: IFilesEngines[]) => void;
-
-  enginesSocialMedia: ISocialMediaEngines[];
-  setEnginesSocialMedia: (next: ISocialMediaEngines[]) => void;
+  // Search state
+  selectedTab: ICategories;
+  setSelectedTab: (next: ICategories) => void;
+  searchQuery: string;
+  setSearchQuery: (next: string) => void;
 }
 
-export const useSearchStore = create<SearchState>()(
-  persist(
-    (set) => ({
-      hydrated: false,
+export const useSearchStore = create<SearchState>()((set) => ({
+  // Search options
+  isSearchOptionsOpen: false,
+  setIsSearchOptionsOpen: (next) => set({ isSearchOptionsOpen: next }),
+  searchLanguage: "all",
+  setSearchLanguage: (next) => set({ searchLanguage: next }),
+  safeSearch: 0,
+  setSafeSearch: (next) => set({ safeSearch: next }),
+  dateRange: "all",
+  setDateRange: (next) => set({ dateRange: next }),
 
-      enginesGeneral: ["duckduckgo", "brave", "wikipedia"],
-      setEnginesGeneral: (next) => set({ enginesGeneral: next }),
-
-      enginesImages: ["duckduckgo", "bing", "qwant"],
-      setEnginesImages: (next) => set({ enginesImages: next }),
-
-      enginesVideos: ["duckduckgo", "brave", "qwant"],
-      setEnginesVideos: (next) => set({ enginesImages: next }),
-
-      enginesNews: ["duckduckgo", "bing", "wikinews"],
-      setEnginesNews: (next) => set({ enginesNews: next }),
-
-      enginesMusic: ["radiobrowser", "soundcloud", "youtube"],
-      setEnginesMusic: (next) => set({ enginesMusic: next }),
-
-      enginesIT: ["dockerhub", "stackoverflow", "github", "archwiki"],
-      setEnginesIT: (next) => set({ enginesIT: next }),
-
-      enginesScience: ["arxiv", "googlescholar", "pubmed", "pdbe"],
-      setEnginesScience: (next) => set({ enginesScience: next }),
-
-      enginesFiles: ["fdroid", "bt4g", "piratebay"],
-      setEnginesFiles: (next) => set({ enginesFiles: next }),
-
-      enginesSocialMedia: [
-        "lemmycomments",
-        "lemmycommunities",
-        "lemmyposts",
-        "lemmyusers",
-        "mastodonhashtags",
-        "mastodonusers",
-      ],
-      setEnginesSocialMedia: (next) => set({ enginesSocialMedia: next }),
-    }),
-    {
-      onRehydrateStorage: () => (state) => {
-        if (state) {
-          state.hydrated = true;
-        }
-      },
-      name: "search-store", // name of the item in the storage (must be unique)
-      partialize: (state) => ({
-        enginesGeneral: state.enginesGeneral,
-        enginesImages: state.enginesImages,
-        enginesVideos: state.enginesVideos,
-        enginesNews: state.enginesNews,
-        enginesMusic: state.enginesMusic,
-        enginesIT: state.enginesIT,
-        enginesScience: state.enginesScience,
-        enginesFiles: state.enginesFiles,
-        enginesSocialMedia: state.enginesSocialMedia,
-      }),
-    }
-  )
-);
+  // Search state
+  selectedTab: "general",
+  setSelectedTab: (next) => set({ selectedTab: next }),
+  searchQuery: "",
+  setSearchQuery: (next) => set({ searchQuery: next }),
+}));

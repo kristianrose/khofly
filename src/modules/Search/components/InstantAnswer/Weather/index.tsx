@@ -18,23 +18,37 @@ import useWeatherSWR from "src/api/weather/use-weather-query";
 import useGeolocation from "@hooks/use-geolocation";
 import WeatherIcon from "./WeatherIcon";
 import WeatherDaily from "./WeatherDaily";
+import { useGeneralStore } from "@store/general";
+import { OpenWeatherCode, OpenWeatherDaily } from "src/api/weather/types";
 
-const Weather = () => {
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
+
+const IAWeather = () => {
   const { data, isMutating, trigger } = useWeatherSWR();
 
-  const { location } = useGeolocation();
+  // Get data either from localStorage or Geolocation
+  const { geolocation, hydrated } = useGeneralStore((state) => ({
+    hydrated: state.hydrated,
+    geolocation: state.geolocation,
+  }));
+  console.log(geolocation);
 
-  const [city, setCity] = useState("Pozarevac");
+  const { location } = useGeolocation(!geolocation && hydrated);
+
   const [unit, setUnit] = useState("C");
 
-  const [currentData, setCurrentData] = useState<any | null>(null);
+  const [currentData, setCurrentData] = useState<OpenWeatherDaily | null>(null);
 
   // Get geolocation
   useEffect(() => {
-    if (location) {
-      trigger({ lat: location.latitude, lon: location.longitude });
+    if (location || geolocation) {
+      trigger(
+        geolocation || { lat: location?.latitude, lon: location?.longitude }
+      );
     }
-  }, [location]);
+  }, [location, geolocation]);
 
   // Update current data
   useEffect(() => {
@@ -44,8 +58,8 @@ const Weather = () => {
   }, [data]);
 
   return (
-    <IAWrapper>
-      <Flex align="center" justify="space-between">
+    <IAWrapper
+      label={
         <Text size="sm" c="dimmed">
           Data provided by{" "}
           <Anchor href="https://openweathermap.org" rel="noreferrer noopener">
@@ -53,6 +67,12 @@ const Weather = () => {
               OpenWeather
             </Text>
           </Anchor>
+        </Text>
+      }
+    >
+      <Flex align="center" justify="space-between">
+        <Text size="sm" c="dimmed">
+          {data?.current && `Showing data for ${data.timezone}`}
         </Text>
 
         <SegmentedControl
@@ -71,79 +91,44 @@ const Weather = () => {
         />
       </Flex>
 
-      {true && (
+      {data?.current && (
         <Flex align="center" justify="flex-start" mt="lg">
-          <WeatherIcon code={801} size="normal" />
+          <WeatherIcon code={801} size="normal" date={data.current.dt} />
 
-          <Text fz={32} fw="bold" ml="xs">
-            {16}°
-          </Text>
+          <Flex align="center" justify="flex-start" mt="lg">
+            <Text fz={32} fw="bold" ml="xs">
+              {Math.round(data?.current.temp)}°
+            </Text>
+
+            <Text size="md" ml="xs">
+              {dayjs
+                .unix(data.current.dt)
+                .format("ddd - DD/MM/YYYY - HH:mm:ss")}
+            </Text>
+          </Flex>
         </Flex>
       )}
 
-      {true && (
+      {data?.daily && (
         <ScrollArea h={130} mt="lg">
           <Flex gap="sm" align="center" justify="flex-start">
-            <WeatherDaily
-              code={800}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={801}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={802}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={803}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={300}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={501}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={211}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={601}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
-            <WeatherDaily
-              code={731}
-              onClick={() => {}}
-              tempMax={18}
-              tempMin={12}
-            />
+            {data.daily.map((daily, i) => (
+              <WeatherDaily
+                key={i}
+                code={daily.weather[0].id as OpenWeatherCode}
+                onClick={() => {}}
+                tempMax={Math.round(daily.temp.max)}
+                tempMin={Math.round(daily.temp.min)}
+                date={daily.dt}
+              />
+            ))}
           </Flex>
         </ScrollArea>
       )}
-      <LoadingOverlay visible={isMutating} />
+
+      <LoadingOverlay visible={isMutating || !data} />
     </IAWrapper>
   );
 };
 
-export default Weather;
+export default IAWeather;

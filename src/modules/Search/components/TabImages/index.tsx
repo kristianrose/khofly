@@ -8,10 +8,10 @@ import ImageSkeleton from "./components/ImageSkeleton";
 import { useDisclosure } from "@mantine/hooks";
 import ImageView from "./components/ImageView";
 import SearchOptions from "../SearchOptions";
-import { useSearchStore } from "@store/search";
+import { useEnginesStore } from "@store/engines";
 
 const TabImages = () => {
-  const { hydrated } = useSearchStore((state) => ({
+  const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 

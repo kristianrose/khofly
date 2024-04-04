@@ -1,8 +1,8 @@
 import { Switch } from "@mantine/core";
-import { useGeneralStore } from "@store/general";
+import { useSettingsStore } from "@store/settings";
 
 const FaviconSwitch = () => {
-  const { displayFavicon, setDisplayFavicon } = useGeneralStore((state) => ({
+  const { displayFavicon, setDisplayFavicon } = useSettingsStore((state) => ({
     displayFavicon: state.displayFavicon,
     setDisplayFavicon: state.setDisplayFavicon,
   }));

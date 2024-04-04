@@ -8,10 +8,10 @@ import NewsRow from "./components/NewsRow";
 import SearchResultSkeleton from "../TabGeneral/components/SearchResultSkeleton";
 import ScrollToTop from "../ScrollToTop";
 import SearchOptions from "../SearchOptions";
-import { useSearchStore } from "@store/search";
+import { useEnginesStore } from "@store/engines";
 
 const TabNews = () => {
-  const { hydrated } = useSearchStore((state) => ({
+  const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 

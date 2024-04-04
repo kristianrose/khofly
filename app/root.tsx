@@ -3,6 +3,7 @@ import "@styles/base.css";
 import "@mantine/core/styles.css";
 import "@mantine/nprogress/styles.css";
 import "@mantine/notifications/styles.css";
+import "@mantine/dates/styles.css";
 
 import AppLayout from "@layout/index";
 import { ColorSchemeScript, useMantineColorScheme } from "@mantine/core";

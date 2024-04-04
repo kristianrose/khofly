@@ -18,12 +18,9 @@ const useWeatherSWR = () => {
   const fetcher = (key: string, { arg }: { arg: Args }) => {
     const { lat, lon } = arg;
     return fetchData(
-      `${key}/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&apikey=${process.env.OPEN_WEATHER_API_KEY}`,
+      `${key}/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`,
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
   };

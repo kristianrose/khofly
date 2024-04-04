@@ -1,11 +1,11 @@
 import { Table } from "@mantine/core";
-import { IImagesEngines, useSearchStore } from "@store/search";
 import EngineComponent from "../EngineComponent";
 import { DATA_ENGINES_IMAGES } from "./data";
 import { HOVER_DATA } from "../EngineComponent/hover-data";
+import { IImagesEngines, useEnginesStore } from "@store/engines";
 
 const SettingsEnginesImages = () => {
-  const { enginesImages, setEnginesImages } = useSearchStore((state) => ({
+  const { enginesImages, setEnginesImages } = useEnginesStore((state) => ({
     enginesImages: state.enginesImages,
     setEnginesImages: state.setEnginesImages,
   }));
