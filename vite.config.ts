@@ -45,7 +45,6 @@ export default defineConfig(({ mode }) => {
       "process.env.SEARXNG_URL_EU1": JSON.stringify(env.SEARXNG_URL_EU1),
       "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_US1),
       "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
-      "process.env.OPEN_WEATHER_URL": JSON.stringify(env.OPEN_WEATHER_URL),
       "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
       "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
     },
