@@ -45,8 +45,8 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
         <IconMain
           style={getIconStyle(sizeBig)}
           stroke={isNight ? 1 : 2}
-          // color={colorMain}
-          // fill={colorMain}
+          color={colorMain}
+          fill={colorMain}
         />
       );
 

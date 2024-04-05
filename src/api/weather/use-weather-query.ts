@@ -7,26 +7,18 @@ interface Args {
   lon: any;
 }
 
-const API_URL = process.env.OPEN_WEATHER_URL;
-
 const useWeatherSWR = () => {
   const { fetchData } = useFetch();
 
-  // const searchParams = useSearchParams();
-  // const q = (searchParams.get("q") as string) || "";
-
   const fetcher = (key: string, { arg }: { arg: Args }) => {
     const { lat, lon } = arg;
-    return fetchData(
-      `${key}/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`,
-      {
-        method: "GET",
-      }
-    );
+    return fetchData(`${key}?lat=${lat}&lon=${lon}`, {
+      method: "GET",
+    });
   };
 
   return useSWRMutation<OpenWeatherResponse, any, any, Args>(
-    `${API_URL}`,
+    `/api/weather`,
     fetcher,
     {}
   );

@@ -135,7 +135,13 @@ const IACalculator = () => {
       </Paper>
       {/* Calculator keyboard */}
       {BTN_VALUES(variant).map((gridBtnRow, i) => (
-        <Grid key={i} grow gutter="xs" mt="xs">
+        <Grid
+          key={i}
+          grow
+          gutter="xs"
+          mt="xs"
+          styles={{ inner: { flexWrap: "nowrap" } }}
+        >
           {gridBtnRow.map((gridBtn) => {
             if (gridBtn.variant === "scientific" && variant === "basic")
               return null;

@@ -49,11 +49,7 @@ const InstantAnswer = () => {
   if (shouldDisplayIA(query, ["uuid"])) return <IAUUID />;
 
   // Instant answer - Weather by OpenWeather
-  if (
-    shouldDisplayIA(query, ["weather", "forecast"]) &&
-    !!process.env.OPEN_WEATHER_API_KEY
-  )
-    return <IAWeather />;
+  if (shouldDisplayIA(query, ["weather", "forecast"])) return <IAWeather />;
 
   // Instant answer - Translate WIP
   //if (shouldDisplayIA(query, ["translate"])) return <IATranslate />;
