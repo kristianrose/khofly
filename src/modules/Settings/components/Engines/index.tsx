@@ -11,19 +11,22 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import SettingsEnginesSearch from "../EnginesGeneral";
-import SettingsEnginesImages from "../EnginesImages";
-import SettingsEnginesVideos from "../EnginesVideos";
-import SettingsEnginesNews from "../EnginesNews";
-import classes from "../../styles.module.scss";
-import SettingsEnginesMusic from "../EnginesMusic";
-import SettingsEnginesIT from "../EnginesIT";
-import SettingsEnginesScience from "../EnginesScience";
-import SettingsEnginesFiles from "../EnginesFiles";
-import SettingsEnginesSocialMedia from "../EnginesSocialMedia";
+import classesParent from "../../styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useState } from "react";
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
+import SettingsEnginesWrapper from "./components/Wrapper";
+import classes from "./styles.module.scss";
+
+import { DATA_ENGINES_GENERAL } from "./components/data/general";
+import { DATA_ENGINES_IMAGES } from "./components/data/images";
+import { DATA_ENGINES_VIDEOS } from "./components/data/videos";
+import { DATA_ENGINES_NEWS } from "./components/data/news";
+import { DATA_ENGINES_MUSIC } from "./components/data/music";
+import { DATA_ENGINES_IT } from "./components/data/it";
+import { DATA_ENGINES_SCIENCE } from "./components/data/science";
+import { DATA_ENGINES_FILES } from "./components/data/files";
+import { DATA_ENGINES_SOCIAL_MEDIA } from "./components/data/social_media";
 
 const TAB_DATA: {
   [key: string]: {
@@ -70,19 +73,21 @@ const TAB_DATA: {
   },
 };
 
-const EnginesTabs = () => {
+const Engines = () => {
   const t = useTranslate();
 
   const [tab, setTab] = useState("general");
 
   return (
     <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={0}>
-        {TAB_DATA[tab].icon}
+      <Flex className={classes.settings_engines_title} p="lg" mb={0}>
+        <Flex align="center">
+          {TAB_DATA[tab].icon}
 
-        <Text fz={26} fw={600} ml="sm">
-          {t(TAB_DATA[tab].label)}
-        </Text>
+          <Text fz={26} fw={600} ml="sm">
+            {t(TAB_DATA[tab].label)}
+          </Text>
+        </Flex>
 
         <div style={{ flex: 1 }}></div>
 
@@ -96,7 +101,7 @@ const EnginesTabs = () => {
           onChange={(val) => setTab(val || "general")}
           keepMounted={false}
         >
-          <Tabs.List mb="lg" className={classes.tabs_scroll}>
+          <Tabs.List mb="lg" className={classesParent.tabs_scroll}>
             <Tabs.Tab
               value="general"
               leftSection={<IconSearch style={getIconStyle(20)} />}
@@ -154,39 +159,60 @@ const EnginesTabs = () => {
           </Tabs.List>
 
           <Tabs.Panel value="general">
-            <SettingsEnginesSearch />
+            <SettingsEnginesWrapper
+              category="general"
+              data={DATA_ENGINES_GENERAL}
+            />
           </Tabs.Panel>
 
           <Tabs.Panel value="images">
-            <SettingsEnginesImages />
+            <SettingsEnginesWrapper
+              category="images"
+              data={DATA_ENGINES_IMAGES}
+            />
           </Tabs.Panel>
 
           <Tabs.Panel value="videos">
-            <SettingsEnginesVideos />
+            <SettingsEnginesWrapper
+              category="videos"
+              data={DATA_ENGINES_VIDEOS}
+            />
           </Tabs.Panel>
 
           <Tabs.Panel value="news">
-            <SettingsEnginesNews />
+            <SettingsEnginesWrapper category="news" data={DATA_ENGINES_NEWS} />
           </Tabs.Panel>
 
           <Tabs.Panel value="music">
-            <SettingsEnginesMusic />
+            <SettingsEnginesWrapper
+              category="music"
+              data={DATA_ENGINES_MUSIC}
+            />
           </Tabs.Panel>
 
           <Tabs.Panel value="it">
-            <SettingsEnginesIT />
+            <SettingsEnginesWrapper category="it" data={DATA_ENGINES_IT} />
           </Tabs.Panel>
 
           <Tabs.Panel value="science">
-            <SettingsEnginesScience />
+            <SettingsEnginesWrapper
+              category="science"
+              data={DATA_ENGINES_SCIENCE}
+            />
           </Tabs.Panel>
 
           <Tabs.Panel value="files">
-            <SettingsEnginesFiles />
+            <SettingsEnginesWrapper
+              category="files"
+              data={DATA_ENGINES_FILES}
+            />
           </Tabs.Panel>
 
           <Tabs.Panel value="social_media">
-            <SettingsEnginesSocialMedia />
+            <SettingsEnginesWrapper
+              category="social_media"
+              data={DATA_ENGINES_SOCIAL_MEDIA}
+            />
           </Tabs.Panel>
         </Tabs>
       </Stack>
@@ -196,4 +222,4 @@ const EnginesTabs = () => {
   );
 };
 
-export default EnginesTabs;
+export default Engines;

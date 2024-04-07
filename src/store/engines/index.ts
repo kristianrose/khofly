@@ -94,7 +94,7 @@ export type ISocialMediaEngines =
   | "mastodonhashtags"
   | "mastodonusers";
 
-interface EnginesState {
+export interface EnginesState {
   hydrated: boolean;
 
   enginesGeneral: IGeneralEngines[];

@@ -1,4 +1,4 @@
-import { IGeneralEngines } from "@store/search";
+import { IGeneralEngines } from "@store/engines";
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_GENERAL: {

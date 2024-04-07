@@ -1,7 +1,7 @@
 import { Text, UnstyledButton } from "@mantine/core";
-import { TablerIconsProps } from "@tabler/icons-react";
 import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { IconProps } from "@tabler/icons-react";
 
 interface CategoryCheckboxProps {
   checked: boolean;
@@ -9,7 +9,7 @@ interface CategoryCheckboxProps {
   onChange(checked: boolean, id: string): void;
   id: string;
   title: string;
-  icon: React.FC<TablerIconsProps>;
+  icon: any;
 }
 
 export function CategoryCheckbox({

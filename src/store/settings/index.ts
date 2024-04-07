@@ -3,8 +3,6 @@ import { persist } from "zustand/middleware";
 
 export type IAutocompleteEngines = "google" | "duckduckgo" | "brave" | "qwant";
 
-
-
 export type ICategories =
   | "general"
   | "images"

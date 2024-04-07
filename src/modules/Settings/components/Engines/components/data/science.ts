@@ -1,4 +1,4 @@
-import { IScienceEngines } from "@store/search";
+import { IScienceEngines } from "@store/engines";
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_SCIENCE: {

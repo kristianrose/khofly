@@ -1,4 +1,4 @@
-import { IITEngines } from "@store/search";
+import { IITEngines } from "@store/engines";
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_IT: {

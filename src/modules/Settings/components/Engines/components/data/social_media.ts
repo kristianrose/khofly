@@ -1,4 +1,4 @@
-import { ISocialMediaEngines } from "@store/search";
+import { ISocialMediaEngines } from "@store/engines";
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_SOCIAL_MEDIA: {

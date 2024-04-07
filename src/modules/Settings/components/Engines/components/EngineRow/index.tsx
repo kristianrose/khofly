@@ -13,7 +13,7 @@ import {
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
 import React from "react";
 import classes from "./styles.module.scss";
-import { IHoverData } from "./hover-data";
+import { IHoverData } from "../../hover-data";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -53,9 +53,9 @@ const EngineComponent: React.FC<Props> = ({
             {t(label)}
           </Text>
         </Table.Td>
-        <Table.Td></Table.Td>
-        <Table.Td></Table.Td>
-        <Table.Td></Table.Td>
+        <Table.Td className={classes.table_responsive}></Table.Td>
+        <Table.Td className={classes.table_responsive}></Table.Td>
+        <Table.Td className={classes.table_responsive}></Table.Td>
         <Table.Td></Table.Td>
       </Table.Tr>
     );
@@ -150,7 +150,7 @@ const EngineComponent: React.FC<Props> = ({
       </Table.Td>
 
       {/* Safe search */}
-      <Table.Td>
+      <Table.Td className={classes.table_responsive}>
         {safeSearch && (
           <IconCheck
             style={getIconStyle(22)}
@@ -161,7 +161,7 @@ const EngineComponent: React.FC<Props> = ({
       </Table.Td>
 
       {/* Time range */}
-      <Table.Td>
+      <Table.Td className={classes.table_responsive}>
         {timeRange && (
           <IconCheck
             style={getIconStyle(22)}
@@ -172,7 +172,7 @@ const EngineComponent: React.FC<Props> = ({
       </Table.Td>
 
       {/* Status */}
-      <Table.Td></Table.Td>
+      <Table.Td className={classes.table_responsive}></Table.Td>
 
       {/* Active */}
       <Table.Td ta="right">

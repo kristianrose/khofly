@@ -2,6 +2,7 @@ import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
 import {
+  IconApps,
   IconBrush,
   IconLink,
   IconRadar,
@@ -10,7 +11,7 @@ import {
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
 import SettingsInterface from "./components/Interface";
-import EnginesTabs from "./components/EnginesTabs";
+import SettingsEngines from "./components/Engines";
 import SettingsCategories from "./components/Categories";
 import SettingsNominatim from "./components/Nominatim";
 import { useNavigate, useSearchParams } from "@remix-run/react";
@@ -65,12 +66,12 @@ const PageSettings = () => {
           >
             Engines
           </Tabs.Tab>
-          {/* <Tabs.Tab
+          <Tabs.Tab
             value="shortcuts"
             leftSection={<IconApps style={getIconStyle(20)} />}
           >
             Shortcuts
-          </Tabs.Tab> */}
+          </Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="interface">
@@ -92,7 +93,7 @@ const PageSettings = () => {
         </Tabs.Panel>
 
         <Tabs.Panel value="engines">
-          <EnginesTabs />
+          <SettingsEngines />
         </Tabs.Panel>
         {/* 
         <Tabs.Panel value="shortcuts">

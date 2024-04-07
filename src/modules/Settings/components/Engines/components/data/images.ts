@@ -1,9 +1,9 @@
-import { IVideosEngines } from "@store/search";
+import { IImagesEngines } from "@store/engines";
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
-export const DATA_ENGINES_VIDEOS: {
+export const DATA_ENGINES_IMAGES: {
   type: "divider" | "engine";
-  value: IVideosEngines | "";
+  value: IImagesEngines | "";
   alt: string;
   icon: string;
   label: DotNestedKeys<ITranslations>;
@@ -15,7 +15,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "",
     alt: "",
     icon: "",
-    label: "pages.settings.engines.titleVid2",
+    label: "pages.settings.engines.titleImg2",
     safeSearch: false,
     timeRange: false,
   },
@@ -24,7 +24,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "bing",
     alt: "Bing logo",
     icon: "/assets/bing-icon.svg",
-    label: "pages.settings.engines.engineBingVid",
+    label: "pages.settings.engines.engineBingImg",
     safeSearch: true,
     timeRange: true,
   },
@@ -33,7 +33,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "brave",
     alt: "Brave logo",
     icon: "/assets/brave-icon.svg",
-    label: "pages.settings.engines.engineBraveVid",
+    label: "pages.settings.engines.engineBraveImg",
     safeSearch: true,
     timeRange: false,
   },
@@ -42,7 +42,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "duckduckgo",
     alt: "DuckDuckGo logo",
     icon: "/assets/ddg-icon.svg",
-    label: "pages.settings.engines.engineDDGVid",
+    label: "pages.settings.engines.engineDDGImg",
     safeSearch: true,
     timeRange: false,
   },
@@ -51,7 +51,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "google",
     alt: "Google logo",
     icon: "/assets/google-icon.svg",
-    label: "pages.settings.engines.engineGoogleVid",
+    label: "pages.settings.engines.engineGoogleImg",
     safeSearch: true,
     timeRange: true,
   },
@@ -60,7 +60,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "qwant",
     alt: "Qwant logo",
     icon: "/assets/qwant-icon.svg",
-    label: "pages.settings.engines.engineQwantVid",
+    label: "pages.settings.engines.engineQwantImg",
     safeSearch: true,
     timeRange: false,
   },
