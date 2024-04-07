@@ -7,7 +7,7 @@ import {
   Spoiler,
   Text,
 } from "@mantine/core";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
@@ -65,7 +65,7 @@ const Lyricsbox = () => {
 
         <Text size="sm" c="dimmed">
           Lyrics provided by{" "}
-          <Anchor href="https://genius.com">
+          <Anchor href="https://genius.com" rel="noreferrer noopener">
             <Text component="span" c="blue.4">
               Genius
             </Text>

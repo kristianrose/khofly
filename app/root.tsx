@@ -3,115 +3,67 @@ import "@styles/base.css";
 import "@mantine/core/styles.css";
 import "@mantine/nprogress/styles.css";
 import "@mantine/notifications/styles.css";
+import "@mantine/dates/styles.css";
 
 import AppLayout from "@layout/index";
-import { ColorSchemeScript } from "@mantine/core";
+import { ColorSchemeScript, useMantineColorScheme } from "@mantine/core";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   json,
-  useLoaderData,
+  useRouteError,
+  useRouteLoaderData,
 } from "@remix-run/react";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 
-import { ILanguage } from "@ts/global.types";
-import { MetaFunction } from "@remix-run/node";
+import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import ErrorPage from "@module/Error";
+import { ROOT_META } from "./meta/root";
+import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
+import { useClientServerState } from "@store/client-server";
 
-export async function loader({ request }: { request: Request }) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = request.headers.get("Cookie");
-  const userLang: ILanguage = getCookieProperty(
+
+  // // Get user language
+  const userLang = getCookieProperty(cookies || "", "khofly-language", "en");
+  const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
+
+  // // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
+  const appLang = userLang || prefLang || "en";
+
+  const appTheme = getCookieProperty(
     cookies || "",
-    "language",
-    "en"
+    "khofly-app-theme",
+    "Mantine-Old"
   );
 
   return json({
-    language: userLang,
-    ENV: {
-      NODE_ENV: process.env.NODE_ENV,
-      HOST: process.env.HOST,
-      SEARXNG_URL: process.env.SEARXNG_URL,
-      NOMINATIM_URL: process.env.NOMINATIM_URL,
-      IS_SELF_HOST: process.env.IS_SELF_HOST,
-      APP_NAME: process.env.APP_NAME,
-    },
+    language: appLang,
+    theme: appTheme,
   });
 }
 
 // Meta tags
 export const meta: MetaFunction = () => {
-  return [
-    {
-      title: !+process.env.NEXT_PUBLIC_IS_SELF_HOST!
-        ? "Khofly"
-        : process.env.NEXT_PUBLIC_APP_NAME,
-    },
-    {
-      name: "description",
-      content:
-        "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
-    },
-    {
-      name: "keywords",
-      content:
-        "Khofly, Search, Khofly Search, SearXNG, FOSS, open source, meta search engine",
-    },
-    // Open Graph stuff
-    {
-      property: "og:title",
-      content: "Khofly",
-    },
-    {
-      property: "og:description",
-      content:
-        "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
-    },
-    {
-      property: "og:type",
-      content: "website",
-    },
-    {
-      property: "og:site_name",
-      content: "Khofly",
-    },
-    {
-      property: "og:image",
-      content: "https://khofly.com/images/og.png",
-    },
-    {
-      property: "og:image:width",
-      content: "1200",
-    },
-    {
-      property: "og:image:height",
-      content: "600",
-    },
-    {
-      property: "og:image:alt",
-      content: "Khofly og image",
-    },
-    {
-      property: "og:image:type",
-      content: "image/png",
-    },
-  ];
+  return ROOT_META;
 };
 
-export default function App() {
-  // Load env variables in browser
-  const data = useLoaderData<typeof loader>();
+export function Layout({ children }: { children: React.ReactNode }) {
+  const { language } = useClientServerState();
 
   return (
-    <html lang={data.language}>
+    <html lang={language || "en"}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        <ColorSchemeScript defaultColorScheme="dark" />
+        <ColorSchemeScript defaultColorScheme="auto" />
 
         {/* OpenSearch XML */}
         <link
@@ -121,7 +73,7 @@ export default function App() {
           title="Search khofly.com"
         />
 
-        {/* Leaflet stuff */}
+        {/* Leaflet styles */}
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -133,26 +85,59 @@ export default function App() {
       </head>
       <body>
         <AppLayout>
-          <Outlet />
-          <ScrollRestoration />
-
-          {/* Set environment variables in browser */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.process = ${JSON.stringify({ env: data.ENV })}`,
-            }}
-          />
-
-          {/* Leaflet script */}
-          <script
-            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossOrigin=""
-          />
-
-          <Scripts />
+          {/* children will be the root Component, ErrorBoundary, or HydrateFallback */}
+          {children}
         </AppLayout>
+
+        {/* Leaflet script */}
+        <script
+          src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossOrigin=""
+        />
+
+        {/* Manages scroll position for client-side transitions */}
+        <ScrollRestoration />
+        {/* Script tags go here */}
+        <Scripts />
       </body>
     </html>
   );
+}
+
+// Default app
+export default function App() {
+  return <Outlet />;
+}
+
+// Default error
+export function ErrorBoundary() {
+  const error: any = useRouteError();
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <ErrorPage
+        code={error.status}
+        title="You have found a secret place"
+        message={error.data}
+      />
+    );
+  } else if (error instanceof Error) {
+    return (
+      <ErrorPage
+        code={500}
+        title="You have found a secret place"
+        message={error.message}
+        stack={error.stack}
+      />
+    );
+  } else {
+    return (
+      <ErrorPage
+        code={500}
+        title="You have found a secret place"
+        message="Unknown Error"
+      />
+    );
+  }
 }

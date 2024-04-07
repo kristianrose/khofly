@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Center, Paper } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-import { IconCampfireFilled, IconMoodSmileFilled } from "@tabler/icons-react";
+import {
+  IconCampfireFilled,
+  IconMoodSmileFilled,
+  IconShip,
+} from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import clsx from "clsx";
 import { cryptoRandomNumber } from "@utils/functions/cryptoRandomNumber";
 import { IAWrapper } from "../wrapper";
 
-const CoinFlip = () => {
+const IACoinFlip = () => {
   const [side, setSide] = useState<"heads" | "tails" | "">("");
   const [count, setCount] = useState(0);
 
@@ -39,7 +43,7 @@ const CoinFlip = () => {
             <IconMoodSmileFilled style={getIconStyle(80)} />
           </div>
           <div className={classes.side_tails}>
-            <IconCampfireFilled style={getIconStyle(80)} />
+            <IconShip style={getIconStyle(80)} />
           </div>
         </Paper>
       </Center>
@@ -47,4 +51,4 @@ const CoinFlip = () => {
   );
 };
 
-export default CoinFlip;
+export default IACoinFlip;

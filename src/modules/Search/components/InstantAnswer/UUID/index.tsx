@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IAWrapper } from "../wrapper";
 import { Text } from "@mantine/core";
 
-const UUID = () => {
+const IAUUID = () => {
   const [uuid, setUuid] = useState("");
 
   useEffect(() => {
@@ -21,4 +21,4 @@ const UUID = () => {
   );
 };
 
-export default UUID;
+export default IAUUID;

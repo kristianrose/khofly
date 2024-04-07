@@ -1,4 +1,4 @@
-import { useState, useEffect, RefObject, useRef, useCallback } from "react";
+import { useState, useEffect, RefObject, useRef } from "react";
 
 function guard(value: number, min: number, max: number) {
   return value < min ? min : value > max ? max : value;

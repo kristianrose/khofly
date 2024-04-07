@@ -1,5 +1,5 @@
 import { RemixBrowser } from "@remix-run/react";
-import I18nProvider from "@store/language";
+import ClientServerProvider from "@store/client-server";
 import { ILanguage } from "@ts/global.types";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { startTransition, StrictMode } from "react";
@@ -8,24 +8,34 @@ import { hydrateRoot } from "react-dom/client";
 async function hydrate() {
   // All i18n stuff - client side
   const cookies = document.cookie;
-  const userLang: ILanguage = getCookieProperty(
+
+  const htmlLang = document
+    .querySelector("html")
+    ?.getAttribute("lang") as ILanguage;
+
+  // Get app theme
+  const appTheme = getCookieProperty(
     cookies || "",
-    "language",
-    "en"
+    "khofly-app-theme",
+    "Mantine-Old"
   );
-  const contentReq = await fetch(
-    `http://localhost:3000/locales/${userLang}.json`
-  );
-  const content = await contentReq.text();
+
+  // Dynamically fetch content JSON
+  const contentFetch = await fetch(`/locales/${htmlLang}.json`);
+  const content = await contentFetch.json();
 
   startTransition(() => {
     hydrateRoot(
       document,
-      <I18nProvider content={JSON.parse(content)}>
+      <ClientServerProvider
+        content={content}
+        language={htmlLang}
+        theme={appTheme}
+      >
         <StrictMode>
           <RemixBrowser />
         </StrictMode>
-      </I18nProvider>
+      </ClientServerProvider>
     );
   });
 }

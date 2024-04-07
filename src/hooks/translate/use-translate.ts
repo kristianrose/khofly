@@ -1,7 +1,6 @@
-import { DotNestedKeys } from "@ts/global.types";
+import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
-import { useI18nContent } from "@store/language";
-import { ITranslations } from "@store/global";
+import { useClientServerState } from "@store/client-server";
 
 const getValueByString = (
   obj: ITranslations,
@@ -23,7 +22,7 @@ const getValueByString = (
 };
 
 export const useTranslate = () => {
-  const { content } = useI18nContent();
+  const { content } = useClientServerState();
 
   const t = (keysString: DotNestedKeys<ITranslations>, ...args: string[]) => {
     if (!content) return "<-- untranslated -->";

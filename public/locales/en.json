@@ -47,7 +47,8 @@
           "material": "Material",
           "catppuccin": "Catppuccin",
           "rosepine": "Rosé Pine",
-          "custom": "Custom"
+          "nord": "Nord",
+          "tokyo_night": "Tokyo Night"
         },
 
         "selectPrimaryColor": "Primary color",
@@ -109,22 +110,30 @@
       "engines": {
         "titleWithout": "other stuff",
 
-        "title1": "Web engines",
-        "title2": "wiki stuff",
-        "title3": "web",
+        "title": "General engines",
+        "title2": "web",
+        "title3": "wiki stuff",
 
         "engineGoogle": "Google",
         "engineDDG": "DuckDuckGo",
+        "enginePresearch": "Presearch",
         "engineQwant": "Qwant",
+        "engineMojeek": "Mojeek",
+        "engineStartpage": "Startpage",
         "engineBing": "Bing",
         "engineBrave": "Brave",
         "engineYahoo": "Yahoo!",
 
+        "engineWikibooks": "Wikibooks",
+        "engineWikisource": "Wikisource",
+        "engineWikispecies": "Wikispecies",
+
+        "engineAlexandria": "Alexandria",
         "engineWikipedia": "Wikipedia",
         "engineWikidata": "Wikidata",
 
         "titleImg": "Image engines",
-        "titleImg1": "web",
+        "titleImg2": "web",
 
         "engineGoogleImg": "Google images",
         "engineDDGImg": "DuckDuckGo images",
@@ -133,7 +142,7 @@
         "engineBraveImg": "Brave images",
 
         "titleVid": "Video engines",
-        "titleVid1": "web",
+        "titleVid2": "web",
 
         "engineGoogleVid": "Google videos",
         "engineDDGVid": "DuckDuckGo videos",
@@ -168,10 +177,10 @@
         "engineYTMusic": "YouTube",
 
         "titleIT": "IT engines",
-        "titleIT2": "q&a",
-        "titleIT3": "repos",
-        "titleIT4": "software wikis",
-        "titleIT5": "packages",
+        "titleIT2": "packages",
+        "titleIT3": "q&a",
+        "titleIT4": "repos",
+        "titleIT5": "software wikis",
 
         "engineDockerHubIT": "Docker hub",
         "engineNPMIT": "NPM",
@@ -196,7 +205,6 @@
         "engineIASScience": "Internet Archive Scholar",
         "enginePubMedScience": "PubMed",
         "engineSemanticScholarScience": "Semantic Scholar",
-        "engineWikispeciesScience": "Wikispecies",
         "engineOADatasetsScience": "OpenAIRE datasets",
         "engineOAPublicationsScience": "OpenAIRE publications",
         "enginePDBeScience": "PDBe",

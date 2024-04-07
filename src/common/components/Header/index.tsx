@@ -1,5 +1,5 @@
 import classes from "./styles.module.scss";
-import { Anchor, Button, Group, Text } from "@mantine/core";
+import { Group, Text } from "@mantine/core";
 
 import React from "react";
 import SearchSection from "@module/Search/components/SearchSection";
@@ -18,8 +18,6 @@ interface Props {
 const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const t = useTranslate();
   const { pathname } = useLocation();
-
-  // const { profile } = useGlobalStore((state) => ({ profile: state.profile }));
 
   const isChangelog = pathname.startsWith("/changelog");
   const isSettings = pathname.startsWith("/settings");
@@ -62,7 +60,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
             openNavbar={openNavbar}
             toggleNavbar={toggleNavbar}
           />
-          <Text className={classes.route_label} ml="sm" size="xl" fw={700}>
+          <Text ml="sm" size="xl" fw={700}>
             / {pageTitle}
           </Text>
         </>
@@ -72,7 +70,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       {isSearch && <HeaderSettings />}
 
-      {(isAbout || isDocs) && <HeaderCode />}
+      {(isAbout || isDocs || isChangelog) && <HeaderCode />}
     </Group>
   );
 };

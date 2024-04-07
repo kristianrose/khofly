@@ -1,7 +1,7 @@
 export const cryptoRandomNumber = (min: number, max: number) => {
   const cryptoRandom = () => {
     try {
-      var cryptoRandoms,
+      let cryptoRandoms,
         cryptoRandomSlices = [],
         cryptoRandom;
       while ((cryptoRandom = "." + cryptoRandomSlices.join("")).length < 30) {
@@ -9,8 +9,8 @@ export const cryptoRandomNumber = (min: number, max: number) => {
         cryptoRandoms = (window.crypto || window.msCrypto).getRandomValues(
           new Uint32Array(5)
         );
-        for (var i = 0; i < cryptoRandoms.length; i++) {
-          var cryptoRandomSlice = cryptoRandoms[i].toString().slice(1, -1);
+        for (let i = 0; i < cryptoRandoms.length; i++) {
+          const cryptoRandomSlice = cryptoRandoms[i].toString().slice(1, -1);
           if (cryptoRandomSlice.length > 0)
             cryptoRandomSlices[cryptoRandomSlices.length] = cryptoRandomSlice;
         }

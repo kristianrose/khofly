@@ -1,0 +1,36 @@
+@use "functions" as func;
+
+.weather_daily {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--mantine-radius-md);
+  height: func.to-rem(90px);
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+  transition: box-shadow 150ms ease, transform 100ms ease;
+  padding: var(--mantine-spacing-xs);
+
+  &:hover {
+    box-shadow: var(--mantine-shadow-md);
+    transform: scale(1.05);
+  }
+}
+
+.weather_icon_cloud_rain {
+  :nth-child(2) {
+    stroke: var(--mantine-color-blue-4);
+    stroke-width: 2px;
+  }
+}
+
+.weather_icon_cloud_storm {
+  :nth-child(2) {
+    stroke: var(--mantine-color-yellow-6);
+    stroke-width: 2px;
+  }
+}

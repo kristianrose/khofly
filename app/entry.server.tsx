@@ -1,14 +1,16 @@
 import { PassThrough } from "node:stream";
 
 import type { AppLoadContext, EntryContext } from "@remix-run/node";
-import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import * as isbotModule from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
-import { ITranslations } from "@store/global";
-import I18nProvider from "@store/language";
-import { ILanguage } from "@ts/global.types";
+import ClientServerProvider from "@store/client-server";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
+import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
+
+import { createReadableStreamFromReadable } from "@remix-run/node";
+import { handleRequest as handleVercelRequest } from "@vercel/remix";
+import { IAppTheme, ILanguage, ITranslations } from "@ts/global.types";
 
 const ABORT_DELAY = 5_000;
 
@@ -21,16 +23,55 @@ export default async function handleRequest(
 ) {
   // All i18n stuff - server side
   const cookies = request.headers.get("Cookie");
-  const userLang: ILanguage = getCookieProperty(
-    cookies || "",
-    "language",
-    "en"
-  );
-  const contentReq = await fetch(
-    `http://localhost:3000/locales/${userLang}.json`
-  );
-  const content = await contentReq.text();
+  const userLang = getCookieProperty(cookies || "", "khofly-language", "");
+  const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
+  // Check if user accept-language exists as option
+  const existingPrefLang = ["en"].includes(prefLang) ? prefLang : "en";
+
+  // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
+  const appLang = userLang || existingPrefLang || "en";
+
+  // Get app theme
+  const appTheme = getCookieProperty(
+    cookies || "",
+    "khofly-app-theme",
+    "Mantine-Old"
+  );
+
+  // Dynamically import content JSON
+  const contentImport = (await import(`../public/locales/${appLang}.json`))
+    .default;
+
+  // -------------------------------------------------
+  // Handle Vercel request
+  // -------------------------------------------------
+  if (process.env.HOST_TARGET === "vercel") {
+    const remixServer = (
+      <ClientServerProvider
+        content={contentImport}
+        language={appLang}
+        theme={appTheme}
+      >
+        <RemixServer
+          context={remixContext}
+          url={request.url}
+          abortDelay={ABORT_DELAY}
+        />
+      </ClientServerProvider>
+    );
+
+    return handleVercelRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixServer
+    );
+  }
+
+  // -------------------------------------------------
+  // Handle Node request
+  // -------------------------------------------------
   return isBotRequest(request.headers.get("user-agent"))
     ? handleBotRequest(
         request,
@@ -43,7 +84,9 @@ export default async function handleRequest(
         responseStatusCode,
         responseHeaders,
         remixContext,
-        JSON.parse(content)
+        contentImport,
+        appLang,
+        appTheme
       );
 }
 
@@ -123,18 +166,20 @@ function handleBrowserRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  content: ITranslations
+  content: ITranslations,
+  language: ILanguage,
+  theme: IAppTheme
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
-      <I18nProvider content={content}>
+      <ClientServerProvider content={content} language={language} theme={theme}>
         <RemixServer
           context={remixContext}
           url={request.url}
           abortDelay={ABORT_DELAY}
         />
-      </I18nProvider>,
+      </ClientServerProvider>,
       {
         onShellReady() {
           shellRendered = true;

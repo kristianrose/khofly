@@ -2,7 +2,6 @@ import {
   Anchor,
   Button,
   Flex,
-  Group,
   Paper,
   Stack,
   Text,
@@ -15,7 +14,6 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useForm } from "@mantine/form";
 import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
-import RemixLink from "@components/RemixLink";
 
 const SettingsNominatim = () => {
   const { domain, setDomain } = useInstanceStore((state) => ({
@@ -55,7 +53,11 @@ const SettingsNominatim = () => {
         <Stack px="lg" mb="xl">
           <Text size="sm">
             <Text component="span" c="blue.4">
-              <Anchor href="https://nominatim.org/" target="_blank">
+              <Anchor
+                href="https://nominatim.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Nominatim
               </Anchor>
             </Text>{" "}
@@ -82,7 +84,7 @@ const SettingsNominatim = () => {
             Change this to your own url for better privacy & less load for
             default instance.{" "}
             <Text component="span" c="blue">
-              <Anchor href="https://nominatim.org/" target="_blank">
+              <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
                 Read more
               </Anchor>
             </Text>

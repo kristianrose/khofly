@@ -1,21 +1,6 @@
-import {
-  ActionIcon,
-  Autocomplete,
-  Button,
-  Flex,
-  Loader,
-  Menu,
-  TextInput,
-  rem,
-} from "@mantine/core";
-import {
-  IconArrowRight,
-  IconKeyboard,
-  IconListSearch,
-  IconMicrophone,
-  IconSearch,
-} from "@tabler/icons-react";
-import React, { useEffect, useState } from "react";
+import { ActionIcon, Autocomplete, Flex, Loader, rem } from "@mantine/core";
+import { IconArrowRight, IconKeyboard, IconSearch } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
 import { useDebouncedValue, useDisclosure } from "@mantine/hooks";
@@ -25,14 +10,14 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { nprogress } from "@mantine/nprogress";
-import { useGeneralStore } from "@store/general";
 import { useNavigate } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { useSettingsStore } from "@store/settings";
 
 const SearchBar = () => {
   const t = useTranslate();
 
-  const { useAutocomplete } = useGeneralStore((state) => ({
+  const { useAutocomplete } = useSettingsStore((state) => ({
     useAutocomplete: state.useAutocomplete,
   }));
 
@@ -129,6 +114,12 @@ const SearchBar = () => {
           onOptionSubmit: (val) => handleSearch(val),
           size: "md",
         }}
+        // Disable password manager stuff
+        autoComplete="off"
+        data-1p-ignore
+        data-bwignore
+        data-lpignore="true"
+        data-form-type="other"
       />
 
       {openKeyboard && (

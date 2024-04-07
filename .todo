@@ -4,3 +4,12 @@ Features?
 - If equation = give result
 
 move leaflet stuff to /search
+fix language change page refresh
+
+fix build errors
+reduce file sizes
+make about page
+speed up settings tab navigation
+404 text alignment when deployed
+
+use remix fetcher with useSwr?

@@ -7,5 +7,5 @@ export const getIconStyle = (
   width: rem(size),
   minWidth: rem(size),
   height: rem(size),
-  display: inline ? "inline-block" : "block",
+  display: inline ? "inline-block" : "flex",
 });

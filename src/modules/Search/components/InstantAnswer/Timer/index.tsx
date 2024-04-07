@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IAWrapper } from "../wrapper";
 import {
   ActionIcon,
@@ -46,7 +46,11 @@ const INITIAL_TIME = {
   second: 10,
 };
 
-const Timer = () => {
+interface Props {
+  withIAWrapper: boolean;
+}
+
+const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
   const [initialTime, setInitialTime] = useState(INITIAL_TIME);
   const [time, setTime] = useState(INITIAL_TIME);
 
@@ -103,138 +107,133 @@ const Timer = () => {
     stop();
   };
 
-  return (
-    <IAWrapper>
-      <Center>
-        <Paper
-          className={clsx(classes.paper_base, {
-            [classes.paper_finished]: isFinished,
-          })}
-          p="md"
-          radius="sm"
-          withBorder
-        >
-          <Flex align="center" justify="space-between" direction="row">
-            <RingProgress
-              thickness={8}
-              roundCaps
-              sections={[
-                {
-                  value: remainingPercentage(
-                    getTotalSeconds(time),
-                    getTotalSeconds(initialTime)
-                  ),
-                  color: "green",
-                },
-              ]}
-              label={
-                isFinished ? (
-                  <Center
-                    className={classes.action_button}
-                    onClick={handleReset}
+  const timerComponent = (
+    <Center>
+      <Paper
+        className={clsx(classes.paper_base, {
+          [classes.paper_finished]: isFinished,
+        })}
+        p="md"
+        radius="sm"
+        withBorder
+      >
+        <Flex align="center" justify="space-between" direction="row">
+          <RingProgress
+            thickness={8}
+            roundCaps
+            sections={[
+              {
+                value: remainingPercentage(
+                  getTotalSeconds(time),
+                  getTotalSeconds(initialTime)
+                ),
+                color: "green",
+              },
+            ]}
+            label={
+              isFinished ? (
+                <Center className={classes.action_button} onClick={handleReset}>
+                  <ActionIcon
+                    color="teal"
+                    variant="light"
+                    radius="xl"
+                    size={50}
                   >
-                    <ActionIcon
-                      color="teal"
-                      variant="light"
-                      radius="xl"
-                      size={50}
-                    >
-                      <IconCheck style={getIconStyle(30)} stroke={5} />
-                    </ActionIcon>
-                  </Center>
-                ) : active ? (
-                  <Center
-                    className={classes.action_button}
-                    onClick={handlePause}
+                    <IconCheck style={getIconStyle(30)} stroke={5} />
+                  </ActionIcon>
+                </Center>
+              ) : active ? (
+                <Center className={classes.action_button} onClick={handlePause}>
+                  <ActionIcon
+                    color="gray"
+                    variant="light"
+                    radius="xl"
+                    size={50}
                   >
-                    <ActionIcon
-                      color="gray"
-                      variant="light"
-                      radius="xl"
-                      size={50}
-                    >
-                      <IconPlayerPauseFilled style={getIconStyle(32)} />
-                    </ActionIcon>
-                  </Center>
-                ) : (
-                  <Center
-                    className={classes.action_button}
-                    onClick={handlePlay}
+                    <IconPlayerPauseFilled style={getIconStyle(32)} />
+                  </ActionIcon>
+                </Center>
+              ) : (
+                <Center className={classes.action_button} onClick={handlePlay}>
+                  <ActionIcon
+                    color="gray"
+                    variant="light"
+                    radius="xl"
+                    size={50}
                   >
-                    <ActionIcon
-                      color="gray"
-                      variant="light"
-                      radius="xl"
-                      size={50}
-                    >
-                      <IconPlayerPlayFilled style={getIconStyle(32)} />
-                    </ActionIcon>
-                  </Center>
-                )
-              }
-            />
+                    <IconPlayerPlayFilled style={getIconStyle(32)} />
+                  </ActionIcon>
+                </Center>
+              )
+            }
+          />
 
-            {active || isFinished || isStarted ? (
-              <Flex align="flex-end">
-                <Text fz={42}>{formatOutput(time.hour)}:</Text>
-                <Text fz={42}>{formatOutput(time.minute)}</Text>
-                <Text fz={24} c="dimmed" ml={2} mb={6}>
-                  {formatOutput(time.second)}
-                </Text>
-              </Flex>
-            ) : (
-              <Flex gap="sm">
-                <NumberInput
-                  value={time.hour}
-                  onChange={(val) =>
-                    handleChangeSeconds(parseInt(`${val}`), "hour")
-                  }
-                  w={50}
-                  max={59}
-                  placeholder="HH"
-                  hideControls
-                  label="HH"
-                />
-                <NumberInput
-                  value={time.minute}
-                  onChange={(val) =>
-                    handleChangeSeconds(parseInt(`${val}`), "minute")
-                  }
-                  w={50}
-                  max={59}
-                  placeholder="MM"
-                  hideControls
-                  label="MM"
-                />
-                <NumberInput
-                  value={time.second}
-                  onChange={(val) =>
-                    handleChangeSeconds(parseInt(`${val}`), "second")
-                  }
-                  w={50}
-                  max={59}
-                  placeholder="SS"
-                  hideControls
-                  label="SS"
-                />
-              </Flex>
-            )}
+          {active || isFinished || isStarted ? (
+            <Flex align="flex-end">
+              <Text fz={42}>{formatOutput(time.hour)}:</Text>
+              <Text fz={42}>{formatOutput(time.minute)}</Text>
+              <Text fz={24} c="dimmed" ml={2} mb={6}>
+                {formatOutput(time.second)}
+              </Text>
+            </Flex>
+          ) : (
+            <Flex gap="sm">
+              <NumberInput
+                value={time.hour}
+                onChange={(val) =>
+                  handleChangeSeconds(parseInt(`${val}`), "hour")
+                }
+                w={50}
+                max={59}
+                placeholder="HH"
+                hideControls
+                label="HH"
+              />
 
-            {!active && isStarted && (
-              <Button
-                className={classes.reset_btn}
-                size="xs"
-                variant="default"
-                onClick={handleReset}
-              >
-                Reset
-              </Button>
-            )}
-          </Flex>
-        </Paper>
-      </Center>
-    </IAWrapper>
+              <NumberInput
+                value={time.minute}
+                onChange={(val) =>
+                  handleChangeSeconds(parseInt(`${val}`), "minute")
+                }
+                w={50}
+                max={59}
+                placeholder="MM"
+                hideControls
+                label="MM"
+              />
+
+              <NumberInput
+                value={time.second}
+                onChange={(val) =>
+                  handleChangeSeconds(parseInt(`${val}`), "second")
+                }
+                w={50}
+                max={59}
+                placeholder="SS"
+                hideControls
+                label="SS"
+              />
+            </Flex>
+          )}
+
+          {!active && isStarted && (
+            <Button
+              className={classes.reset_btn}
+              size="xs"
+              variant="default"
+              onClick={handleReset}
+            >
+              Reset
+            </Button>
+          )}
+        </Flex>
+      </Paper>
+    </Center>
   );
+
+  if (withIAWrapper) return <IAWrapper>{timerComponent}</IAWrapper>;
+
+  return timerComponent;
 };
 
-export default Timer;
+export default IATimer;

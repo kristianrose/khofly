@@ -10,7 +10,7 @@ interface Props {
   initialQ?: string;
 }
 
-const Lyrics: React.FC<Props> = ({ initialQ }) => {
+const IALyrics: React.FC<Props> = ({ initialQ }) => {
   const [searchParams] = useSearchParams();
 
   const { data, trigger } = useLyricsSWR();
@@ -26,10 +26,21 @@ const Lyrics: React.FC<Props> = ({ initialQ }) => {
     if (q) trigger(q.replace("lyrics", ""));
   }, [q]);
 
-  if (!data) return null;
+  if (!data) return <IAWrapper />;
 
   return (
-    <IAWrapper>
+    <IAWrapper
+      label={
+        <Text size="sm" c="dimmed">
+          Lyrics provided by{" "}
+          <Anchor href="https://genius.com" rel="noreferrer noopener">
+            <Text component="span" c="blue.4">
+              Genius
+            </Text>
+          </Anchor>
+        </Text>
+      }
+    >
       <Spoiler maxHeight={170} showLabel="Show more" hideLabel="Hide">
         <Text className={classes.song_title} fz={22} fw={600}>
           {data.title}
@@ -40,17 +51,8 @@ const Lyrics: React.FC<Props> = ({ initialQ }) => {
 
         <Text className={classes.song_lyrics}>{data?.lyrics}</Text>
       </Spoiler>
-
-      <Text size="sm" mt="xl" c="dimmed">
-        Lyrics provided by{" "}
-        <Anchor href="https://genius.com">
-          <Text component="span" c="blue.4">
-            Genius
-          </Text>
-        </Anchor>
-      </Text>
     </IAWrapper>
   );
 };
 
-export default Lyrics;
+export default IALyrics;

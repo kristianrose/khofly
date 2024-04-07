@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const ClientOnly = ({ children }: { children: any }) => {
-  let [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);

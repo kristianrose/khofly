@@ -1,19 +1,9 @@
-import { CodeHighlight, CodeHighlightTabs } from "@mantine/code-highlight";
-import {
-  Blockquote,
-  Code,
-  Container,
-  Image,
-  List,
-  Paper,
-  Text,
-} from "@mantine/core";
-import { IconFile } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import WikiLink from "./common/WikiLink";
+import { CodeHighlightTabs } from "@mantine/code-highlight";
+import { Blockquote, Code, Container, Paper, Text } from "@mantine/core";
 import WikiText from "./common/WikiText";
 import WikiSubtitle from "./common/WikiSubtitle";
 import RemixLink from "@components/RemixLink";
+import WikiTitle from "./common/WikiTitle";
 
 const CODE_SEARXNG_CONFIG = `
 search:
@@ -25,9 +15,11 @@ server:
   secret_key: "sercet" # make sure to change this
 `;
 
-const DocsCustomSearxng = () => {
+const DocsResourcesCustomSearxng = () => {
   return (
     <Container size="lg" p="xl" pb={100}>
+      <WikiTitle>Custom SearXNG instance</WikiTitle>
+
       <Blockquote
         color="blue"
         // cite="- https://docs.searxng.org/"
@@ -83,4 +75,4 @@ const DocsCustomSearxng = () => {
   );
 };
 
-export default DocsCustomSearxng;
+export default DocsResourcesCustomSearxng;

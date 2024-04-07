@@ -1,44 +1,58 @@
-import React from "react";
 import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
 import {
+  IconApps,
   IconBrush,
-  IconEngine,
   IconLink,
   IconRadar,
-  IconSearch,
   IconSettings2,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
-import SettingsTheme from "./components/Theme";
 import SettingsInterface from "./components/Interface";
-import EnginesTabs from "./components/EnginesTabs";
+import SettingsEngines from "./components/Engines";
 import SettingsCategories from "./components/Categories";
-import { useGlobalStore } from "@store/global";
 import SettingsNominatim from "./components/Nominatim";
+import { useNavigate, useSearchParams } from "@remix-run/react";
+import { useState } from "react";
 
 const PageSettings = () => {
-  const { appTheme } = useGlobalStore((state) => ({
-    appTheme: state.appTheme,
-  }));
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const paramTab = searchParams.get("tab");
+
+  // Keep local state so app feels faster
+  const [stateTab, setStateTab] = useState(paramTab || "general");
+
+  const handleChangeTab = (next: string | null) => {
+    if (!next) return;
+
+    setStateTab(next);
+    navigate(`/settings?tab=${next}`, { replace: true });
+  };
 
   return (
-    <Container className={classes.settings_page} size="lg" py={80}>
-      <Tabs variant="default" defaultValue="interface" keepMounted={false}>
+    <Container className={classes.settings_page} size="lg" pt={40} pb={80}>
+      <Tabs
+        variant="default"
+        value={stateTab}
+        onChange={handleChangeTab}
+        keepMounted={false}
+      >
         <Tabs.List mb="xl" className={classes.tabs_scroll}>
-          <Tabs.Tab
-            value="interface"
-            leftSection={<IconBrush style={getIconStyle(20)} />}
-          >
-            Interface
-          </Tabs.Tab>
           <Tabs.Tab
             value="general"
             leftSection={<IconSettings2 style={getIconStyle(20)} />}
           >
             General
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="interface"
+            leftSection={<IconBrush style={getIconStyle(20)} />}
+          >
+            Interface
           </Tabs.Tab>
           <Tabs.Tab
             value="instance"
@@ -52,13 +66,16 @@ const PageSettings = () => {
           >
             Engines
           </Tabs.Tab>
+          <Tabs.Tab
+            value="shortcuts"
+            leftSection={<IconApps style={getIconStyle(20)} />}
+          >
+            Shortcuts
+          </Tabs.Tab>
         </Tabs.List>
 
         <Tabs.Panel value="interface">
-          <>
-            <SettingsInterface />
-            {appTheme === "Custom" && <SettingsTheme />}
-          </>
+          <SettingsInterface />
         </Tabs.Panel>
 
         <Tabs.Panel value="general">
@@ -76,8 +93,12 @@ const PageSettings = () => {
         </Tabs.Panel>
 
         <Tabs.Panel value="engines">
-          <EnginesTabs />
+          <SettingsEngines />
         </Tabs.Panel>
+        {/* 
+        <Tabs.Panel value="shortcuts">
+          <SettingsShortcuts />
+        </Tabs.Panel> */}
       </Tabs>
     </Container>
   );

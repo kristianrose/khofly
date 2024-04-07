@@ -1,9 +1,8 @@
 import { Switch } from "@mantine/core";
-import { useGeneralStore } from "@store/general";
-import React from "react";
+import { useSettingsStore } from "@store/settings";
 
 const NewTabSwitch = () => {
-  const { openInNewTab, setOpenInNewTab } = useGeneralStore((state) => ({
+  const { openInNewTab, setOpenInNewTab } = useSettingsStore((state) => ({
     openInNewTab: state.openInNewTab,
     setOpenInNewTab: state.setOpenInNewTab,
   }));

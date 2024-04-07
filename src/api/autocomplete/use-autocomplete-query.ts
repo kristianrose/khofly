@@ -1,6 +1,6 @@
-import { useGeneralStore } from "@store/general";
 import useFetch from "../use-fetch";
 import useSWRMutation from "swr/mutation";
+import { useSettingsStore } from "@store/settings";
 
 // Restart SearXNG
 // sudo systemctl reload nginx
@@ -9,7 +9,7 @@ import useSWRMutation from "swr/mutation";
 const useAutocompleteSWR = () => {
   const { fetchData } = useFetch();
 
-  const { autocompleteEngine } = useGeneralStore((state) => ({
+  const { autocompleteEngine } = useSettingsStore((state) => ({
     autocompleteEngine: state.autocompleteEngine,
   }));
 

@@ -6,6 +6,7 @@ import {
   Center,
   Box,
   useMantineTheme,
+  useComputedColorScheme,
 } from "@mantine/core";
 
 import { IconSun, IconMoon } from "@tabler/icons-react";
@@ -13,12 +14,17 @@ import { IconSun, IconMoon } from "@tabler/icons-react";
 const ColorSchemeSwitch = () => {
   const t = useTranslate();
   const theme = useMantineTheme();
-  const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const { setColorScheme } = useMantineColorScheme({
+    keepTransitions: true,
+  });
+  const computedColorScheme = useComputedColorScheme("dark", {
+    getInitialValueInEffect: true,
+  });
 
   return (
     <Group align="center">
       <SegmentedControl
-        value={colorScheme}
+        value={computedColorScheme}
         onChange={(value) => setColorScheme(value as "light" | "dark")}
         data={[
           {

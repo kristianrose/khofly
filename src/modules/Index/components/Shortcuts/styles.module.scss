@@ -1,0 +1,22 @@
+@use "functions" as func;
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--mantine-radius-md);
+  height: func.to-rem(90px);
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+  transition: box-shadow 150ms ease, transform 100ms ease;
+  padding: var(--mantine-spacing-xs);
+
+  &:hover {
+    box-shadow: var(--mantine-shadow-md);
+    transform: scale(1.05);
+  }
+}

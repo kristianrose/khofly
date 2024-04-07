@@ -4,7 +4,7 @@ import LanguageSelect from "./LanguageSelect/LanguageSelect";
 import ThemeSelect from "./ThemeSelect/ThemeSelect";
 import ColorSchemeSwitch from "./ColorThemeSwitch/ColorThemeSwitch";
 
-import { IconBrush, IconSettings } from "@tabler/icons-react";
+import { IconBrush } from "@tabler/icons-react";
 
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";

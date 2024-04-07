@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "@mantine/core";
 
-import { IconInfoCircle, IconSettings } from "@tabler/icons-react";
+import { IconInfoCircle, IconSettings2 } from "@tabler/icons-react";
 import FaviconSwitch from "./FaviconSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
@@ -24,7 +24,7 @@ const SettingsGeneral = () => {
   return (
     <Paper radius="md" withBorder mt={40}>
       <Flex align="center" p="lg" mb={16}>
-        <IconSettings size={32} />
+        <IconSettings2 size={32} />
 
         <Text fz={26} fw={600} ml="sm">
           {t("pages.settings.general.title")}

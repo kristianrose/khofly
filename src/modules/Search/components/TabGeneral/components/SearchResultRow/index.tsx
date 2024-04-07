@@ -5,6 +5,7 @@ import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useResponsive } from "@hooks/use-responsive";
 import { useGeneralStore } from "@store/general";
+import { useSettingsStore } from "@store/settings";
 
 const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   title,
@@ -13,13 +14,14 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   content,
   engines,
 }) => {
-  const { visitedLinks, updateVisitedLinks, openInNewTab, displayFavicon } =
-    useGeneralStore((state) => ({
-      visitedLinks: state.visitedLinks,
-      updateVisitedLinks: state.updateVisitedLinks,
-      openInNewTab: state.openInNewTab,
-      displayFavicon: state.displayFavicon,
-    }));
+  const { visitedLinks, updateVisitedLinks } = useGeneralStore((state) => ({
+    visitedLinks: state.visitedLinks,
+    updateVisitedLinks: state.updateVisitedLinks,
+  }));
+  const { openInNewTab, displayFavicon } = useSettingsStore((state) => ({
+    openInNewTab: state.openInNewTab,
+    displayFavicon: state.displayFavicon,
+  }));
 
   const isXs = useResponsive("max", "xs");
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs

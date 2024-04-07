@@ -10,7 +10,7 @@ import {
   Text,
 } from "@mantine/core";
 import { useClipboard } from "@mantine/hooks";
-import { useGeneralStore } from "@store/general";
+import { useSettingsStore } from "@store/settings";
 import {
   IconCopy,
   IconDownload,
@@ -30,7 +30,7 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
   const { copy } = useClipboard();
   const { toast } = useToast();
 
-  const { openInNewTab } = useGeneralStore((state) => ({
+  const { openInNewTab } = useSettingsStore((state) => ({
     openInNewTab: state.openInNewTab,
   }));
 
@@ -51,9 +51,8 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
       opened={isOpen}
       onClose={handleClose}
       title="View image"
-      overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
       position="right"
-      size="lg"
+      size="xl"
       closeButtonProps={{
         size: "xl",
       }}
@@ -69,7 +68,11 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
       <Image src={viewImage?.img_src} fit="contain" mt="lg" radius="md" />
 
       <Flex align="center" justify="flex-start" mt="xl" gap="xl">
-        <Anchor href={viewImage?.url} target={anchorTarget}>
+        <Anchor
+          href={viewImage?.url}
+          target={anchorTarget}
+          rel="noreferrer noopener"
+        >
           <Flex direction="column" align="center" justify="center">
             <ActionIcon variant="light" aria-label="Settings" size="xl">
               <IconExternalLink
@@ -84,7 +87,11 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
           </Flex>
         </Anchor>
 
-        <Anchor href={viewImage?.img_src} target="_blank">
+        <Anchor
+          href={viewImage?.img_src}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
           <Flex direction="column" align="center" justify="center">
             <ActionIcon variant="light" aria-label="Settings" size="xl">
               <IconDownload

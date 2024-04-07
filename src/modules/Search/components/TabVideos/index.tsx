@@ -1,21 +1,26 @@
 import { Button, Center, Flex, SimpleGrid, Text } from "@mantine/core";
 import { ISearXNGResultsVideos } from "@ts/searxng.types";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import VideoCell from "./components/VideoCell";
 import VideoSkeleton from "./components/VideoSkeleton";
 
 import classes from "./styles.module.scss";
 import SearchOptions from "../SearchOptions";
+import { useEnginesStore } from "@store/engines";
 
 const TabVideos = () => {
+  const { hydrated } = useEnginesStore((state) => ({
+    hydrated: state.hydrated,
+  }));
+
   const { data, error, isLoading, isValidating, setSize, size, mutate } =
     useSearXNGSWR<ISearXNGResultsVideos>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length) mutate();
-  }, []);
+    if (!data?.length && hydrated) mutate();
+  }, [hydrated]);
 
   return (
     <Flex className={classes.tab_videos} direction="column">

@@ -1,6 +1,6 @@
 import { useTranslate } from "@hooks/translate/use-translate";
 import { Flex, Select, Switch } from "@mantine/core";
-import { IAutocompleteEngines, useGeneralStore } from "@store/general";
+import { IAutocompleteEngines, useSettingsStore } from "@store/settings";
 
 const AutocompleteSwitch = () => {
   const t = useTranslate();
@@ -10,7 +10,7 @@ const AutocompleteSwitch = () => {
     setUseAutocomplete,
     autocompleteEngine,
     setAutocompleteEngine,
-  } = useGeneralStore((state) => ({
+  } = useSettingsStore((state) => ({
     useAutocomplete: state.useAutocomplete,
     setUseAutocomplete: state.setUseAutocomplete,
     autocompleteEngine: state.autocompleteEngine,

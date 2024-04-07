@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
-  const { thumbnail_src, img_format, parsed_url, title } = imageData;
+  const { thumbnail_src, resolution, parsed_url, title } = imageData;
 
   return (
     <Flex
@@ -34,7 +34,7 @@ const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
           // unoptimized
         />
         <Text size="xs" className={classes.format_label}>
-          {img_format}
+          {resolution}
         </Text>
       </Flex>
 

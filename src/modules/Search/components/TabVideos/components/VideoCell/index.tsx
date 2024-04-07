@@ -3,7 +3,7 @@ import { ISearXNGResultsVideos } from "@ts/searxng.types";
 import React from "react";
 import classes from "./styles.module.scss";
 import { useResponsive } from "@hooks/use-responsive";
-import { useGeneralStore } from "@store/general";
+import { useSettingsStore } from "@store/settings";
 
 interface Props {
   videoData: ISearXNGResultsVideos["results"][0];
@@ -12,7 +12,7 @@ interface Props {
 const VideoCell: React.FC<Props> = ({ videoData }) => {
   const { parsed_url, title, thumbnail, url } = videoData;
 
-  const { openInNewTab } = useGeneralStore((state) => ({
+  const { openInNewTab } = useSettingsStore((state) => ({
     openInNewTab: state.openInNewTab,
   }));
 
@@ -24,15 +24,8 @@ const VideoCell: React.FC<Props> = ({ videoData }) => {
     : "_self";
 
   return (
-    <Anchor href={url} target={anchorTarget}>
-      <Flex
-        className={classes.video_container}
-        direction="column"
-        p="xs"
-        //   href={url}
-        //   target={"_blank"}
-        //   rel="noreferrer noopener"
-      >
+    <Anchor href={url} target={anchorTarget} rel="noreferrer noopener">
+      <Flex className={classes.video_container} direction="column" p="xs">
         <Image
           src={thumbnail}
           w="100%"

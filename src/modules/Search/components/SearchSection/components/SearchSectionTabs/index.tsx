@@ -1,37 +1,48 @@
 import { ActionIcon, Flex, Tabs } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
 import {
   IconAdjustmentsHorizontal,
   IconCpu,
+  IconFiles,
   IconMapPin,
   IconMusic,
   IconNews,
   IconPhoto,
   IconPlayerPlay,
+  IconSchool,
   IconSearch,
+  IconUsers,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useSearchStore } from "@store/search";
-import { ICategories, useGeneralStore } from "@store/general";
 import { useNavigate, useSearchParams } from "@remix-run/react";
+import { useSearchStore } from "@store/search";
+import { ICategories, useSettingsStore } from "@store/settings";
 
 const SearchSectionTabs = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const { isSearchOptionsOpen, setIsSearchOptionsOpen, categories } =
-    useGeneralStore((state) => ({
-      setIsSearchOptionsOpen: state.setIsSearchOptionsOpen,
-      isSearchOptionsOpen: state.isSearchOptionsOpen,
-      categories: state.categories,
-    }));
+  const {
+    isSearchOptionsOpen,
+    setIsSearchOptionsOpen,
+    selectedTab,
+    setSelectedTab,
+  } = useSearchStore((state) => ({
+    setIsSearchOptionsOpen: state.setIsSearchOptionsOpen,
+    isSearchOptionsOpen: state.isSearchOptionsOpen,
+    selectedTab: state.selectedTab,
+    setSelectedTab: state.setSelectedTab,
+  }));
+  const { categories } = useSettingsStore((state) => ({
+    categories: state.categories,
+  }));
 
   const iconSize = 16;
 
   const handleChangeTab = (tab: ICategories) => {
     const query = searchParams.get("q") || "";
 
+    // setSelectedTab(tab);
     navigate(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
 
@@ -43,6 +54,7 @@ const SearchSectionTabs = () => {
           list: classes.tab_list,
         }}
         defaultValue="general"
+        // value={selectedTab || "general"}
         value={searchParams.get("tab") || "general"}
         onChange={(tab) => handleChangeTab(tab as ICategories)}
         variant="default"
@@ -91,7 +103,7 @@ const SearchSectionTabs = () => {
           )}
           {categories.includes("music") && (
             <Tabs.Tab
-              value="maps"
+              value="music"
               leftSection={<IconMusic style={getIconStyle(iconSize)} />}
             >
               Music
@@ -100,10 +112,37 @@ const SearchSectionTabs = () => {
 
           {categories.includes("it") && (
             <Tabs.Tab
-              value="maps"
+              value="it"
               leftSection={<IconCpu style={getIconStyle(iconSize)} />}
             >
               IT
+            </Tabs.Tab>
+          )}
+
+          {categories.includes("science") && (
+            <Tabs.Tab
+              value="science"
+              leftSection={<IconSchool style={getIconStyle(iconSize)} />}
+            >
+              Science
+            </Tabs.Tab>
+          )}
+
+          {categories.includes("files") && (
+            <Tabs.Tab
+              value="files"
+              leftSection={<IconFiles style={getIconStyle(iconSize)} />}
+            >
+              Files
+            </Tabs.Tab>
+          )}
+
+          {categories.includes("social_media") && (
+            <Tabs.Tab
+              value="social_media"
+              leftSection={<IconUsers style={getIconStyle(iconSize)} />}
+            >
+              Social Media
             </Tabs.Tab>
           )}
         </Tabs.List>

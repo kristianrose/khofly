@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { getDefaultSearXNG } from "./utils";
 
 interface InstanceState {
   searXNGDomain: string;
@@ -12,7 +13,7 @@ interface InstanceState {
 export const useInstanceStore = create<InstanceState>()(
   persist(
     (set) => ({
-      searXNGDomain: process.env.SEARXNG_URL || "",
+      searXNGDomain: getDefaultSearXNG(),
       setSearXNGDomain: (domain) => set({ searXNGDomain: domain }),
 
       nominatimDomain: process.env.NOMINATIM_URL || "",

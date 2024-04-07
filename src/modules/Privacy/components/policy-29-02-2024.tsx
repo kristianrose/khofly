@@ -1,4 +1,3 @@
-import RemixLink from "@components/RemixLink";
 import {
   Anchor,
   Card,
@@ -11,7 +10,6 @@ import {
 import {
   IconCookie,
   IconLock,
-  IconNews,
   IconPhone,
   IconSpy,
   IconUsers,
@@ -76,6 +74,7 @@ const PrivacyPolicy290224 = () => {
               <Anchor
                 href="https://osmfoundation.org/wiki/Privacy_Policy"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <Text component="span" c="blue.4">
                   here
@@ -95,6 +94,7 @@ const PrivacyPolicy290224 = () => {
               <Anchor
                 href="https://www.cloudflare.com/privacypolicy/"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <Text component="span" c="blue.4">
                   here
@@ -113,6 +113,7 @@ const PrivacyPolicy290224 = () => {
               <Anchor
                 href="https://www.hetzner.com/legal/privacy-policy/"
                 target="_blank"
+                rel="noreferrer noopener"
               >
                 <Text component="span" c="blue.4">
                   here
@@ -129,7 +130,11 @@ const PrivacyPolicy290224 = () => {
               If you decide to display website favicons in settings this will
               send a request to DDGs servers, keep in mind that this option is
               disabled by default, their privacy policy can be found{" "}
-              <Anchor href="https://duckduckgo.com/privacy" target="_blank">
+              <Anchor
+                href="https://duckduckgo.com/privacy"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Text component="span" c="blue.4">
                   here
                 </Text>
@@ -193,7 +198,11 @@ const PrivacyPolicy290224 = () => {
 
         <Text>
           <b>Email:</b>{" "}
-          <Anchor href="https://discord.gg/mQ68HppVbt" target="_blank">
+          <Anchor
+            href="https://discord.gg/mQ68HppVbt"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <Text component="span" c="blue.4">
               contact@khofly.com
             </Text>
@@ -201,7 +210,11 @@ const PrivacyPolicy290224 = () => {
         </Text>
         <Text>
           <b>Discord:</b>{" "}
-          <Anchor href="https://discord.gg/mQ68HppVbt" target="_blank">
+          <Anchor
+            href="https://discord.gg/mQ68HppVbt"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <Text component="span" c="blue.4">
               https://discord.gg/mQ68HppVbt
             </Text>

@@ -1,9 +1,6 @@
-import React from "react";
 import WikiText from "../../common/WikiText";
 import {
-  IconArrowDown,
   IconDotsVertical,
-  IconEdit,
   IconInfoCircle,
   IconPencil,
 } from "@tabler/icons-react";

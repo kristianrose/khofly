@@ -1,22 +1,26 @@
 import { Box, Code, Container, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-import Calculator from "@module/Search/components/InstantAnswer/Calculator";
-import CoinFlip from "@module/Search/components/InstantAnswer/CoinFilp";
-import Lyrics from "@module/Search/components/InstantAnswer/Lyrics";
-import Stopwatch from "@module/Search/components/InstantAnswer/Stopwatch";
-import Timer from "@module/Search/components/InstantAnswer/Timer";
-import Translate from "@module/Search/components/InstantAnswer/Translate";
-import UUID from "@module/Search/components/InstantAnswer/UUID";
+import WikiTitle from "./common/WikiTitle";
+import WikiSubtitle from "./common/WikiSubtitle";
+
+import IACalculator from "@module/Search/components/InstantAnswer/Calculator";
+import IACoinFlip from "@module/Search/components/InstantAnswer/CoinFilp";
+import IALyrics from "@module/Search/components/InstantAnswer/Lyrics";
+import IATimer from "@module/Search/components/InstantAnswer/Timer";
+import IATranslate from "@module/Search/components/InstantAnswer/Translate";
+import IAUUID from "@module/Search/components/InstantAnswer/UUID";
+import IAWeather from "@module/Search/components/InstantAnswer/Weather";
+import IACalendar from "@module/Search/components/InstantAnswer/Calendar";
+import IAStopwatch from "@module/Search/components/InstantAnswer/Stopwatch";
 
 const DocsResourcesInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <Text fz="34" fw={600} mb="md">
-        Adding instant answer
-      </Text>
+      <WikiTitle>Adding instant answer</WikiTitle>
+
       <Text mt="md">
         All instant answers code is located in{" "}
         <Code>/src/modules/Search/components/InstantAnswer</Code>
@@ -28,55 +32,57 @@ const DocsResourcesInstantAnswer = () => {
         others are displayed conditionally.
       </Text>
 
-      <Text fz="34" mt="md" fw={600} mb="md">
-        All available instant answers
-      </Text>
+      <WikiSubtitle>All available instant answers</WikiSubtitle>
+
       <Text mt="md">
         Below is a list of all currently available Instant Answers, some of them
         might still be work in progress but offer enough functionality to still
         be included and be useful. More will be available in the future.
       </Text>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        1. Calculator
-      </Text>
+      <WikiTitle>1. Calculator</WikiTitle>
       <Box className={classes.search_box}>
-        <Calculator />
+        <IACalculator />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        2. Coin Flip
-      </Text>
+      <WikiTitle>2. Calendar</WikiTitle>
       <Box className={classes.search_box}>
-        <CoinFlip />
+        <IACalendar />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        3. Lyrics
-      </Text>
+      <WikiTitle>3. Coin Flip</WikiTitle>
       <Box className={classes.search_box}>
-        <Lyrics initialQ="rick astley never gonna give you up" />
+        <IACoinFlip />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        4. Timer
-      </Text>
+      <WikiTitle>4. Lyrics</WikiTitle>
       <Box className={classes.search_box}>
-        <Timer />
+        <IALyrics initialQ="rick astley never gonna give you up" />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        5. Translate
-      </Text>
+      <WikiTitle>5. Stopwatch</WikiTitle>
+      <Box className={classes.search_box}>
+        <IAStopwatch withIAWrapper />
+      </Box>
+
+      <WikiTitle>6. Timer</WikiTitle>
+      <Box className={classes.search_box}>
+        <IATimer withIAWrapper />
+      </Box>
+
+      {/* <WikiTitle>7. Translate</WikiTitle>
       <Box className={classes.search_box}>
         <Translate />
+      </Box> */}
+
+      <WikiTitle>7. Random UUID</WikiTitle>
+      <Box className={classes.search_box}>
+        <IAUUID />
       </Box>
 
-      <Text fz="28" mt="xl" fw={600} mb="md">
-        6. Random UUID
-      </Text>
+      <WikiTitle>8. Weather</WikiTitle>
       <Box className={classes.search_box}>
-        <UUID />
+        <IAWeather />
       </Box>
     </Container>
   );

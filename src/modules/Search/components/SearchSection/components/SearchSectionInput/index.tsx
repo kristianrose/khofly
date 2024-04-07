@@ -1,7 +1,6 @@
 import RemixLink from "@components/RemixLink";
 import {
   ActionIcon,
-  Autocomplete,
   Combobox,
   Divider,
   Flex,
@@ -10,15 +9,15 @@ import {
 } from "@mantine/core";
 import { IconSearch, IconTriangleFilled, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import classes from "./styles.module.scss";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
-import { useGeneralStore } from "@store/general";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { useSettingsStore } from "@store/settings";
 
 const SearchSectionInput = () => {
   const t = useTranslate();
@@ -31,7 +30,7 @@ const SearchSectionInput = () => {
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const { useAutocomplete } = useGeneralStore((state) => ({
+  const { useAutocomplete } = useSettingsStore((state) => ({
     useAutocomplete: state.useAutocomplete,
   }));
 
@@ -73,7 +72,12 @@ const SearchSectionInput = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    if (!useAutocomplete || !debouncedQ) return;
+    if (
+      !useAutocomplete ||
+      !debouncedQ ||
+      document.activeElement !== combobox.targetRef.current
+    )
+      return;
 
     trigger(debouncedQ);
   }, [debouncedQ]);

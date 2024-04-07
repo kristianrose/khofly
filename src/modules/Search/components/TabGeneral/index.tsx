@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import InstantAnswer from "../InstantAnswer";
 import SearchResultRow from "./components/SearchResultRow";
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
@@ -12,20 +12,24 @@ import Suggestions from "./components/Suggestions";
 import Infobox from "./components/Infobox";
 import Lyricsbox from "./components/Lyricsbox";
 import clsx from "clsx";
-import CaramelldansenAudio from "./components/Memes/Caramelldansen";
 import SearchOptions from "../SearchOptions";
 import { useSearchParams } from "@remix-run/react";
+import { useEnginesStore } from "@store/engines";
 
 const TabGeneral = () => {
   const [searchParams] = useSearchParams();
+
+  const { hydrated } = useEnginesStore((state) => ({
+    hydrated: state.hydrated,
+  }));
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length) mutate();
-  }, []);
+    if (!data?.length && hydrated) mutate();
+  }, [hydrated]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
@@ -119,11 +123,8 @@ const TabGeneral = () => {
             <Infobox {...data[0].infoboxes[0]} />
           )}
 
-        {<Lyricsbox />}
+        <Lyricsbox />
       </Flex>
-
-      {/* Memes */}
-      <CaramelldansenAudio />
     </Flex>
   );
 };

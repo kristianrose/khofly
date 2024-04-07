@@ -1,4 +1,3 @@
-import React from "react";
 import WikiText from "../../common/WikiText";
 import WikiLink from "../../common/WikiLink";
 import { Text } from "@mantine/core";
@@ -8,6 +7,8 @@ const SectionSafari = () => {
   return (
     <>
       <WikiText>1. Take a deep breath.</WikiText>
+
+      <WikiText>1.1. Ask Apple® for permission to install Firefox.</WikiText>
 
       <WikiText>
         2. Open Firefox{" "}

@@ -1,5 +1,5 @@
 export const formatChangelog = (data: string): { title: string; content: string }[] => {
-  let array = [] as Array<{ title: string; content: string }>;
+  const array = [] as Array<{ title: string; content: string }>;
   let objCounter = 0;
 
   const splicedData = data.split('\n').slice(7);

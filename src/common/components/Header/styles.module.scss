@@ -7,12 +7,6 @@
   display: flex;
   align-items: center;
 
-  .route_label {
-    // @media (max-width: vars.$mantine-breakpoint-xs) {
-    //   display: none;
-    // }
-  }
-
   .divider {
     flex: 1;
   }
@@ -26,7 +20,7 @@
     }
   }
 
-  .auth_button {
+  .action_button {
     @media (max-width: vars.$mantine-breakpoint-md) {
       display: none;
     }

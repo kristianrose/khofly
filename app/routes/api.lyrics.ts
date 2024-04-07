@@ -1,5 +1,10 @@
-import { LoaderFunctionArgs, json } from "@remix-run/node"; // or cloudflare/deno
 import { Client } from "genius-lyrics";
+
+import { LoaderFunctionArgs, json as nodeJson } from "@remix-run/node";
+import { json as vercelJson } from "@vercel/remix";
+
+// Change functions based on deployment target
+const json = process.env.HOST_TARGET === "vercel" ? vercelJson : nodeJson;
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const client = new Client();

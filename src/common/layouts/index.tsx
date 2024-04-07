@@ -1,7 +1,7 @@
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import { AppShell, MantineProvider } from "@mantine/core";
-import { IFC } from "@ts/global.types";
+import { IAppTheme, IFC } from "@ts/global.types";
 import React, { useEffect } from "react";
 
 import classes from "./styles.module.scss";
@@ -10,23 +10,28 @@ import WikiNavbar from "@components/Navbar/Wiki";
 import { useDisclosure, useDocumentTitle, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
-import { useGlobalStore } from "@store/global";
 import NProgress from "@module/NProgress";
 import { useGeneralStore } from "@store/general";
-import { useLocation, useSearchParams } from "@remix-run/react";
+import {
+  useLocation,
+  useRouteError,
+  useRouteLoaderData,
+  useSearchParams,
+} from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
+  const data = useRouteLoaderData("root") as { theme: IAppTheme };
+
+  const error = useRouteError();
   const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
-
-  const { appTheme } = useGlobalStore((state) => ({
-    appTheme: state.appTheme,
-  }));
 
   const { resetVisitedLinks } = useGeneralStore((state) => ({
     resetVisitedLinks: state.resetVisitedLinks,
   }));
+
+  const appTheme: IAppTheme = data?.theme;
 
   const pinned = useHeadroom({ fixedAt: 120 });
 
@@ -38,22 +43,18 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
-
   const isIndex = pathname === "/";
 
   const isFooterOffset = isSearch || isDocs;
-
   const isSearchMaps = isSearch && tab === "maps";
-
   const headerHeight = isSearch ? 100 : 70;
-
   const isHeaderCollapsed = isSearch && !pinned;
-  const isHeaderOffset = !isSearch;
+  const isHeaderOffset = !isSearch && !isIndex;
 
-  // const appName = !+process.env.IS_SELF_HOST!
-  //   ? t("_common.app_name")
-  //   : process.env.APP_NAME;
-  // useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
+  const appName = !+process.env.IS_SELF_HOST!
+    ? t("_common.app_name")
+    : process.env.APP_NAME;
+  useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
 
   useEffect(() => {
     if (!["/search"].includes(pathname)) {
@@ -66,7 +67,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   return (
     <MantineProvider
       theme={getMantineTheme(appTheme)}
-      defaultColorScheme="dark"
+      defaultColorScheme="auto"
     >
       <Notifications />
 
@@ -112,7 +113,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           </AppShell.Navbar>
         )}
 
-        {isIndex && (
+        {isIndex && !error && (
           <AppShell.Footer>
             <Footer />
           </AppShell.Footer>
